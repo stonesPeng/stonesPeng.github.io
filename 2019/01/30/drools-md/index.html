@@ -17,21 +17,20 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Drools动态加载解决方案 | Hexo</title>
-  <meta name="description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
-<meta name="keywords" content="Drools">
+  <title>drools.md | Hexo</title>
+  <meta name="description" content="律己宜带秋风，处事宜带春风!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Drools动态加载解决方案">
-<meta property="og:url" content="https://stonesPeng.github.io/2018/09/05/Drools/index.html">
+<meta property="og:title" content="drools.md">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/01/30/drools-md/index.html">
 <meta property="og:site_name" content="石头の博客">
-<meta property="og:description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
+<meta property="og:description" content="律己宜带秋风，处事宜带春风!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-30T11:51:23.368Z">
+<meta property="og:updated_time" content="2019-01-30T12:12:10.218Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Drools动态加载解决方案">
-<meta name="twitter:description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
+<meta name="twitter:title" content="drools.md">
+<meta name="twitter:description" content="律己宜带秋风，处事宜带春风!">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/2018/09/05/Drools/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/01/30/drools-md/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -301,25 +300,16 @@
 
   
   
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Drools-Group"><span class="toc-number">1.</span> <span class="toc-text">Drools-Group</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流式组支持服务编排，像工作流一样先后顺序运行规则"><span class="toc-number"></span> <span class="toc-text">流式组支持服务编排，像工作流一样先后顺序运行规则</span></a>
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Drools" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-drools-md" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Drools动态加载解决方案
+      drools.md
     </h1>
   
 
@@ -327,53 +317,22 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/09/05/Drools/" class="article-date">
-	  <time datetime="2018-09-05T13:01:24.000Z" itemprop="datePublished">2018-09-05</time>
+	<a href="/2019/01/30/drools-md/" class="article-date">
+	  <time datetime="2019-01-30T12:12:10.000Z" itemprop="datePublished">2019-01-30</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/引擎/">引擎</a>
-  </span>
-
         
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/Drools/">Drools</a>
-  </span>
-
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/05/Drools/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/01/30/drools-md/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h3 id="Drools-Group"><a href="#Drools-Group" class="headerlink" title="Drools-Group"></a><strong>Drools-Group</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。</span></span><br><span class="line"><span class="comment">*可以用类似salience之类的属性来实现规则的执行优先级</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">activation-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用</span></span><br><span class="line"><span class="comment">*对应的规则，该属性会通过流程的走向确定要执行哪一条规则</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">ruleflow-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*Agenda Group 是用来在Agenda基础上对规则进行再次分组。引擎在调用设置了agenda-group</span></span><br><span class="line"><span class="comment">*属性的规则时需要显示的指定某个agenda group 获得focus，否则将不执行此组的规则。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">agenda-group</span><br></pre></td></tr></table></figure>
-<p><strong>1. Agenda-group</strong></p>
-<blockquote>
-<p>议程组允许将规则以组的形式，并将这么组放入堆栈，堆栈具有push/pop操作，通过SetFocus完成Push操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>议程总是在栈顶执行，当议程组所有的规则执行后，这个议程组会被移除然后执行下一组。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuteAgendaGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getAgendaGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    <span class="comment">//group2 后执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br><span class="line">    <span class="comment">//group1 先执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group1"</span>).setFocus();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">    kieSession.dispose();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getAgendaGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-agenda-group1\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group2\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group2\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-agenda-group2 被触发\"); end\n"</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group3\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-2 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>2.Activation-Group</strong></p>
-<blockquote>
-<p>激活组要求相同组只执行一个<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">executeActivationGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getActivationGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getActivationGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-activation-group1\" "</span> +</span><br><span class="line">            <span class="string">"salience  1"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-activation-group1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-activation-group2\" "</span> +</span><br><span class="line">            <span class="string">"salience  2"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-activation-group2 被触发\"); end\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>3. Flow-Group</strong></p>
-<blockquote>
-<h1 id="流式组支持服务编排，像工作流一样先后顺序运行规则"><a href="#流式组支持服务编排，像工作流一样先后顺序运行规则" class="headerlink" title="流式组支持服务编排，像工作流一样先后顺序运行规则"></a>流式组支持服务编排，像工作流一样先后顺序运行规则</h1></blockquote>
-<blockquote>
-<p>律己宜带秋风</p>
-</blockquote>
-<hr>
-<dl><br>  <dt>Definition list</dt><br>  <dd>Is something people use sometimes.</dd><br>  <dt>Markdown in HTML</dt><br>  <dd>Does <em>not</em> work <strong>very</strong> well. Use HTML <em>tags</em>.</dd><br></dl>
-
-
+        
       
     </div>
     <div class="article-footer">
@@ -382,7 +341,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://stonesPeng.github.io/2018/09/05/Drools/" title="Drools动态加载解决方案" target="_blank" rel="external">https://stonesPeng.github.io/2018/09/05/Drools/</a>
+      <a href="https://stonesPeng.github.io/2019/01/30/drools-md/" title="drools.md" target="_blank" rel="external">https://stonesPeng.github.io/2019/01/30/drools-md/</a>
     </li>
     
     
@@ -430,20 +389,11 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/01/30/drools-md/" title="drools.md"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    
+    <li class="next">
+      <a href="/2018/09/05/Drools/" title="Drools动态加载解决方案"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
-    
-    
-    <li class="toggle-toc">
-      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
-        <span>[&nbsp;</span><span>Catalogue</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
     
   </ul>
   
