@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Map]]></title>
+    <title><![CDATA[Map--Usage]]></title>
     <url>%2F2019%2F01%2F31%2FMap%2F</url>
     <content type="text"><![CDATA[Map1. putIfAbsent和computeIfAbsent 都是在key不存在的时候才会建立key和value的映射关系；putIfAbset不论传入的value是否为空，都会建立映射（并不适合所有子类，例如HashTable），而computeIfAbsent方法，当存入value为空时，不做任何操作当key不存在时，返回的都是新的value（为什么不说新插入的value），即使computeIfAbsent在传入的value为null时，不会新建映射关系，但返回的也是null； 2. computeIfPresent和computeIfAbsent 这两个方法正好相反，前者是在key存在时，才会用新的value替换oldValue当传入的key存在，并且传入的value为null时，前者会remove（key），把传入的key对应的映射关系移除；而后者不论何时都不会remove()；前者只有在key存在，并且传入的value不为空的时候，返回值是value，其他情况都是返回null；后者只有在key不存在，并且传入的value不为null的时候才会返回value，其他情况都返回null； 3. compute 新传入的value不为null就建立映射关系（也就是说不论key是否为null，具体子类再具体分析）新传入的value为null时：key已存在，且老的对应value不为null，移除改映射关系，返回null；否则，直接返回null]]></content>
       <categories>
@@ -12,12 +12,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[drools.md]]></title>
-    <url>%2F2019%2F01%2F30%2Fdrools-md%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Drools动态加载解决方案]]></title>
+    <title><![CDATA[Drools--Group]]></title>
     <url>%2F2018%2F09%2F05%2FDrools%2F</url>
     <content type="text"><![CDATA[Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定要执行哪一条规则*/ruleflow-group/***Agenda Group 是用来在Agenda基础上对规则进行再次分组。引擎在调用设置了agenda-group*属性的规则时需要显示的指定某个agenda group 获得focus，否则将不执行此组的规则。*/agenda-group 1. Agenda-group 议程组允许将规则以组的形式，并将这么组放入堆栈，堆栈具有push/pop操作，通过SetFocus完成Push操作。1kieSession.getAgenda().getAgendaGroup("group2").setFocus(); 议程总是在栈顶执行，当议程组所有的规则执行后，这个议程组会被移除然后执行下一组。1234567891011121314151617181920212223242526public void excuteAgendaGroup()&#123; KieBase kieBase = KieStarter.newKieBase(getAgendaGroupDrl()); KieSession kieSession = kieBase.newKieSession(); //group2 后执行 kieSession.getAgenda().getAgendaGroup("group2").setFocus(); //group1 先执行 kieSession.getAgenda().getAgendaGroup("group1").setFocus(); kieSession.fireAllRules(); kieSession.dispose();&#125;private String getAgendaGroupDrl()&#123; return "rule \"test-agenda-group1\" " + "agenda-group \"group1\" " + "when then System.out.println(\"test-agenda-group1-1 被触发\"); " + "end " + "rule \"test-agenda-group2\" " + "agenda-group \"group2\" " + "when " + "then " + "System.out.println(\"test-agenda-group2 被触发\"); end\n" + "rule \"test-agenda-group3\" " + "agenda-group \"group1\" " + "when then System.out.println(\"test-agenda-group1-2 被触发\"); " + "end ";&#125; 2.Activation-Group 激活组要求相同组只执行一个123456789101112131415161718public void executeActivationGroup()&#123; KieBase kieBase = KieStarter.newKieBase(getActivationGroupDrl()); KieSession kieSession = kieBase.newKieSession(); kieSession.fireAllRules();&#125;private String getActivationGroupDrl()&#123; return "rule \"test-activation-group1\" " + "salience 1"+ "activation-group \"group1\" " + "when then System.out.println(\"test-activation-group1 被触发\"); " + "end " + "rule \"test-activation-group2\" " + "salience 2"+ "activation-group \"group1\" " + "when " + "then " + "System.out.println(\"test-activation-group2 被触发\"); end\n";&#125; 3. Flow-Group 流式组支持服务编排，像工作流一样先后顺序运行规则]]></content>
       <categories>
