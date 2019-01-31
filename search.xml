@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[drools.md]]></title>
+    <url>%2F2019%2F01%2F30%2Fdrools-md%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Drools动态加载解决方案]]></title>
+    <url>%2F2018%2F09%2F05%2FDrools%2F</url>
+    <content type="text"><![CDATA[Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定要执行哪一条规则*/ruleflow-group/***Agenda Group 是用来在Agenda基础上对规则进行再次分组。引擎在调用设置了agenda-group*属性的规则时需要显示的指定某个agenda group 获得focus，否则将不执行此组的规则。*/agenda-group 1. Agenda-group 议程组允许将规则以组的形式，并将这么组放入堆栈，堆栈具有push/pop操作，通过SetFocus完成Push操作。1kieSession.getAgenda().getAgendaGroup("group2").setFocus(); 议程总是在栈顶执行，当议程组所有的规则执行后，这个议程组会被移除然后执行下一组。1234567891011121314151617181920212223242526public void excuteAgendaGroup()&#123; KieBase kieBase = KieStarter.newKieBase(getAgendaGroupDrl()); KieSession kieSession = kieBase.newKieSession(); //group2 后执行 kieSession.getAgenda().getAgendaGroup("group2").setFocus(); //group1 先执行 kieSession.getAgenda().getAgendaGroup("group1").setFocus(); kieSession.fireAllRules(); kieSession.dispose();&#125;private String getAgendaGroupDrl()&#123; return "rule \"test-agenda-group1\" " + "agenda-group \"group1\" " + "when then System.out.println(\"test-agenda-group1-1 被触发\"); " + "end " + "rule \"test-agenda-group2\" " + "agenda-group \"group2\" " + "when " + "then " + "System.out.println(\"test-agenda-group2 被触发\"); end\n" + "rule \"test-agenda-group3\" " + "agenda-group \"group1\" " + "when then System.out.println(\"test-agenda-group1-2 被触发\"); " + "end ";&#125; 2.Activation-Group 激活组要求相同组只执行一个123456789101112131415161718public void executeActivationGroup()&#123; KieBase kieBase = KieStarter.newKieBase(getActivationGroupDrl()); KieSession kieSession = kieBase.newKieSession(); kieSession.fireAllRules();&#125;private String getActivationGroupDrl()&#123; return "rule \"test-activation-group1\" " + "salience 1"+ "activation-group \"group1\" " + "when then System.out.println(\"test-activation-group1 被触发\"); " + "end " + "rule \"test-activation-group2\" " + "salience 2"+ "activation-group \"group1\" " + "when " + "then " + "System.out.println(\"test-activation-group2 被触发\"); end\n";&#125; 3. Flow-Group 流式组支持服务编排，像工作流一样先后顺序运行规则]]></content>
+      <categories>
+        <category>引擎</category>
+      </categories>
+      <tags>
+        <tag>Drools</tag>
+      </tags>
+  </entry>
+</search>
