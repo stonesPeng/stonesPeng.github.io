@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta name=referrer content=never>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Chrome Extension | Hexo</title>
+  <meta name="description" content="前言使用浏览器扩展程序可以使你的工作效率提高数倍不止，那么下面我就向大家分享一下我日常使用的扩展，可能大多数扩展大家都已经在使用了，不过也难免有一两个是你不知道的。 正文 以下排名并不分先后，请坚持看到最后，或许你会有惊喜。  1.谷歌访问助手本来想了一波广告词来吹它，但想到… 算了，别问，问就是好用。 注：装了这个就可以访问之后介绍的扩展链接了。  链接：http://www.ggfwzs.co">
+<meta name="keywords" content="browser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome Extension">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/03/01/Chrome-Extension/index.html">
+<meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="前言使用浏览器扩展程序可以使你的工作效率提高数倍不止，那么下面我就向大家分享一下我日常使用的扩展，可能大多数扩展大家都已经在使用了，不过也难免有一两个是你不知道的。 正文 以下排名并不分先后，请坚持看到最后，或许你会有惊喜。  1.谷歌访问助手本来想了一波广告词来吹它，但想到… 算了，别问，问就是好用。 注：装了这个就可以访问之后介绍的扩展链接了。  链接：http://www.ggfwzs.co">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtTibSBQux0picuc5lddsSOiaMqjPTVGukndgQtMiceKKUNXE8RLVjJry9ZA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtgbn2Pg5QA7ic4pbTBT3rLbzuLINuQE9geDdAG4SY592upsJOsKdS4jQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtAjbECiczdBH6InBYuRX9GMKj3h5uXyo57cJOSgtZjIQQUxHfTetxpyg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt2vjU95zKgUnVUiaW3AtfBQFmItHIDhob0qqe7qJu0hgfFTIouTvlT4Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtYpH9sic7faWHInAT3I66mj0Dy91qibLbskpo6L10ibdE77o6mibqGntPKQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt3icIWGuK5u9rjjgCbXK1HLC4Oku2cn12ZFA3wgd9HNwMZW7m8GaEZSg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt7T9NVibMz30hJllkNiayibVxNIEQVn9CAicE8LTkyzcJlwybAQ4czQhdTg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtYt3HcQW8zogUyLlm9j2dxJ8tgtZHKMKoxPgsgbuh5eW92xuzknXp2A/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtztyeClic7h1ibibKqO07qqzIlgu4D1nftoxDSVyPNzxCBRPOgsf9ic4vzA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt1y1iciaalDgun3VBWC9JzU3Wz3tULSCftx7MnernBahpL4tR5lbtnPEw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtnbylG1miahibYAqr3PsYxwpLkzGktcXeDY1jiagoAdnPnqUxM8V4iaKiaIg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtkdicxg8TcpWrcpMfXdkOwmGDIUa8qOzXVj0Drxz5GkH6R6Hlag19W3Q/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtjc7Nfre33d2rHqypiboCUuHM7BB2oEFGjaibsSkeXhNpmibrYcWxvQ0EA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtzjW4He84LMbaBDksbhLqzjBAnnm5BibFFy3OvqH5OHvYblpHSnN4QdQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtjmTa3ibfrCIeZFETgZaibibibLh3eDVoLuE00Ca3TyVL3O5eUsNn9pfr6A/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtrYLRFzozqIAF2M7aDNibEGNYStFxs499BZMAGufcbQMFXLoNiaCwfhrg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:updated_time" content="2019-03-01T06:16:13.664Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrome Extension">
+<meta name="twitter:description" content="前言使用浏览器扩展程序可以使你的工作效率提高数倍不止，那么下面我就向大家分享一下我日常使用的扩展，可能大多数扩展大家都已经在使用了，不过也难免有一两个是你不知道的。 正文 以下排名并不分先后，请坚持看到最后，或许你会有惊喜。  1.谷歌访问助手本来想了一波广告词来吹它，但想到… 算了，别问，问就是好用。 注：装了这个就可以访问之后介绍的扩展链接了。  链接：http://www.ggfwzs.co">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtTibSBQux0picuc5lddsSOiaMqjPTVGukndgQtMiceKKUNXE8RLVjJry9ZA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/03/01/Chrome-Extension/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/stonesPeng" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">honorstone</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>律己宜带秋风，处事宜带春风!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/引擎/">引擎</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/扩展/">扩展</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drools/">Drools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser/">browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式-总/">设计模式[总]</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Drools/" style="font-size: 13px;">Drools</a> <a href="/tags/browser/" style="font-size: 13px;">browser</a> <a href="/tags/协议/" style="font-size: 13px;">协议</a> <a href="/tags/设计模式-总/" style="font-size: 13px;">设计模式[总]</a> <a href="/tags/集合/" style="font-size: 13px;">集合</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/tool/">tool</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/03/01/Chrome-Extension/" class="title">Chrome Extension</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-03-01T06:13:16.000Z" itemprop="datePublished">2019-03-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/设计模式/">设计模式</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/26/设计模式汇总/" class="title">设计模式汇总</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-26T14:47:23.000Z" itemprop="datePublished">2019-02-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/扩展/">扩展</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/02/25/开源协议详解/" class="title">开源协议详解</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-02-25T02:55:33.000Z" itemprop="datePublished">2019-02-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/java/">java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/31/Map/" class="title">Map--Usage</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-31T05:47:38.000Z" itemprop="datePublished">2019-01-31</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2019/01/30/drools-md/" class="title">drools.md</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-01-30T12:12:10.000Z" itemprop="datePublished">2019-01-30</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-谷歌访问助手"><span class="toc-number">2.1.</span> <span class="toc-text">1.谷歌访问助手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新浪微博图床"><span class="toc-number">2.2.</span> <span class="toc-text">2. 新浪微博图床</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AdBlock"><span class="toc-number">2.3.</span> <span class="toc-text">3. AdBlock</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-WEB-前端助手"><span class="toc-number">2.4.</span> <span class="toc-text">4. WEB 前端助手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-JSON-Viewer"><span class="toc-number">2.5.</span> <span class="toc-text">5. JSON Viewer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Standardized-Screenshot"><span class="toc-number">2.6.</span> <span class="toc-text">6. Standardized Screenshot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Chromoji-Emoji"><span class="toc-number">2.7.</span> <span class="toc-text">7. Chromoji - Emoji</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Clear-Cache"><span class="toc-number">2.8.</span> <span class="toc-text">8. Clear Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-二维码生成器"><span class="toc-number">2.9.</span> <span class="toc-text">9. 二维码生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-翻译侠"><span class="toc-number">2.10.</span> <span class="toc-text">10. 翻译侠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-图流"><span class="toc-number">2.11.</span> <span class="toc-text">11. 图流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-阅读模式"><span class="toc-number">2.12.</span> <span class="toc-text">12. 阅读模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Octotree"><span class="toc-number">2.13.</span> <span class="toc-text">13. Octotree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-Enhanced-Github"><span class="toc-number">2.14.</span> <span class="toc-text">14. Enhanced Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-Isometric-Contributions"><span class="toc-number">2.15.</span> <span class="toc-text">15. Isometric Contributions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-Git-History"><span class="toc-number">2.16.</span> <span class="toc-text">16. Git History</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-Tampermonkey"><span class="toc-number">2.17.</span> <span class="toc-text">17. Tampermonkey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-Stylus"><span class="toc-number">2.18.</span> <span class="toc-text">18. Stylus</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Chrome-Extension" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chrome Extension
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/03/01/Chrome-Extension/" class="article-date">
+	  <time datetime="2019-03-01T06:13:16.000Z" itemprop="datePublished">2019-03-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/tool/">tool</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/browser/">browser</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/03/01/Chrome-Extension/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用浏览器扩展程序可以使你的工作效率提高数倍不止，那么下面我就向大家分享一下我日常使用的扩展，可能大多数扩展大家都已经在使用了，不过也难免有一两个是你不知道的。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><blockquote>
+<p>以下排名并不分先后，请坚持看到最后，或许你会有惊喜。</p>
+</blockquote>
+<h3 id="1-谷歌访问助手"><a href="#1-谷歌访问助手" class="headerlink" title="1.谷歌访问助手"></a>1.谷歌访问助手</h3><p>本来想了一波广告词来吹它，但想到…</p>
+<p>算了，别问，问就是好用。</p>
+<p><strong>注</strong>：装了这个就可以访问之后介绍的扩展链接了。</p>
+<blockquote>
+<p>链接：<a href="http://www.ggfwzs.com/" target="_blank" rel="noopener">http://www.ggfwzs.com/</a></p>
+</blockquote>
+<h3 id="2-新浪微博图床"><a href="#2-新浪微博图床" class="headerlink" title="2. 新浪微博图床"></a>2. 新浪微博图床</h3><p>感谢新浪微博提供的免费图床（对外链无限制），以及吊炸天的 cdn 图片加速服务，从此妈妈再也不用担心我的图床不能用了，另外还支持在网页图片右键菜单中一键上传。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtTibSBQux0picuc5lddsSOiaMqjPTVGukndgQtMiceKKUNXE8RLVjJry9ZA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%9B%BE%E5%BA%8A/fdfdnfpdplfbbnemmmoklbfjbhecpnhf</a></p>
+</blockquote>
+<h3 id="3-AdBlock"><a href="#3-AdBlock" class="headerlink" title="3. AdBlock"></a>3. AdBlock</h3><p>最受欢迎的 Chrome 扩展，拥有超过 6000 万用户！拦截网页上的广告。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtgbn2Pg5QA7ic4pbTBT3rLbzuLINuQE9geDdAG4SY592upsJOsKdS4jQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom</a></p>
+</blockquote>
+<h3 id="4-WEB-前端助手"><a href="#4-WEB-前端助手" class="headerlink" title="4. WEB 前端助手"></a>4. WEB 前端助手</h3><p>前端神器，包括 JSON 格式化、二维码生成与解码、信息编解码、代码压缩、美化、页面取色、Markdown与HTML互转、网页滚动截屏、正则表达式、时间转换工具、编码规范检测、页面性能检测、Ajax接口调试、密码生成器、JSON 比对工具、网页编码设置、便签笔记。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtAjbECiczdBH6InBYuRX9GMKj3h5uXyo57cJOSgtZjIQQUxHfTetxpyg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/pkgccpejnmalmdinmhkkfafefagiiiad" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/pkgccpejnmalmdinmhkkfafefagiiiad</a></p>
+</blockquote>
+<h3 id="5-JSON-Viewer"><a href="#5-JSON-Viewer" class="headerlink" title="5. JSON Viewer"></a>5. JSON Viewer</h3><p>前面介绍的 WEB 前端工具也有 JSON 查看工具，但是它那个太丑了，所以我用这个，内置多种主题，是我见过最好看的 JSON 查看工具。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt2vjU95zKgUnVUiaW3AtfBQFmItHIDhob0qqe7qJu0hgfFTIouTvlT4Q/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh</a></p>
+</blockquote>
+<h3 id="6-Standardized-Screenshot"><a href="#6-Standardized-Screenshot" class="headerlink" title="6. Standardized Screenshot"></a>6. Standardized Screenshot</h3><p>一个非常好用的截图扩展，自动加上 macOS 的标题栏、以及阴影，配合微博图床一键上传根本不用保存在本地。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtYpH9sic7faWHInAT3I66mj0Dy91qibLbskpo6L10ibdE77o6mibqGntPKQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/pabdhaakclnechgfhmnhkcbmjobeoope" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/pabdhaakclnechgfhmnhkcbmjobeoope</a></p>
+</blockquote>
+<h3 id="7-Chromoji-Emoji"><a href="#7-Chromoji-Emoji" class="headerlink" title="7. Chromoji - Emoji"></a>7. Chromoji - Emoji</h3><p>在某些系统中并不能显示 Emoji 表情，安装此扩展后就能在浏览器中显示和输入，你也能选择显示 Apple 或 Google 风格的 Emoji。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt3icIWGuK5u9rjjgCbXK1HLC4Oku2cn12ZFA3wgd9HNwMZW7m8GaEZSg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/chromoji-emoji-for-google/cahedbegdkagmcjfolhdlechbkeaieki" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/chromoji-emoji-for-google/cahedbegdkagmcjfolhdlechbkeaieki</a></p>
+</blockquote>
+<h3 id="8-Clear-Cache"><a href="#8-Clear-Cache" class="headerlink" title="8. Clear Cache"></a>8. Clear Cache</h3><p>如果你是前端开发人员，调试时需要经常清空浏览器缓存，以往我们需要经过几个步骤才能完成动作，现在只需单击一下按钮即可清除缓存和浏览数据。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt7T9NVibMz30hJllkNiayibVxNIEQVn9CAicE8LTkyzcJlwybAQ4czQhdTg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：Clear Cache</p>
+</blockquote>
+<h3 id="9-二维码生成器"><a href="#9-二维码生成器" class="headerlink" title="9. 二维码生成器"></a>9. 二维码生成器</h3><p>把当前页面或者你输入的任何内容转化成二维码，生成后的二维码可以保存，并且无需联网，谁用谁知道。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtYt3HcQW8zogUyLlm9j2dxJ8tgtZHKMKoxPgsgbuh5eW92xuzknXp2A/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/quick-qr-code-generator/afpbjjgbdimpioenaedcjgkaigggcdpp?hl=zh-CN" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/quick-qr-code-generator/afpbjjgbdimpioenaedcjgkaigggcdpp?hl=zh-CN</a></p>
+</blockquote>
+<h3 id="10-翻译侠"><a href="#10-翻译侠" class="headerlink" title="10. 翻译侠"></a>10. 翻译侠</h3><p>这是我用了众多翻译扩展后最喜欢的一个，貌似之前的作者已经不再维护了，现在由网友接手，挺好的，从此不再需要打开谷歌翻译网站。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtztyeClic7h1ibibKqO07qqzIlgu4D1nftoxDSVyPNzxCBRPOgsf9ic4vzA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/translate-man/fnjoonbenhhijnoegpfkpagjamomgjjm/related?hl=zh-CN" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/translate-man/fnjoonbenhhijnoegpfkpagjamomgjjm/related?hl=zh-CN</a></p>
+</blockquote>
+<h3 id="11-图流"><a href="#11-图流" class="headerlink" title="11. 图流"></a>11. 图流</h3><p>这个厉害了，你是否曾为了看图片，一张一张的点，看完一个系列手都费了，简直痛不欲生，现在，福音来了。</p>
+<p>让我们打开知乎问题《平常人可以漂亮到什么程度？》，查看全部答案，开启图流，你会发现。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMt1y1iciaalDgun3VBWC9JzU3Wz3tULSCftx7MnernBahpL4tR5lbtnPEw/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>另外它还支持轮播展示，如果你经常逛一些你懂得网站，那它简直是老司机神器。</p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/%E5%9B%BE%E6%B5%81-%E7%9C%8B%E5%9B%BE%E5%8A%A9%E6%89%8B/gpcdnjdgomhddecjpknmfodkpkgibajh?utm_source=chrome-ntp-icon" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/%E5%9B%BE%E6%B5%81-%E7%9C%8B%E5%9B%BE%E5%8A%A9%E6%89%8B/gpcdnjdgomhddecjpknmfodkpkgibajh?utm_source=chrome-ntp-icon</a></p>
+</blockquote>
+<h3 id="12-阅读模式"><a href="#12-阅读模式" class="headerlink" title="12. 阅读模式"></a>12. 阅读模式</h3><p>提供与Safari阅读模式功能一致的插件，浏览文章页时候可进入友好的阅读模式，并自定义阅读功能。</p>
+<p>唯一美中不足之处就是在阅读模式下无法选中文字（更不能使用划词翻译）。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtnbylG1miahibYAqr3PsYxwpLkzGktcXeDY1jiagoAdnPnqUxM8V4iaKiaIg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/reader-view/iibolhpkjjmoepndefdmdlmbpfhlgjpl" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/reader-view/iibolhpkjjmoepndefdmdlmbpfhlgjpl</a></p>
+</blockquote>
+<h3 id="13-Octotree"><a href="#13-Octotree" class="headerlink" title="13. Octotree"></a>13. Octotree</h3><p>这个估计不少人知道，它可以在 GitHub 左侧显示当前项目的目录结构，能轻松找到代码的位置。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtkdicxg8TcpWrcpMfXdkOwmGDIUa8qOzXVj0Drxz5GkH6R6Hlag19W3Q/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc</a></p>
+</blockquote>
+<h3 id="14-Enhanced-Github"><a href="#14-Enhanced-Github" class="headerlink" title="14. Enhanced Github"></a>14. Enhanced Github</h3><p>这个可以在 GitHub 中显示仓库大小，每个文件的大小，下载链接和复制文件内容的选项。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtjc7Nfre33d2rHqypiboCUuHM7BB2oEFGjaibsSkeXhNpmibrYcWxvQ0EA/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<p>要是能够支持单文件夹下载那就更好了。</p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/enhanced-github/anlikcnbgdeidpacdbdljnabclhahhmd" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/enhanced-github/anlikcnbgdeidpacdbdljnabclhahhmd</a></p>
+</blockquote>
+<h3 id="15-Isometric-Contributions"><a href="#15-Isometric-Contributions" class="headerlink" title="15. Isometric Contributions"></a>15. Isometric Contributions</h3><p>装X神器，值得拥有。这里放上我心中的偶像 Linus 的贡献图。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtzjW4He84LMbaBDksbhLqzjBAnnm5BibFFy3OvqH5OHvYblpHSnN4QdQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/isometric-contributions/mjoedlfflcchnleknnceiplgaeoegien" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/isometric-contributions/mjoedlfflcchnleknnceiplgaeoegien</a></p>
+</blockquote>
+<h3 id="16-Git-History"><a href="#16-Git-History" class="headerlink" title="16. Git History"></a>16. Git History</h3><p>这个扩展可以很炫酷地展示 GitHub 中任意一个文件的历史修改情况。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtjmTa3ibfrCIeZFETgZaibibibLh3eDVoLuE00Ca3TyVL3O5eUsNn9pfr6A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/git-history-browser-exten/laghnmifffncfonaoffcndocllegejnf" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/git-history-browser-exten/laghnmifffncfonaoffcndocllegejnf</a></p>
+</blockquote>
+<h3 id="17-Tampermonkey"><a href="#17-Tampermonkey" class="headerlink" title="17. Tampermonkey"></a>17. Tampermonkey</h3><p>油猴怕是没有人不知道，它基本上是所有扩展中的佼佼者了。这里给两个可以发现好用的脚本的网站：</p>
+<ul>
+<li><a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></li>
+<li><a href="https://openuserjs.org/" target="_blank" rel="noopener">https://openuserjs.org/</a></li>
+</ul>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo</a></p>
+</blockquote>
+<h3 id="18-Stylus"><a href="#18-Stylus" class="headerlink" title="18. Stylus"></a>18. Stylus</h3><p>其实类似的扩展还有 Stylish，但它会窃取用户的浏览历史（虽然某位药王说我们更愿意用隐私换便利）。</p>
+<p>而 Stylus 就不会。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkG6ZIcj6vWIia3Ptq1mUrMMtrYLRFzozqIAF2M7aDNibEGNYStFxs499BZMAGufcbQMFXLoNiaCwfhrg/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"></p>
+<blockquote>
+<p>链接：<a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank" rel="noopener">https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne</a></p>
+</blockquote>
+<p>​                                                           转载来源：<a href="https://4ark.me//post/549a6198.html" target="_blank" rel="noopener">https://4ark.me//post/549a6198.html</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2019/03/01/Chrome-Extension/" title="Chrome Extension" target="_blank" rel="external">https://stonesPeng.github.io/2019/03/01/Chrome-Extension/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">honorstone</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/02/26/设计模式汇总/" title="设计模式汇总"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
