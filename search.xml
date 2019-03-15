@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Filter Diff Interceptor]]></title>
+    <url>%2F2019%2F03%2F15%2FFilter-Diff-Interceptor%2F</url>
+    <content type="text"><![CDATA[Filter Diff InterceptorReference StackOverflow: HandlerInterceptor is basically similar to a Servlet Filter, but in contrast to the latter it just allows custom pre-processing with the option of prohibiting the execution of the handler itself, and custom post-processing. Filters are more powerful, for example they allow for exchanging the request and response objects that are handed down the chain. Note that a filter gets configured in web.xml, a HandlerInterceptor in the application context. As a basic guideline, fine-grained handler-related preprocessing tasks are candidates for HandlerInterceptor implementations, especially factored-out common handler code and authorization checks. On the other hand, a Filter is well-suited for request content and view content handling, like multipart forms and GZIP compression. This typically shows when one needs to map the filter to certain content types (e.g. images), or to all requests. 1. Filter Filter是servlet规范中定义的java web组件, 在所有支持java web的容器中都可以使用 Filter和Filter Chain是密不可分的, Filter可以实现依次调用正是因为有了Filter Chain Filter 调用链 上图是Filter对请求进行拦截的原理图 2.Interceptor Interceptor不是servlet规范中的java web组件, 而是Spring提供的组件 Interceptor功能的实现主要是在Spring Mvc的DispatcherServelt.doDispatch方法中 拦截器流程 调用拦截器的前置方法 -&gt; 调用处理请求的方法 -&gt; 渲染模版 -&gt; 调用拦截器的后置处理方法 -&gt; 调用拦截器的完成方法 3.Summary 从以上分析可以看到过滤器和拦截器实现的方式的不同. Filter是利用了方法的调用(入栈出栈)完成整个流程, 而Interceptor是利用了for循环完成了整个流程. Filter的实现比较占用栈空间, 在Filter多的情况下可能会有栈溢出的风险存在. Interceptor的实现逻辑更加的清晰简单 Filter组件更加的通用, 只要支持java servlet的容器都可以使用, 而Interceptor必须依赖于Spring Filter的优先级是高于Interceptor, 即请求是先到Filter再到Interceptor的, 因为Interceptor的实现主体还是一个servlet]]></content>
+      <categories>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[什么是SSL？]]></title>
     <url>%2F2019%2F03%2F13%2F%E4%BB%80%E4%B9%88%E6%98%AFSSL%EF%BC%9F%2F</url>
     <content type="text"><![CDATA[SSL （安全套接字层） SSL是用在Web服务器和浏览器之间建立加密链接的标准安全技术，可确保在Web服务器和浏览器之间传递的所有数据保持私有和完整。SSL是行业标准，数千万的网站使用SSL来保护与客户的在线交易。 1.申请SSL证书 为了能够创建SSL连接，Web服务器需要SSL证书。当您选择在Web服务器上激活SSL时，系统将提示您完成有关您的网站和公司身份的许多问题。然后，您的Web服务器将创建两个加密密钥 - 私钥和公钥 公钥不需要保密，并放入证书签名请求（CSR） - 一个包含您的详细信息的数据文件。然后，您应该提交CSR。在SSL证书申请过程中，证书颁发机构将验证您的详细信息并颁发包含您的详细信息的SSL证书，并允许您使用SSL ​ 公钥证书 2.使用SSL证书 浏览器发送SSL证书与web服务器的私钥相匹配，然后，您的Web服务器将能够在网站和客户的Web浏览器之间建立加密链接 SSL协议的复杂性对您的客户来说仍然是不可见的。相反，他们的浏览器为他们提供了一个关键指示器，让他们知道他们当前受到SSL加密会话的保护 - 右下角的锁定图标，点击锁定图标会显示您的SSL证书及其详细信息。所有SSL证书均颁发给公司或法律责任人 3.总结 通常，SSL证书将包含您的域名，公司名称，地址，城市，州和国家/地区。它还将包含证书的到期日期以及负责颁发证书的证书颁发机构的详细信息 当浏览器连接到安全站点时，它将检索站点的SSL证书并检查它是否已过期，它是由浏览器信任的证书颁发机构颁发的，并且它已由发布它的网站使用 如果在这些检查中的任何一个检查失败，浏览器将向最终用户显示警告，告知他们该网站不受SSL保护]]></content>
