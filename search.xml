@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mysql深入浅出-索引（-）]]></title>
+    <url>%2F2019%2F05%2F10%2FMysql%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-%E7%B4%A2%E5%BC%95%EF%BC%88-%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>database</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Kotlin范围函数比较]]></title>
     <url>%2F2019%2F04%2F29%2FKotlin%E8%8C%83%E5%9B%B4%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83%2F</url>
     <content type="text"><![CDATA[]]></content>
