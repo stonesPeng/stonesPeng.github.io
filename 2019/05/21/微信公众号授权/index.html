@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta name=referrer content=never>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>微信公众号授权 | 石头の的博客</title>
+  <meta name="description" content="微信网页授权&amp;lt;转载自微信公众号开发文档&amp;gt; 如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 关于网页授权回调域名的说明 1、在微信公众号请求用户网页授权之前，开发者需要先到公众平台官网中的“开发 - 接口权限 - 网页服务 - 网页帐号 - 网页授权获取用户基本信息”的配置选项中，修改授权回调域名。请注意，这里填写的是域名（是">
+<meta name="keywords" content="公众号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信公众号授权">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/05/21/微信公众号授权/index.html">
+<meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="微信网页授权&amp;lt;转载自微信公众号开发文档&amp;gt; 如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 关于网页授权回调域名的说明 1、在微信公众号请求用户网页授权之前，开发者需要先到公众平台官网中的“开发 - 接口权限 - 网页服务 - 网页帐号 - 网页授权获取用户基本信息”的配置选项中，修改授权回调域名。请注意，这里填写的是域名（是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz/PiajxSqBRaEIQxibpLbyuSK39dMUJfWKTThhpgvErSzV7X5YHOZdnnhlVWHp5y8b4TXsBzKzjakPXichajlWls8Vg/0?wx_fmt=jpeg">
+<meta property="og:updated_time" content="2019-05-21T02:13:32.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信公众号授权">
+<meta name="twitter:description" content="微信网页授权&amp;lt;转载自微信公众号开发文档&amp;gt; 如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。 关于网页授权回调域名的说明 1、在微信公众号请求用户网页授权之前，开发者需要先到公众平台官网中的“开发 - 接口权限 - 网页服务 - 网页帐号 - 网页授权获取用户基本信息”的配置选项中，修改授权回调域名。请注意，这里填写的是域名（是">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz/PiajxSqBRaEIQxibpLbyuSK39dMUJfWKTThhpgvErSzV7X5YHOZdnnhlVWHp5y8b4TXsBzKzjakPXichajlWls8Vg/0?wx_fmt=jpeg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/05/21/微信公众号授权/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/stonesPeng" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">石头</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>自律是为了自由</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">database</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/业务/">业务</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/书单/">书单</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/引擎/">引擎</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/扩展/">扩展</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件工程/">软件工程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件架构/">软件架构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/领域驱动设计/">领域驱动设计</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drools/">Drools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser/">browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/书单/">书单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/公众号/">公众号</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/医疗服务/">医疗服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全技术/">安全技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/范围函数/">范围函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计思想/">设计思想</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计文档/">设计文档</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式-总/">设计模式[总]</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件架构/">软件架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Drools/" style="font-size: 13px;">Drools</a> <a href="/tags/browser/" style="font-size: 13px;">browser</a> <a href="/tags/mysql/" style="font-size: 13px;">mysql</a> <a href="/tags/servlet/" style="font-size: 13px;">servlet</a> <a href="/tags/书单/" style="font-size: 13px;">书单</a> <a href="/tags/公众号/" style="font-size: 13px;">公众号</a> <a href="/tags/医疗服务/" style="font-size: 13px;">医疗服务</a> <a href="/tags/协议/" style="font-size: 13px;">协议</a> <a href="/tags/安全技术/" style="font-size: 13px;">安全技术</a> <a href="/tags/数据结构与算法/" style="font-size: 14px;">数据结构与算法</a> <a href="/tags/范围函数/" style="font-size: 13px;">范围函数</a> <a href="/tags/设计思想/" style="font-size: 13px;">设计思想</a> <a href="/tags/设计文档/" style="font-size: 13px;">设计文档</a> <a href="/tags/设计模式-总/" style="font-size: 13px;">设计模式[总]</a> <a href="/tags/软件架构/" style="font-size: 13px;">软件架构</a> <a href="/tags/集合/" style="font-size: 13px;">集合</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/微信开发/">微信开发</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/21/微信公众号授权/" class="title">微信公众号授权</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-21T02:12:28.000Z" itemprop="datePublished">2019-05-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/软件工程/">软件工程</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/14/概要设计模板/" class="title">简要的概要设计模板</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-14T01:51:47.000Z" itemprop="datePublished">2019-05-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/database/">database</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/05/10/Mysql深入浅出-索引（-）/" class="title">Mysql深入浅出-索引（-）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-05-10T01:51:47.000Z" itemprop="datePublished">2019-05-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Kotlin/">Kotlin</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/04/29/Kotlin范围函数比较/" class="title">Kotlin范围函数比较</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-04-29T01:56:55.000Z" itemprop="datePublished">2019-04-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/书单/">书单</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/04/22/推荐书单/" class="title">推荐书单</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-04-22T01:27:07.000Z" itemprop="datePublished">2019-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#微信网页授权"><span class="toc-number">1.</span> <span class="toc-text">微信网页授权</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-微信公众号授权" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信公众号授权
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/05/21/微信公众号授权/" class="article-date">
+	  <time datetime="2019-05-21T02:12:28.000Z" itemprop="datePublished">2019-05-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/微信开发/">微信开发</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/公众号/">公众号</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/21/微信公众号授权/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h2 id="微信网页授权"><a href="#微信网页授权" class="headerlink" title="微信网页授权"></a>微信网页授权</h2><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421140842" target="_blank" rel="noopener">&lt;转载自微信公众号开发文档&gt;</a></p>
+<p>如果用户在微信客户端中访问第三方网页，公众号可以通过微信网页授权机制，来获取用户基本信息，进而实现业务逻辑。</p>
+<p><strong>关于网页授权回调域名的说明</strong></p>
+<p>1、在微信公众号请求用户网页授权之前，开发者需要先到公众平台官网中的“开发 - 接口权限 - 网页服务 - 网页帐号 - 网页授权获取用户基本信息”的配置选项中，修改授权回调域名。请注意，这里填写的是域名（是一个字符串），而不是URL，因此请勿加 http:// 等协议头；</p>
+<p>2、授权回调域名配置规范为全域名，比如需要网页授权的域名为：<a href="http://www.qq.com，配置以后此域名下面的页面" target="_blank" rel="noopener">www.qq.com，配置以后此域名下面的页面</a><a href="http://www.qq.com/music.html" target="_blank" rel="noopener">http://www.qq.com/music.html</a> 、 <a href="http://www.qq.com/login.html" target="_blank" rel="noopener">http://www.qq.com/login.html</a> 都可以进行OAuth2.0鉴权。但<a href="http://pay.qq.com/" target="_blank" rel="noopener">http://pay.qq.com</a> 、 <a href="http://music.qq.com/" target="_blank" rel="noopener">http://music.qq.com</a> 、 <a href="http://qq.xn--comoauth2-735sh62dwk9eysua.xn--0-k76bu98j/" target="_blank" rel="noopener">http://qq.com无法进行OAuth2.0鉴权</a></p>
+<p>3、如果公众号登录授权给了第三方开发者来进行管理，则不必做任何设置，由第三方代替公众号实现网页授权即可</p>
+<p><strong>关于网页授权的两种scope的区别说明</strong></p>
+<p>1、以snsapi_base为scope发起的网页授权，是用来获取进入页面的用户的openid的，并且是静默授权并自动跳转到回调页的。用户感知的就是直接进入了回调页（往往是业务页面）</p>
+<p>2、以snsapi_userinfo为scope发起的网页授权，是用来获取用户的基本信息的。但这种授权需要用户手动同意，并且由于用户同意过，所以无须关注，就可在授权后获取该用户的基本信息。</p>
+<p>3、用户管理类接口中的“获取用户基本信息接口”，是在用户和公众号产生消息交互或关注后事件推送后，才能根据用户OpenID来获取用户基本信息。这个接口，包括其他微信接口，都是需要该用户（即openid）关注了公众号后，才能调用成功的。</p>
+<p><strong>关于网页授权access_token和普通access_token的区别</strong></p>
+<p>1、微信网页授权是通过OAuth2.0机制实现的，在用户授权给公众号后，公众号可以获取到一个网页授权特有的接口调用凭证（网页授权access_token），通过网页授权access_token可以进行授权后接口调用，如获取用户基本信息；</p>
+<p>2、其他微信接口，需要通过基础支持中的“获取access_token”接口来获取到的普通access_token调用。</p>
+<p><strong>关于UnionID机制</strong></p>
+<p>1、请注意，网页授权获取用户基本信息也遵循UnionID机制。即如果开发者有在多个公众号，或在公众号、移动应用之间统一用户帐号的需求，需要前往微信开放平台（open.weixin.qq.com）绑定公众号后，才可利用UnionID机制来满足上述需求。</p>
+<p>2、UnionID机制的作用说明：如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为同一用户，对同一个微信开放平台下的不同应用（移动应用、网站应用和公众帐号），unionid是相同的。</p>
+<p><strong>关于特殊场景下的静默授权</strong></p>
+<p>1、上面已经提到，对于以snsapi_base为scope的网页授权，就静默授权的，用户无感知；</p>
+<p>2、对于已关注公众号的用户，如果用户从公众号的会话或者自定义菜单进入本公众号的网页授权页，即使是scope为snsapi_userinfo，也是静默授权，用户无感知。</p>
+<p>具体而言，网页授权流程分为四步：</p>
+<p>1、引导用户进入授权页面同意授权，获取code</p>
+<p>2、通过code换取网页授权access_token（与基础支持中的access_token不同）</p>
+<p>3、如果需要，开发者可以刷新网页授权access_token，避免过期</p>
+<p>4、通过网页授权access_token和openid获取用户基本信息（支持UnionID机制）</p>
+<p>目录</p>
+<p><a href="https://mp.weixin.qq.com/wiki?action=doc&amp;id=mp1421140842&amp;t=0.8997458694645444#0" target="_blank" rel="noopener">1 第一步：用户同意授权，获取code</a></p>
+<p><a href="https://mp.weixin.qq.com/wiki?action=doc&amp;id=mp1421140842&amp;t=0.8997458694645444#1" target="_blank" rel="noopener">2 第二步：通过code换取网页授权access_token</a></p>
+<p><a href="https://mp.weixin.qq.com/wiki?action=doc&amp;id=mp1421140842&amp;t=0.8997458694645444#2" target="_blank" rel="noopener">3 第三步：刷新access_token（如果需要）</a></p>
+<p><a href="https://mp.weixin.qq.com/wiki?action=doc&amp;id=mp1421140842&amp;t=0.8997458694645444#3" target="_blank" rel="noopener">4 第四步：拉取用户信息(需scope为 snsapi_userinfo)</a></p>
+<p><a href="https://mp.weixin.qq.com/wiki?action=doc&amp;id=mp1421140842&amp;t=0.8997458694645444#4" target="_blank" rel="noopener">5 附：检验授权凭证（access_token）是否有效</a></p>
+<p><strong>第一步：用户同意授权，获取code</strong></p>
+<p>在确保微信公众账号拥有授权作用域（scope参数）的权限的前提下（服务号获得高级接口后，默认拥有scope参数中的snsapi_base和snsapi_userinfo），引导关注者打开如下页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=SCOPE&amp;state=STATE#wechat_redirect 若提示“该链接无法访问”，请检查参数是否填写错误，是否拥有scope参数对应的授权作用域权限。</span><br></pre></td></tr></table></figure>
+<p>尤其注意：由于授权操作安全等级较高，所以在发起授权请求时，微信会对授权链接做正则强匹配校验，如果链接的参数顺序不对，授权页面将无法正常访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">参考链接(请在微信客户端中打开此链接体验):</span><br><span class="line">scope为snsapi_base</span><br><span class="line">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx520c15f417810387&amp;redirect_uri=https%3A%2F%2Fchong.qq.com%2Fphp%2Findex.php%3Fd%3D%26c%3DwxAdapter%26m%3DmobileDeal%26showwxpaytitle%3D1%26vb2ctag%3D4_2030_5_1194_60&amp;response_type=code&amp;scope=snsapi_base&amp;state=123#wechat_redirect</span><br><span class="line">scope为snsapi_userinfo</span><br><span class="line">https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf0e81c3bee622d60&amp;redirect_uri=http%3A%2F%2Fnba.bluewebgame.com%2Foauth_response.php&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=STATE#wechat_redirect</span><br></pre></td></tr></table></figure>
+<p>尤其注意：跳转回调redirect_uri，应当使用https链接来确保授权code的安全性。</p>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">appid</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">公众号的唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">redirect_uri</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理</td>
+</tr>
+<tr>
+<td style="text-align:left">response_type</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">返回类型，请填写code</td>
+</tr>
+<tr>
+<td style="text-align:left">scope</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">应用授权作用域，snsapi_base （不弹出授权页面，直接跳转，只能获取用户openid），snsapi_userinfo （弹出授权页面，可通过openid拿到昵称、性别、所在地。并且， 即使在未关注的情况下，只要用户授权，也能获取其信息 ）</td>
+</tr>
+<tr>
+<td style="text-align:left">state</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节</td>
+</tr>
+<tr>
+<td style="text-align:left">#wechat_redirect</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">无论直接打开还是做页面302重定向时候，必须带此参数</td>
+</tr>
+</tbody>
+</table>
+<p>下图为scope等于snsapi_userinfo时的授权页面：</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz/PiajxSqBRaEIQxibpLbyuSK39dMUJfWKTThhpgvErSzV7X5YHOZdnnhlVWHp5y8b4TXsBzKzjakPXichajlWls8Vg/0?wx_fmt=jpeg" alt="img"></p>
+<p><strong>用户同意授权后</strong></p>
+<p>如果用户同意授权，页面将跳转至 redirect_uri/?code=CODE&amp;state=STATE。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code说明 ： code作为换取access_token的票据，每次用户授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期。</span><br></pre></td></tr></table></figure>
+<p><strong>错误返回码说明如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">返回码</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10003</td>
+<td style="text-align:left">redirect_uri域名与后台配置不一致</td>
+</tr>
+<tr>
+<td style="text-align:left">10004</td>
+<td style="text-align:left">此公众号被封禁</td>
+</tr>
+<tr>
+<td style="text-align:left">10005</td>
+<td style="text-align:left">此公众号并没有这些scope的权限</td>
+</tr>
+<tr>
+<td style="text-align:left">10006</td>
+<td style="text-align:left">必须关注此测试号</td>
+</tr>
+<tr>
+<td style="text-align:left">10009</td>
+<td style="text-align:left">操作太频繁了，请稍后重试</td>
+</tr>
+<tr>
+<td style="text-align:left">10010</td>
+<td style="text-align:left">scope不能为空</td>
+</tr>
+<tr>
+<td style="text-align:left">10011</td>
+<td style="text-align:left">redirect_uri不能为空</td>
+</tr>
+<tr>
+<td style="text-align:left">10012</td>
+<td style="text-align:left">appid不能为空</td>
+</tr>
+<tr>
+<td style="text-align:left">10013</td>
+<td style="text-align:left">state不能为空</td>
+</tr>
+<tr>
+<td style="text-align:left">10015</td>
+<td style="text-align:left">公众号未授权第三方平台，请检查授权状态</td>
+</tr>
+<tr>
+<td style="text-align:left">10016</td>
+<td style="text-align:left">不支持微信开放平台的Appid，请使用公众号Appid</td>
+</tr>
+</tbody>
+</table>
+<p><strong>第二步：通过code换取网页授权access_token</strong></p>
+<p>首先请注意，这里通过code换取的是一个特殊的网页授权access_token,与基础支持中的access_token（该access_token用于调用其他接口）不同。公众号可通过下述接口来获取网页授权access_token。如果网页授权的作用域为snsapi_base，则本步骤中获取到网页授权access_token的同时，也获取到了openid，snsapi_base式的网页授权流程即到此为止。</p>
+<p>尤其注意：由于公众号的secret和获取到的access_token安全级别都非常高，必须只保存在服务器，不允许传给客户端。后续刷新access_token、通过access_token获取用户信息等步骤，也必须从服务器发起。</p>
+<p>请求方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">获取code后，请求以下链接获取access_token：  https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&amp;secret=SECRET&amp;code=CODE&amp;grant_type=authorization_code</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">appid</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">公众号的唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">secret</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">公众号的appsecret</td>
+</tr>
+<tr>
+<td style="text-align:left">code</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">填写第一步获取的code参数</td>
+</tr>
+<tr>
+<td style="text-align:left">grant_type</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">填写为authorization_code</td>
+</tr>
+</tbody>
+</table>
+<p>返回说明</p>
+<p>正确时返回的JSON数据包如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;access_token&quot;:&quot;ACCESS_TOKEN&quot;,</span><br><span class="line">    &quot;expires_in&quot;:7200,</span><br><span class="line">    &quot;refresh_token&quot;:&quot;REFRESH_TOKEN&quot;,</span><br><span class="line">    &quot;openid&quot;:&quot;OPENID&quot;,</span><br><span class="line">    &quot;scope&quot;:&quot;SCOPE&quot; </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</td>
+</tr>
+<tr>
+<td style="text-align:left">expires_in</td>
+<td style="text-align:left">access_token接口调用凭证超时时间，单位（秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">refresh_token</td>
+<td style="text-align:left">用户刷新access_token</td>
+</tr>
+<tr>
+<td style="text-align:left">openid</td>
+<td style="text-align:left">用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID</td>
+</tr>
+<tr>
+<td style="text-align:left">scope</td>
+<td style="text-align:left">用户授权的作用域，使用逗号（,）分隔</td>
+</tr>
+</tbody>
+</table>
+<p>错误时微信会返回JSON数据包如下（示例为Code无效错误）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;errcode&quot;:40029,&quot;errmsg&quot;:&quot;invalid code&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第三步：刷新access_token（如果需要）</strong></p>
+<p>由于access_token拥有较短的有效期，当access_token超时后，可以使用refresh_token进行刷新，refresh_token有效期为30天，当refresh_token失效之后，需要用户重新授权。</p>
+<p><strong>请求方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取第二步的refresh_token后，请求以下链接获取access_token：</span><br><span class="line">https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=APPID&amp;grant_type=refresh_token&amp;refresh_token=REFRESH_TOKEN</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">appid</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">公众号的唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">grant_type</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">填写为refresh_token</td>
+</tr>
+<tr>
+<td style="text-align:left">refresh_token</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">填写通过access_token获取到的refresh_token参数</td>
+</tr>
+</tbody>
+</table>
+<p>返回说明</p>
+<p>正确时返回的JSON数据包如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">    &quot;access_token&quot;:&quot;ACCESS_TOKEN&quot;,</span><br><span class="line">    &quot;expires_in&quot;:7200,</span><br><span class="line">    &quot;refresh_token&quot;:&quot;REFRESH_TOKEN&quot;,</span><br><span class="line">    &quot;openid&quot;:&quot;OPENID&quot;,</span><br><span class="line">    &quot;scope&quot;:&quot;SCOPE&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</td>
+</tr>
+<tr>
+<td style="text-align:left">expires_in</td>
+<td style="text-align:left">access_token接口调用凭证超时时间，单位（秒）</td>
+</tr>
+<tr>
+<td style="text-align:left">refresh_token</td>
+<td style="text-align:left">用户刷新access_token</td>
+</tr>
+<tr>
+<td style="text-align:left">openid</td>
+<td style="text-align:left">用户唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">scope</td>
+<td style="text-align:left">用户授权的作用域，使用逗号（,）分隔</td>
+</tr>
+</tbody>
+</table>
+<p>错误时微信会返回JSON数据包如下（示例为code无效错误）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;errcode&quot;:40029,&quot;errmsg&quot;:&quot;invalid code&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>第四步：拉取用户信息(需scope为 snsapi_userinfo)</strong></p>
+<p>如果网页授权作用域为snsapi_userinfo，则此时开发者可以通过access_token和openid拉取用户信息了。</p>
+<p>请求方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http：GET（请使用https协议） https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&amp;openid=OPENID&amp;lang=zh_CN</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</td>
+</tr>
+<tr>
+<td style="text-align:left">openid</td>
+<td style="text-align:left">用户的唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">lang</td>
+<td style="text-align:left">返回国家地区语言版本，zh_CN 简体，zh_TW 繁体，en 英语</td>
+</tr>
+</tbody>
+</table>
+<p>返回说明</p>
+<p>正确时返回的JSON数据包如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">    &quot;openid&quot;:&quot; OPENID&quot;,</span><br><span class="line">    &quot; nickname&quot;: NICKNAME,</span><br><span class="line">    &quot;sex&quot;:&quot;1&quot;,</span><br><span class="line">    &quot;province&quot;:&quot;PROVINCE&quot;</span><br><span class="line">    &quot;city&quot;:&quot;CITY&quot;,</span><br><span class="line">    &quot;country&quot;:&quot;COUNTRY&quot;,</span><br><span class="line">    &quot;headimgurl&quot;:       &quot;http://thirdwx.qlogo.cn/mmopen/g3MonUZtNHkdmzicIlibx6iaFqAc56vxLSUfpb6n5WKSYVY0ChQKkiaJSgQ1dZuTOgvLLrhJbERQQ4eMsv84eavHiaiceqxibJxCfHe/46&quot;,</span><br><span class="line">    &quot;privilege&quot;:[ &quot;PRIVILEGE1&quot; &quot;PRIVILEGE2&quot;     ],</span><br><span class="line">    &quot;unionid&quot;: &quot;o6_bmasdasdsad6_2sgVt7hMZOPfL&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">openid</td>
+<td style="text-align:left">用户的唯一标识</td>
+</tr>
+<tr>
+<td style="text-align:left">nickname</td>
+<td style="text-align:left">用户昵称</td>
+</tr>
+<tr>
+<td style="text-align:left">sex</td>
+<td style="text-align:left">用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</td>
+</tr>
+<tr>
+<td style="text-align:left">province</td>
+<td style="text-align:left">用户个人资料填写的省份</td>
+</tr>
+<tr>
+<td style="text-align:left">city</td>
+<td style="text-align:left">普通用户个人资料填写的城市</td>
+</tr>
+<tr>
+<td style="text-align:left">country</td>
+<td style="text-align:left">国家，如中国为CN</td>
+</tr>
+<tr>
+<td style="text-align:left">headimgurl</td>
+<td style="text-align:left">用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空。若用户更换头像，原有头像URL将失效。</td>
+</tr>
+<tr>
+<td style="text-align:left">privilege</td>
+<td style="text-align:left">用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）</td>
+</tr>
+<tr>
+<td style="text-align:left">unionid</td>
+<td style="text-align:left">只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。</td>
+</tr>
+</tbody>
+</table>
+<p>错误时微信会返回JSON数据包如下（示例为openid无效）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;errcode&quot;:40003,&quot;errmsg&quot;:&quot; invalid openid &quot;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>附：检验授权凭证（access_token）是否有效</strong></p>
+<p>请求方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http：GET（请使用https协议） https://api.weixin.qq.com/sns/auth?access_token=ACCESS_TOKEN&amp;openid=OPENID</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同</td>
+</tr>
+<tr>
+<td style="text-align:left">openid</td>
+<td style="text-align:left">用户的唯一标识</td>
+</tr>
+</tbody>
+</table>
+<p>返回说明<br>正确的JSON返回结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;errcode&quot;:0,&quot;errmsg&quot;:&quot;ok&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>错误时的JSON返回示例：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">"errcode"</span>:<span class="number">40003</span>,<span class="attr">"errmsg"</span>:<span class="string">"invalid openid"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2019/05/21/微信公众号授权/" title="微信公众号授权" target="_blank" rel="external">https://stonesPeng.github.io/2019/05/21/微信公众号授权/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/05/14/概要设计模板/" title="简要的概要设计模板"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
