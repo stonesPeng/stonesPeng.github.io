@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA['mysql时间默认值']]></title>
+    <title><![CDATA[mysql时间默认值]]></title>
     <url>%2F2019%2F06%2F11%2Fmysql%E6%97%B6%E9%97%B4%E9%BB%98%E8%AE%A4%E5%80%BC%2F</url>
     <content type="text"><![CDATA[MySQL 日期类型及默认设置 日期类型区别及用途MySQL 的日期类型有5个，分别是： date、time、year、datetime、timestamp。将在“菜鸟教程”和百度获取的资料，整理成如下表格： 类型 字节 格式 用途 是否支持设置系统默认值 date 3 YYYY-MM-DD 日期值 不支持 time 3 HH:MM:SS 时间值或持续时间 不支持 year 1 YYYY 年份 不支持 datetime 8 YYYY-MM-DD HH:MM:SS 日期和时间混合值 不支持 timestamp 4 YYYYMMDD HHMMSS 混合日期和时间，可作时间戳 支持 日期类型的 default 设置关于 default 设置，通常情况下会使用当前时间作为默认值。Example: 1ts_time timestamp NOT NULL DEFAULT NOW(); 1 or 1ts_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP(); 1 根据上表可知，除了 timestamp 类型支持系统默认值设置，其他类型都不支持。如果建表语句中有: 1234ts_time1 time NOT NULL DEFAULT NOW();ts_time3 yearNOT NULL DEFAULT NOW();ts_time2 date NOT NULL DEFAULT CURRENT_TIMESTAMP();ts_time2 datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(); 1 2 3 4 都会报错。所以想要设置某个日期列的默认值为当前时间，只能使用 timestamp 类型，并设置 DEFAULT NOW() 或 DEFAULT CURRENT_TIMESTAMP() 作为默认值。 date 类型默认值使用 current_date() 创建失败 date 类型默认值使用 now() 创建失败 date 类型默认值使用 current_timestamp() 创建失败 datetime 类型默认值使用 current_timestamp() 创建失败 datetime 类型默认值使用 now() 创建失败 timestamp 类型默认值使用 now() 创建成功 常见的日期获取函数MySQL中有一些日期函数可供我们使用，我们可以使用 ” select 函数名() ; ” 的 sql 查看它们的返回值。同时也可以使用 “select 自定义函数名();”，调用我们自己定义的函数。Eample: 1select current_timestamp(); 1 1select current_date(); 1 1select current_time(); 1 1select now(); 1 参照“w3School相关内容”，其他常见的日期函数如下 函数 描述 NOW() 返回当前的日期和时间 CURDATE() 返回当前的日期 CURTIME() 返回当前的时间 DATE() 提取日期或日期/时间表达式的日期部分 EXTRACT() 返回日期/时间按的单独部分 DATE_ADD() 给日期添加指定的时间间隔 DATE_SUB() 从日期减去指定的时间间隔 DATEDIFF() 返回两个日期之间的天数 DATE_FORMAT() 用不同的格式显示日期/时间]]></content>
       <categories>
