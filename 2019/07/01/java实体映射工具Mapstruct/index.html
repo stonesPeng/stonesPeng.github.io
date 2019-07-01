@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta name=referrer content=never>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>java实体映射工具Mapstruct | 石头の的博客</title>
+  <meta name="description" content="Java 实体映射工具 MapStruct原文链接：www.jianshu.com 123声明：1、DO（业务实体对象），DTO（数据传输对象）。2、我的代码中用到了 Lombok ，不了解的可以自行了解一下，了解的忽略这条就好。 在一个成熟的工程中，尤其是现在的分布式系统中，应用与应用之间，还有单独的应用细分模块之后，DO 一般不会让外部依赖，这时候需要在提供对外接口的模块里放 DTO 用于对象">
+<meta name="keywords" content="实体映射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java实体映射工具Mapstruct">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/07/01/java实体映射工具Mapstruct/index.html">
+<meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="Java 实体映射工具 MapStruct原文链接：www.jianshu.com 123声明：1、DO（业务实体对象），DTO（数据传输对象）。2、我的代码中用到了 Lombok ，不了解的可以自行了解一下，了解的忽略这条就好。 在一个成熟的工程中，尤其是现在的分布式系统中，应用与应用之间，还有单独的应用细分模块之后，DO 一般不会让外部依赖，这时候需要在提供对外接口的模块里放 DTO 用于对象">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-01T04:25:07.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java实体映射工具Mapstruct">
+<meta name="twitter:description" content="Java 实体映射工具 MapStruct原文链接：www.jianshu.com 123声明：1、DO（业务实体对象），DTO（数据传输对象）。2、我的代码中用到了 Lombok ，不了解的可以自行了解一下，了解的忽略这条就好。 在一个成熟的工程中，尤其是现在的分布式系统中，应用与应用之间，还有单独的应用细分模块之后，DO 一般不会让外部依赖，这时候需要在提供对外接口的模块里放 DTO 用于对象">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/07/01/java实体映射工具Mapstruct/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/stonesPeng" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">石头</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>自律是为了自由</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/">database</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/spring/">spring</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tool/">tool</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/业务/">业务</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/书单/">书单</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/引擎/">引擎</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/微信开发/">微信开发</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/扩展/">扩展</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络协议/">网络协议</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件工程/">软件工程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件架构/">软件架构</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/领域驱动设计/">领域驱动设计</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Drools/">Drools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/annotation/">annotation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser/">browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/">log</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/servlet/">servlet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/书单/">书单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/公众号/">公众号</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/医疗服务/">医疗服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全技术/">安全技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实体映射/">实体映射</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/范围函数/">范围函数</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计思想/">设计思想</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计文档/">设计文档</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式-总/">设计模式[总]</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件架构/">软件架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合/">集合</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Drools/" style="font-size: 13px;">Drools</a> <a href="/tags/annotation/" style="font-size: 13px;">annotation</a> <a href="/tags/browser/" style="font-size: 13px;">browser</a> <a href="/tags/docker/" style="font-size: 13px;">docker</a> <a href="/tags/log/" style="font-size: 13px;">log</a> <a href="/tags/mysql/" style="font-size: 13.5px;">mysql</a> <a href="/tags/servlet/" style="font-size: 13px;">servlet</a> <a href="/tags/书单/" style="font-size: 13px;">书单</a> <a href="/tags/公众号/" style="font-size: 13px;">公众号</a> <a href="/tags/医疗服务/" style="font-size: 13px;">医疗服务</a> <a href="/tags/协议/" style="font-size: 13px;">协议</a> <a href="/tags/安全技术/" style="font-size: 13px;">安全技术</a> <a href="/tags/实体映射/" style="font-size: 13px;">实体映射</a> <a href="/tags/数据结构与算法/" style="font-size: 14px;">数据结构与算法</a> <a href="/tags/范围函数/" style="font-size: 13px;">范围函数</a> <a href="/tags/设计思想/" style="font-size: 13px;">设计思想</a> <a href="/tags/设计文档/" style="font-size: 13px;">设计文档</a> <a href="/tags/设计模式-总/" style="font-size: 13px;">设计模式[总]</a> <a href="/tags/软件架构/" style="font-size: 13px;">软件架构</a> <a href="/tags/集合/" style="font-size: 13px;">集合</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/java/">java</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/07/01/java实体映射工具Mapstruct/" class="title">java实体映射工具Mapstruct</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-07-01T04:23:07.000Z" itemprop="datePublished">2019-07-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/spring/">spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/19/Springboot配置日志/" class="title">Springboot配置日志</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-19T06:39:44.000Z" itemprop="datePublished">2019-06-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/spring/">spring</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/13/Qualifier-Primary/" class="title">@Qualifier@Primary</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-13T02:17:51.000Z" itemprop="datePublished">2019-06-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/运维/">运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/11/Docker常用命令/" class="title">Docker常用命令</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-11T10:41:25.000Z" itemprop="datePublished">2019-06-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/database/">database</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/06/11/mysql时间默认值/" class="title">mysql时间默认值</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-06-11T03:18:49.000Z" itemprop="datePublished">2019-06-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-实体映射工具-MapStruct"><span class="toc-number">1.</span> <span class="toc-text">Java 实体映射工具 MapStruct</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#工程中引入-maven-依赖"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">工程中引入 maven 依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本映射"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">基本映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多对一"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">多对一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可以添加自定义方法"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">可以添加自定义方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果已经有了接收对象，更新目标对象"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">如果已经有了接收对象，更新目标对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-注入的方式"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">Spring 注入的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MapStruct-注解的关键词"><span class="toc-number">1.0.0.7.</span> <span class="toc-text">MapStruct 注解的关键词</span></a></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-java实体映射工具Mapstruct" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java实体映射工具Mapstruct
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/07/01/java实体映射工具Mapstruct/" class="article-date">
+	  <time datetime="2019-07-01T04:23:07.000Z" itemprop="datePublished">2019-07-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/实体映射/">实体映射</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/01/java实体映射工具Mapstruct/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h1 id="Java-实体映射工具-MapStruct"><a href="#Java-实体映射工具-MapStruct" class="headerlink" title="Java 实体映射工具 MapStruct"></a>Java 实体映射工具 MapStruct</h1><p>原文链接：<a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.jianshu.com%2Fp%2F3aefc74c7ed4" target="_blank" rel="noopener">www.jianshu.com</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">声明：</span><br><span class="line">1、DO（业务实体对象），DTO（数据传输对象）。</span><br><span class="line">2、我的代码中用到了 Lombok ，不了解的可以自行了解一下，了解的忽略这条就好。</span><br></pre></td></tr></table></figure>
+<p>在一个成熟的工程中，尤其是现在的分布式系统中，应用与应用之间，还有单独的应用细分模块之后，DO 一般不会让外部依赖，这时候需要在提供对外接口的模块里放 DTO 用于对象传输，也即是 DO 对象对内，DTO对象对外，DTO 可以根据业务需要变更，并不需要映射 DO 的全部属性。</p>
+<p>这种 对象与对象之间的互相转换，就需要有一个专门用来解决转换问题的工具，毕竟每一个字段都 get/set 会很麻烦。</p>
+<p>MapStruct 就是这样的一个属性映射工具，只需要定义一个 Mapper 接口，MapStruct 就会自动实现这个映射接口，避免了复杂繁琐的映射实现。MapStruct官网地址： <a href="https://link.juejin.im/?target=http%3A%2F%2Fmapstruct.org%2F" target="_blank" rel="noopener">mapstruct.org/</a></p>
+<h4 id="工程中引入-maven-依赖"><a href="#工程中引入-maven-依赖" class="headerlink" title="工程中引入 maven 依赖"></a>工程中引入 maven 依赖</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;mapstruct.version&gt;1.3.0.Final&lt;/mapstruct.version&gt;</span><br><span class="line">&lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;org.mapstruct.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">	&lt;plugins&gt;</span><br><span class="line">		&lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;3.5.1&lt;/version&gt; &lt;!-- or newer version --&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;source&gt;1.8&lt;/source&gt; &lt;!-- depending on your project --&gt;</span><br><span class="line">                    &lt;target&gt;1.8&lt;/target&gt; &lt;!-- depending on your project --&gt;</span><br><span class="line">                    &lt;annotationProcessorPaths&gt;</span><br><span class="line">                        &lt;path&gt;</span><br><span class="line">                            &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;</span><br><span class="line">                            &lt;artifactId&gt;mapstruct-processor&lt;/artifactId&gt;</span><br><span class="line">                            &lt;version&gt;$&#123;org.mapstruct.version&#125;&lt;/version&gt;</span><br><span class="line">                        &lt;/path&gt;</span><br><span class="line">                        &lt;path&gt;</span><br><span class="line">                            &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">                            &lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">                            &lt;version&gt;$&#123;lombok.version&#125;&lt;/version&gt;</span><br><span class="line">                        &lt;/path&gt;</span><br><span class="line">                        &lt;!-- other annotation processors --&gt;</span><br><span class="line">                    &lt;/annotationProcessorPaths&gt;</span><br><span class="line">                    &lt;compilerArgs&gt;</span><br><span class="line">                        &lt;compilerArg&gt;</span><br><span class="line">                            -Amapstruct.suppressGeneratorTimestamp=true</span><br><span class="line">                        &lt;/compilerArg&gt;</span><br><span class="line">                        &lt;compilerArg&gt;</span><br><span class="line">                            -Amapstruct.suppressGeneratorVersionInfoComment=true</span><br><span class="line">                        &lt;/compilerArg&gt;</span><br><span class="line">                    &lt;/compilerArgs&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">	&lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="基本映射"><a href="#基本映射" class="headerlink" title="基本映射"></a>基本映射</h4><p>这里定义两个 DO 对象 Person 和 User，其中 user 是 Person 的一个属性 ，一个 DTO 对象 PersonDTO</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class Person &#123;</span><br><span class="line">    private Long id;</span><br><span class="line">    private String name;</span><br><span class="line">    private String email;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private User user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class User &#123;</span><br><span class="line">    private Integer age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class PersonDTO &#123;</span><br><span class="line">    private Long id;</span><br><span class="line">    private String name;</span><br><span class="line">    /**</span><br><span class="line">     * 对应 Person.user.age</span><br><span class="line">     */</span><br><span class="line">    private Integer age;</span><br><span class="line">    private String email;</span><br><span class="line">    /**</span><br><span class="line">     * 与 DO 里面的字段名称(birthDay)不一致</span><br><span class="line">     */</span><br><span class="line">    private Date birth;</span><br><span class="line">    /**</span><br><span class="line">     * 对 DO 里面的字段(birthDay)进行拓展,dateFormat 的形式</span><br><span class="line">     */</span><br><span class="line">    private String birthDateFormat;</span><br><span class="line">    /**</span><br><span class="line">     * 对 DO 里面的字段(birthDay)进行拓展,expression 的形式</span><br><span class="line">     */</span><br><span class="line">    private String birthExpressionFormat;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个 Mapper 接口 PersonConverter，其中两个方法，一个是单实体映射，另一个是List映射</p>
+<p>若源对象属性与目标对象属性名字一致，会自动映射对应属性，不一样的需要指定，也可以用 format 转成自己想要的类型，也支持表达式的方式，可以看到像 id、name、email这些名词一致的我并没有指定 source-target，而birthday-birth指定了，转换格式的 birthDateFormat 加了dateFormat 或者 birthExpressionFormat 加了 expression，如果某个属性你不想映射，可以加个 ignore=true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Mapper</span><br><span class="line">public interface PersonConverter &#123;</span><br><span class="line">    PersonConverter INSTANCE = Mappers.getMapper(PersonConverter.class);</span><br><span class="line">    @Mappings(&#123;</span><br><span class="line">        @Mapping(source = &quot;birthday&quot;, target = &quot;birth&quot;),</span><br><span class="line">        @Mapping(source = &quot;birthday&quot;, target = &quot;birthDateFormat&quot;, dateFormat = &quot;yyyy-MM-dd HH:mm:ss&quot;),</span><br><span class="line">        @Mapping(target = &quot;birthExpressionFormat&quot;, expression = &quot;java(org.apache.commons.lang3.time.DateFormatUtils.format(person.getBirthday(),\&quot;yyyy-MM-dd HH:mm:ss\&quot;))&quot;),</span><br><span class="line">        @Mapping(source = &quot;user.age&quot;, target = &quot;age&quot;),</span><br><span class="line">        @Mapping(target = &quot;email&quot;, ignore = true)</span><br><span class="line">    &#125;)</span><br><span class="line">    PersonDTO domain2dto(Person person);</span><br><span class="line"></span><br><span class="line">    List&lt;PersonDTO&gt; domain2dto(List&lt;Person&gt; people);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译MapStruct之后，手工编译或者启动 IDE 的时候 IDE 也会帮我们编译， 会自动在 target/classes 下生成对应的实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">手工编译命令</span><br><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
+<p>注意！！！下面这个 PersonConverterImpl 是自动生成的，不是自己写的！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">public class PersonConverterImpl implements PersonConverter &#123;</span><br><span class="line">    public PersonConverterImpl() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public PersonDTO domain2dto(Person person) &#123;</span><br><span class="line">        if (person == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            PersonDTO personDTO = new PersonDTO();</span><br><span class="line">            personDTO.setBirth(person.getBirthday());</span><br><span class="line">            if (person.getBirthday() != null) &#123;</span><br><span class="line">                personDTO.setBirthDateFormat((new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;)).format(person.getBirthday()));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Integer age = this.personUserAge(person);</span><br><span class="line">            if (age != null) &#123;</span><br><span class="line">                personDTO.setAge(age);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            personDTO.setId(person.getId());</span><br><span class="line">            personDTO.setName(person.getName());</span><br><span class="line">            personDTO.setBirthExpressionFormat(DateFormatUtils.format(person.getBirthday(), &quot;yyyy-MM-dd HH:mm:ss&quot;));</span><br><span class="line">            return personDTO;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public List&lt;PersonDTO&gt; domain2dto(List&lt;Person&gt; people) &#123;</span><br><span class="line">        if (people == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            List&lt;PersonDTO&gt; list = new ArrayList(people.size());</span><br><span class="line">            Iterator var3 = people.iterator();</span><br><span class="line"></span><br><span class="line">            while(var3.hasNext()) &#123;</span><br><span class="line">                Person person = (Person)var3.next();</span><br><span class="line">                list.add(this.domain2dto(person));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return list;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Integer personUserAge(Person person) &#123;</span><br><span class="line">        if (person == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            User user = person.getUser();</span><br><span class="line">            if (user == null) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                Integer age = user.getAge();</span><br><span class="line">                return age == null ? null : age;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写一个单元测试类 PersonConverterTest 测试一下，看看效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class PersonConverterTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        Person person = new Person(1L,&quot;zhige&quot;,&quot;zhige.me@gmail.com&quot;,new Date(),new User(1));</span><br><span class="line">        PersonDTO personDTO = PersonConverter.INSTANCE.domain2dto(person);</span><br><span class="line">        assertNotNull(personDTO);</span><br><span class="line">        assertEquals(personDTO.getId(), person.getId());</span><br><span class="line">        assertEquals(personDTO.getName(), person.getName());</span><br><span class="line">        assertEquals(personDTO.getBirth(), person.getBirthday());</span><br><span class="line">        String format = DateFormatUtils.format(personDTO.getBirth(), &quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">        assertEquals(personDTO.getBirthDateFormat(),format);</span><br><span class="line">        assertEquals(personDTO.getBirthExpressionFormat(),format);</span><br><span class="line"></span><br><span class="line">        List&lt;Person&gt; people = new ArrayList&lt;&gt;();</span><br><span class="line">        people.add(person);</span><br><span class="line">        List&lt;PersonDTO&gt; personDTOs = PersonConverter.INSTANCE.domain2dto(people);</span><br><span class="line">        assertNotNull(personDTOs);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="多对一"><a href="#多对一" class="headerlink" title="多对一"></a>多对一</h4><p>MapStruct 可以将几种类型的对象映射为另外一种类型，比如将多个 DO 对象转换为 DTO</p>
+<p>例子</p>
+<ul>
+<li>两个 DO 对象 Item 和 Sku，一个 DTO 对象 SkuDTO</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class Item &#123;</span><br><span class="line">    private Long id;</span><br><span class="line">    private String title;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class Sku &#123;</span><br><span class="line">    private Long id;</span><br><span class="line">    private String code;</span><br><span class="line">    private Integer price;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@NoArgsConstructor</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">@Data</span><br><span class="line">public class SkuDTO &#123;</span><br><span class="line">    private Long skuId;</span><br><span class="line">    private String skuCode;</span><br><span class="line">    private Integer skuPrice;</span><br><span class="line">    private Long itemId;</span><br><span class="line">    private String itemName;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建 ItemConverter（映射）接口，MapStruct 就会自动实现该接口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Mapper</span><br><span class="line">public interface ItemConverter &#123;</span><br><span class="line">    ItemConverter INSTANCE = Mappers.getMapper(ItemConverter.class);</span><br><span class="line"></span><br><span class="line">    @Mappings(&#123;</span><br><span class="line">            @Mapping(source = &quot;sku.id&quot;,target = &quot;skuId&quot;),</span><br><span class="line">            @Mapping(source = &quot;sku.code&quot;,target = &quot;skuCode&quot;),</span><br><span class="line">            @Mapping(source = &quot;sku.price&quot;,target = &quot;skuPrice&quot;),</span><br><span class="line">            @Mapping(source = &quot;item.id&quot;,target = &quot;itemId&quot;),</span><br><span class="line">            @Mapping(source = &quot;item.title&quot;,target = &quot;itemName&quot;)</span><br><span class="line">    &#125;)</span><br><span class="line">    SkuDTO domain2dto(Item item, Sku sku);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建测试类，讲 Item 和 Sku 两个 DO对象，映射成一个 DTO 对象 SkuDTO</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class ItemConverterTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        Item item = new Item(1L, &quot;iPhone X&quot;);</span><br><span class="line">        Sku sku = new Sku(2L, &quot;phone12345&quot;, 1000000);</span><br><span class="line">        SkuDTO skuDTO = ItemConverter.INSTANCE.domain2dto(item, sku);</span><br><span class="line">        assertNotNull(skuDTO);</span><br><span class="line">        assertEquals(skuDTO.getSkuId(),sku.getId());</span><br><span class="line">        assertEquals(skuDTO.getSkuCode(),sku.getCode());</span><br><span class="line">        assertEquals(skuDTO.getSkuPrice(),sku.getPrice());</span><br><span class="line">        assertEquals(skuDTO.getItemId(),item.getId());</span><br><span class="line">        assertEquals(skuDTO.getItemName(),item.getTitle());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="可以添加自定义方法"><a href="#可以添加自定义方法" class="headerlink" title="可以添加自定义方法"></a>可以添加自定义方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 形式如下 </span><br><span class="line">default PersonDTO personToPersonDTO(Person person) &#123;</span><br><span class="line">    //hand-written mapping logic</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 比如在 PersonConverter 里面加入如下</span><br><span class="line">default Boolean convert2Bool(Integer value) &#123;</span><br><span class="line">    if (value == null || value &lt; 1) &#123;</span><br><span class="line">        return Boolean.FALSE;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return Boolean.TRUE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">default Integer convert2Int(Boolean value) &#123;</span><br><span class="line">    if (value == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">    if (Boolean.TRUE.equals(value)) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">// 测试类 PersonConverterTest 加入</span><br><span class="line">assertTrue(PersonConverter.INSTANCE.convert2Bool(1));</span><br><span class="line">assertEquals((int)PersonConverter.INSTANCE.convert2Int(true),1);</span><br></pre></td></tr></table></figure>
+<h4 id="如果已经有了接收对象，更新目标对象"><a href="#如果已经有了接收对象，更新目标对象" class="headerlink" title="如果已经有了接收对象，更新目标对象"></a>如果已经有了接收对象，更新目标对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 比如在 PersonConverter 里面加入如下，@InheritConfiguration 用于继承刚才的配置</span><br><span class="line">@InheritConfiguration(name = &quot;domain2dto&quot;)</span><br><span class="line">void update(Person person, @MappingTarget PersonDTO personDTO);</span><br><span class="line"></span><br><span class="line">// 测试类 PersonConverterTest 加入如下</span><br><span class="line">Person person = new Person(1L,&quot;zhige&quot;,&quot;zhige.me@gmail.com&quot;,new Date(),new User(1));</span><br><span class="line">PersonDTO personDTO = PersonConverter.INSTANCE.domain2dto(person);</span><br><span class="line">assertEquals(&quot;zhige&quot;, personDTO.getName());</span><br><span class="line">person.setName(&quot;xiaozhi&quot;);</span><br><span class="line">PersonConverter.INSTANCE.update(person, personDTO);</span><br><span class="line">assertEquals(&quot;xiaozhi&quot;, personDTO.getName());</span><br></pre></td></tr></table></figure>
+<h4 id="Spring-注入的方式"><a href="#Spring-注入的方式" class="headerlink" title="Spring 注入的方式"></a>Spring 注入的方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 刚才一直写的例子是默认的方式</span><br><span class="line">PersonConverter INSTANCE = Mappers.getMapper(PersonConverter.class);</span><br></pre></td></tr></table></figure>
+<p>还有一种常用的方式，是和常用的框架 Spring 结合，在 @Mapper 后面加入 <code>componentModel=&quot;spring&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Mapper(componentModel=&quot;spring&quot;)</span><br><span class="line">public interface PersonConverter &#123;</span><br><span class="line">    @Mappings(&#123;</span><br><span class="line">        @Mapping(source = &quot;birthday&quot;, target = &quot;birth&quot;),</span><br><span class="line">        @Mapping(source = &quot;birthday&quot;, target = &quot;birthDateFormat&quot;, dateFormat = &quot;yyyy-MM-dd HH:mm:ss&quot;),</span><br><span class="line">        @Mapping(target = &quot;birthExpressionFormat&quot;, expression = &quot;java(org.apache.commons.lang3.time.DateFormatUtils.format(person.getBirthday(),\&quot;yyyy-MM-dd HH:mm:ss\&quot;))&quot;),</span><br><span class="line">        @Mapping(source = &quot;user.age&quot;, target = &quot;age&quot;),</span><br><span class="line">        @Mapping(target = &quot;email&quot;, ignore = true)</span><br><span class="line">    &#125;)</span><br><span class="line">    PersonDTO domain2dto(Person person);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候测试类改一下，我用的 spring boot 的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest(classes = BaseTestConfiguration.class)</span><br><span class="line">public class PersonConverterTest &#123;</span><br><span class="line">    //这里把转换器装配进来</span><br><span class="line">    @Autowired</span><br><span class="line">    private PersonConverter personConverter;</span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">        Person person = new Person(1L,&quot;zhige&quot;,&quot;zhige.me@gmail.com&quot;,new Date(),new User(1));</span><br><span class="line">        PersonDTO personDTO = personConverter.domain2dto(person);</span><br><span class="line"></span><br><span class="line">        assertNotNull(personDTO);</span><br><span class="line">        assertEquals(personDTO.getId(), person.getId());</span><br><span class="line">        assertEquals(personDTO.getName(), person.getName());</span><br><span class="line">        assertEquals(personDTO.getBirth(), person.getBirthday());</span><br><span class="line">        String format = DateFormatUtils.format(personDTO.getBirth(), &quot;yyyy-MM-dd HH:mm:ss&quot;);</span><br><span class="line">        assertEquals(personDTO.getBirthDateFormat(),format);</span><br><span class="line">        assertEquals(personDTO.getBirthExpressionFormat(),format);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>test 路径下加入了一个配置类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@EnableAutoConfiguration</span><br><span class="line">@Configuration</span><br><span class="line">@ComponentScan</span><br><span class="line">public class BaseTestConfiguration &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="MapStruct-注解的关键词"><a href="#MapStruct-注解的关键词" class="headerlink" title="MapStruct 注解的关键词"></a>MapStruct 注解的关键词</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Mapper 只有在接口加上这个注解， MapStruct 才会去实现该接口</span><br><span class="line">    @Mapper 里有个 componentModel 属性，主要是指定实现类的类型，一般用到两个</span><br><span class="line">    default：默认，可以通过 Mappers.getMapper(Class) 方式获取实例对象</span><br><span class="line">    spring：在接口的实现类上自动添加注解 @Component，可通过 @Autowired 方式注入</span><br><span class="line">@Mapping：属性映射，若源对象属性与目标对象名字一致，会自动映射对应属性</span><br><span class="line">    source：源属性</span><br><span class="line">    target：目标属性</span><br><span class="line">    dateFormat：String 到 Date 日期之间相互转换，通过 SimpleDateFormat，该值为 SimpleDateFormat              的日期格式</span><br><span class="line">    ignore: 忽略这个字段</span><br><span class="line">@Mappings：配置多个@Mapping</span><br><span class="line">@MappingTarget 用于更新已有对象</span><br><span class="line">@InheritConfiguration 用于继承配置</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2019/07/01/java实体映射工具Mapstruct/" title="java实体映射工具Mapstruct" target="_blank" rel="external">https://stonesPeng.github.io/2019/07/01/java实体映射工具Mapstruct/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/06/19/Springboot配置日志/" title="Springboot配置日志"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
