@@ -17,19 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Category: 运维 | 石头の的博客</title>
-  <meta name="description" content="律己宜带秋风，处事宜带春风!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="石头の博客">
-<meta property="og:url" content="https://stonesPeng.github.io/categories/运维/index.html">
+  <title>Spring Cache Key | 石头の的博客</title>
+  <meta name="description" content="Spring Cache 设置Key 为了提升项目的并发性能，考虑引入本地内存Cache，对：外部数据源访问、Restful API调用、可重用的复杂计算 等3种类型的函数处理结果进行缓存。目前采用的是spring Cache的@Cacheable注解方式，缓存具体实现选取的是Guava Cache。具体缓存的配置此处不再介绍，重点对于key的配置进行说明：  1、基本形式@Cacheable(v">
+<meta name="keywords" content="Cache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cache Key">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/07/25/Spring-Cache-Key/index.html">
 <meta property="og:site_name" content="石头の博客">
-<meta property="og:description" content="律己宜带秋风，处事宜带春风!">
+<meta property="og:description" content="Spring Cache 设置Key 为了提升项目的并发性能，考虑引入本地内存Cache，对：外部数据源访问、Restful API调用、可重用的复杂计算 等3种类型的函数处理结果进行缓存。目前采用的是spring Cache的@Cacheable注解方式，缓存具体实现选取的是Guava Cache。具体缓存的配置此处不再介绍，重点对于key的配置进行说明：  1、基本形式@Cacheable(v">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blog.csdn.net/l1028386804/article/details/70946410">
+<meta property="og:updated_time" content="2019-07-25T02:22:51.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="石头の博客">
-<meta name="twitter:description" content="律己宜带秋风，处事宜带春风!">
+<meta name="twitter:title" content="Spring Cache Key">
+<meta name="twitter:description" content="Spring Cache 设置Key 为了提升项目的并发性能，考虑引入本地内存Cache，对：外部数据源访问、Restful API调用、可重用的复杂计算 等3种类型的函数处理结果进行缓存。目前采用的是spring Cache的@Cacheable注解方式，缓存具体实现选取的是Guava Cache。具体缓存的配置此处不再介绍，重点对于key的配置进行说明：  1、基本形式@Cacheable(v">
+<meta name="twitter:image" content="https://blog.csdn.net/l1028386804/article/details/70946410">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/categories/运维/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/07/25/Spring-Cache-Key/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -343,87 +347,203 @@
 </aside>
 
   
-  <main class="main" role="main">
-  <article class="content article article-categories article-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Category: 运维</h1>
-      <p class="hidden-xs">Total 1 articles</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/categories">All</a></li>
-          
-          <li><a href="/categories/spring/">spring</a></li>
-          
-          <li><a href="/categories/运维/">运维</a></li>
-          
-          <li><a href="/categories/Kotlin/">Kotlin</a></li>
-          
-          <li><a href="/categories/database/">database</a></li>
-          
-          <li><a href="/categories/Spring/">Spring</a></li>
-          
-          <li><a href="/categories/tool/">tool</a></li>
-          
-          <li><a href="/categories/数据结构与算法/">数据结构与算法</a></li>
-          
-          <li><a href="/categories/业务/">业务</a></li>
-          
-          <li><a href="/categories/java/">java</a></li>
-          
-          <li><a href="/categories/网络协议/">网络协议</a></li>
-          
-          <li><a href="/categories/书单/">书单</a></li>
-          
-          <li><a href="/categories/软件架构/">软件架构</a></li>
-          
-          <li><a href="/categories/软件工程/">软件工程</a></li>
-          
-          <li><a href="/categories/引擎/">引擎</a></li>
-          
-          <li><a href="/categories/语言/">语言</a></li>
-          
-          <li><a href="/categories/领域驱动设计/">领域驱动设计</a></li>
-          
-          <li><a href="/categories/设计模式/">设计模式</a></li>
-          
-          <li><a href="/categories/微信开发/">微信开发</a></li>
-          
-          <li><a href="/categories/扩展/">扩展</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="panel panel-default b-no">
-    <div class="panel-heading" role="tab">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapse运维" aria-expanded="true">
-              <i class="icon icon-folder text-active"></i><i class="icon icon-folder-open text"></i>
-              运维
-            </a>
-            <small class="text-muted">(Total 1 articles)</small>
-        </h4>
-    </div>
-    <div id="collapse运维" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading运维">
-        <div class="panel-body">
-            <div class="collection">
-              
-                
-<a href="/2019/06/11/Docker常用命令/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-06-11T10:41:25.000Z" itemprop="datePublished">2019-06-11</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Docker常用命令
-</a>
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cache-设置Key"><span class="toc-number">1.</span> <span class="toc-text">Spring Cache 设置Key</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Spring-Cache-Key" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Cache Key
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/07/25/Spring-Cache-Key/" class="article-date">
+	  <time datetime="2019-07-25T02:20:43.000Z" itemprop="datePublished">2019-07-25</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Spring/">Spring</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/Cache/">Cache</a>
+  </span>
 
 
-              
-            </div>
-        </div>
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/25/Spring-Cache-Key/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
     </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="Spring-Cache-设置Key"><a href="#Spring-Cache-设置Key" class="headerlink" title="Spring Cache 设置Key"></a>Spring Cache 设置Key</h3><blockquote>
+<p>为了提升项目的并发性能，考虑引入本地内存Cache，对：外部数据源访问、Restful API调用、可重用的复杂计算 等3种类型的函数处理结果进行缓存。目前采用的是spring Cache的@Cacheable注解方式，缓存具体实现选取的是Guava Cache。<br>具体缓存的配置此处不再介绍，重点对于key的配置进行说明：</p>
+</blockquote>
+<p>1、基本形式<br>@Cacheable(value=”cacheName”, key”#id”)<br>public ResultDTO method(int id);<br>2、组合形式<br>@Cacheable(value=”cacheName”, key”T(String).valueOf(#name).concat(‘-‘).concat(#password))<br>public ResultDTO method(int name, String password);<br>3、对象形式<br>@Cacheable(value=”cacheName”, key”#user.id)<br>public ResultDTO method(User user);<br>4、自定义key生成器<br>@Cacheable(value=”gomeo2oCache”, keyGenerator = “keyGenerator”)<br>public ResultDTO method(User user);<br>注意：Spring默认的SimpleKeyGenerator是不会将函数名组合进key中的<br>如下：<br>@Component<br>public class CacheTestImpl implements CacheTest {<br>    @Cacheable(“databaseCache”)<br>    public Long test1()<br>    { return 1L; }</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Cacheable(&quot;databaseCache&quot;)</span><br><span class="line">public Long test2()</span><br><span class="line">&#123; return 2L; &#125;</span><br><span class="line"> </span><br><span class="line">@Cacheable(&quot;databaseCache&quot;)</span><br><span class="line">public Long test3()</span><br><span class="line">&#123; return 3L; &#125;</span><br><span class="line"> </span><br><span class="line">@Cacheable(&quot;databaseCache&quot;)</span><br><span class="line">public String test4()</span><br><span class="line">&#123; return &quot;4&quot;; &#125;</span><br></pre></td></tr></table></figure>
+<p>}<br>我们期望输出：<br>1<br>2<br>3<br>4<br>实际却输出：<br>1<br>1<br>1<br>ClassCastException: java.lang.Long cannot be cast to java.lang.String<br>此外，原子类型的数组，直接作为key使用也是不会生效的<br>为了解决上述2个问题，自定义了一个KeyGenerator如下：<br>class CacheKeyGenerator implements KeyGenerator {<br>    // custom cache key<br>    public static final int NO_PARAM_KEY = 0;<br>    public static final int NULL_PARAM_KEY = 53;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public Object generate(Object target, Method method, Object... params) &#123;</span><br><span class="line"> </span><br><span class="line">    StringBuilder key = new StringBuilder();</span><br><span class="line">    key.append(target.getClass().getSimpleName()).append(&quot;.&quot;).append(method.getName()).append(&quot;:&quot;);</span><br><span class="line">    if (params.length == 0) &#123;</span><br><span class="line">        return key.append(NO_PARAM_KEY).toString();</span><br><span class="line">    &#125;</span><br><span class="line">    for (Object param : params) &#123;</span><br><span class="line">        if (param == null) &#123;</span><br><span class="line">            log.warn(&quot;input null param for Spring cache, use default key=&#123;&#125;&quot;, NULL_PARAM_KEY);</span><br><span class="line">            key.append(NULL_PARAM_KEY);</span><br><span class="line">        &#125; else if (ClassUtils.isPrimitiveArray(param.getClass())) &#123;</span><br><span class="line">            int length = Array.getLength(param);</span><br><span class="line">            for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">                key.append(Array.get(param, i));</span><br><span class="line">                key.append(&apos;,&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else if (ClassUtils.isPrimitiveOrWrapper(param.getClass()) || param instanceof String) &#123;</span><br><span class="line">            key.append(param);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            log.warn(&quot;Using an object as a cache key may lead to unexpected results. &quot; +</span><br><span class="line">                    &quot;Either use @Cacheable(key=..) or implement CacheKey. Method is &quot; + target.getClass() + &quot;#&quot; + method.getName());</span><br><span class="line">            key.append(param.hashCode());</span><br><span class="line">        &#125;</span><br><span class="line">        key.append(&apos;-&apos;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    String finalKey = key.toString();</span><br><span class="line">    long cacheKeyHash = Hashing.murmur3_128().hashString(finalKey, Charset.defaultCharset()).asLong();</span><br><span class="line">    log.debug(&quot;using cache key=&#123;&#125; hashCode=&#123;&#125;&quot;, finalKey, cacheKeyHash);</span><br><span class="line">    return key.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>}</p>
+<p>采用此方式后可以解决：多参数、原子类型数组、方法名识别 等问题</p>
+
+<p><img src="https://blog.csdn.net/l1028386804/article/details/70946410" alt="原文"></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2019/07/25/Spring-Cache-Key/" title="Spring Cache Key" target="_blank" rel="external">https://stonesPeng.github.io/2019/07/25/Spring-Cache-Key/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
 </div>
+
+
     </div>
   </article>
-   
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/07/22/解释和编译语言/" title="解释和编译语言"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -480,6 +600,28 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
     
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
     
     
 
