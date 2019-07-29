@@ -17,20 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Mysql深入浅出-索引（-） | 石头の博客</title>
-  <meta name="keywords" content="mysql">
+  <title>查看并中断端口占用 | 石头の博客</title>
+  <meta name="description" content="查看端口/进程占用情况，终止进程1.lsof(list open files) 列出当前系统打开文件的工具,通过lsof工具能够查看应用程序打开文件的描述符列表，能对系统监测以及排错提供相当大的帮助。  1lsof -i :portNumber   列出谁在使用某个端口 2.netstat netstate 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Stat">
+<meta name="keywords" content="cmd">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql深入浅出-索引（-）">
-<meta property="og:url" content="https://stonesPeng.github.io/2019/05/10/Mysql深入浅出-索引（-）/index.html">
+<meta property="og:title" content="查看并中断端口占用">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/07/29/查看并中断端口占用/index.html">
 <meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="查看端口/进程占用情况，终止进程1.lsof(list open files) 列出当前系统打开文件的工具,通过lsof工具能够查看应用程序打开文件的描述符列表，能对系统监测以及排错提供相当大的帮助。  1lsof -i :portNumber   列出谁在使用某个端口 2.netstat netstate 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Stat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/0076PAJ8gy1g2vzdympvfj30ye13cq5g.jpg">
-<meta property="og:updated_time" content="2019-05-10T01:53:27.388Z">
+<meta property="og:updated_time" content="2019-07-29T03:21:12.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql深入浅出-索引（-）">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/0076PAJ8gy1g2vzdympvfj30ye13cq5g.jpg">
+<meta name="twitter:title" content="查看并中断端口占用">
+<meta name="twitter:description" content="查看端口/进程占用情况，终止进程1.lsof(list open files) 列出当前系统打开文件的工具,通过lsof工具能够查看应用程序打开文件的描述符列表，能对系统监测以及排错提供相当大的帮助。  1lsof -i :portNumber   列出谁在使用某个端口 2.netstat netstate 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Stat">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/2019/05/10/Mysql深入浅出-索引（-）/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/07/29/查看并中断端口占用/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -349,21 +350,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看端口-进程占用情况，终止进程"><span class="toc-number">1.</span> <span class="toc-text">查看端口/进程占用情况，终止进程</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-lsof-list-open-files"><span class="toc-number">1.1.</span> <span class="toc-text">1.lsof(list open files)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-netstat"><span class="toc-number">1.2.</span> <span class="toc-text">2.netstat</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-ps"><span class="toc-number">1.3.</span> <span class="toc-text">3.ps</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-kill"><span class="toc-number">1.4.</span> <span class="toc-text">4.kill</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Mysql深入浅出-索引（-）" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-查看并中断端口占用" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Mysql深入浅出-索引（-）
+      查看并中断端口占用
     </h1>
   
 
@@ -371,32 +372,97 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/05/10/Mysql深入浅出-索引（-）/" class="article-date">
-	  <time datetime="2019-05-10T01:51:47.000Z" itemprop="datePublished">2019-05-10</time>
+	<a href="/2019/07/29/查看并中断端口占用/" class="article-date">
+	  <time datetime="2019-07-29T03:19:32.000Z" itemprop="datePublished">2019-07-29</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/database/">database</a>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/mysql/">mysql</a>
+	<a class="article-tag-link" href="/tags/cmd/">cmd</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/05/10/Mysql深入浅出-索引（-）/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/29/查看并中断端口占用/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p><img src="http://ww1.sinaimg.cn/large/0076PAJ8gy1g2vzdympvfj30ye13cq5g.jpg" alt=""></p>
+        <h4 id="查看端口-进程占用情况，终止进程"><a href="#查看端口-进程占用情况，终止进程" class="headerlink" title="查看端口/进程占用情况，终止进程"></a>查看端口/进程占用情况，终止进程</h4><h5 id="1-lsof-list-open-files"><a href="#1-lsof-list-open-files" class="headerlink" title="1.lsof(list open files)"></a>1.lsof(list open files)</h5><blockquote>
+<p>列出当前系统打开文件的工具,通过lsof工具能够查看应用程序打开文件的描述符列表，能对系统监测以及排错提供相当大的帮助。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :portNumber   列出谁在使用某个端口</span><br></pre></td></tr></table></figure>
+<h5 id="2-netstat"><a href="#2-netstat" class="headerlink" title="2.netstat"></a>2.netstat</h5><blockquote>
+<p>netstate 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。</p>
+</blockquote>
+<p><strong>常见参数</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-a (all)</td>
+<td style="text-align:left">显示所有选项，默认不显示LISTEN相关</td>
+</tr>
+<tr>
+<td style="text-align:left">-t (tcp)</td>
+<td style="text-align:left">仅显示tcp相关选项</td>
+</tr>
+<tr>
+<td style="text-align:left">-u (udp)</td>
+<td style="text-align:left">仅显示udp相关选项</td>
+</tr>
+<tr>
+<td style="text-align:left">-n</td>
+<td style="text-align:left">拒绝显示别名，能显示数字的全部转化成数字</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">拒绝显示别名，能显示数字的全部转化成数字</td>
+</tr>
+<tr>
+<td style="text-align:left">-p</td>
+<td style="text-align:left">显示建立相关链接的程序名</td>
+</tr>
+<tr>
+<td style="text-align:left">-r</td>
+<td style="text-align:left">显示路由信息，路由表</td>
+</tr>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:left">显示扩展信息，例如uid等</td>
+</tr>
+<tr>
+<td style="text-align:left">-s</td>
+<td style="text-align:left">按各个协议进行统计</td>
+</tr>
+<tr>
+<td style="text-align:left">-c</td>
+<td style="text-align:left">每隔一个固定时间，执行该netstat命令</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp |grep portNumber 查看占用某个端口的进程</span><br></pre></td></tr></table></figure>
+<h5 id="3-ps"><a href="#3-ps" class="headerlink" title="3.ps"></a>3.ps</h5><blockquote>
+<p><strong>ps命令</strong>用于报告当前系统的进程状态。可以搭配<a href="http://man.linuxde.net/kill" target="_blank" rel="noopener">kill</a>指令随时中断、删除不必要的程序。非常强大的进程查看命令，使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等，总之大部分信息都是可以通过执行该命令得到的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep ssh</span><br></pre></td></tr></table></figure>
+<h5 id="4-kill"><a href="#4-kill" class="headerlink" title="4.kill"></a>4.kill</h5><p><strong>常见参数</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-a：当处理当前进程时，不限制命令名和进程号的对应关系；</span><br><span class="line">-l &lt;信息编号&gt;：若不加&lt;信息编号&gt;选项，则-l参数会列出全部的信息名称；</span><br><span class="line">-p：指定kill 命令只打印相关进程的进程号，而不发送任何信号；</span><br><span class="line">-s &lt;信息名称或编号&gt;：指定要送出的信息；</span><br><span class="line">-u：指定用户。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill -l 列出所有信号名称，只有第9种信号(SIGKILL)才可以无条件终止进程</span><br><span class="line">kill -9 pid 彻底杀死指定进程，init进程不可杀死，其它所有进程都是init进程的子孙</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -406,7 +472,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://stonesPeng.github.io/2019/05/10/Mysql深入浅出-索引（-）/" title="Mysql深入浅出-索引（-）" target="_blank" rel="external">https://stonesPeng.github.io/2019/05/10/Mysql深入浅出-索引（-）/</a>
+      <a href="https://stonesPeng.github.io/2019/07/29/查看并中断端口占用/" title="查看并中断端口占用" target="_blank" rel="external">https://stonesPeng.github.io/2019/07/29/查看并中断端口占用/</a>
     </li>
     
     
@@ -454,13 +520,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/05/14/概要设计模板/" title="简要的概要设计模板"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/04/29/Kotlin范围函数比较/" title="Kotlin范围函数比较"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2019/07/25/Git命令大全/" title="Git命令大全"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
