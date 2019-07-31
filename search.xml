@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[springboot with docker]]></title>
+    <url>%2F2019%2F07%2F31%2Fspringbootdocker%2F</url>
+    <content type="text"><![CDATA[Springboot with docker0.准备工程 在pom.xml增加docker构建插件 12345678910111213141516plugin&gt; &lt;groupId&gt;com.spotify&lt;/groupId&gt; &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt; &lt;version&gt;1.2.0&lt;/version&gt; &lt;configuration&gt; &lt;imageName&gt;$&#123;docker.image.prefix&#125;/$&#123;project.artifactId&#125;&lt;/imageName&gt; &lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt; &lt;resources&gt; &lt;resource&gt; &lt;targetPath&gt;/&lt;/targetPath&gt; &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt; &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt; &lt;/resource&gt; &lt;/resources&gt; &lt;/configuration&gt;&lt;/plugin&gt; 在工程src/main/docker目录下添加DockerFile文件 1234FROM openjdk:8-jdk-alpineVOLUME /tmpADD webme-0.0.1-SNAPSHOT.jar app.jarENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;] 测试项目是否能正常运行 1mvn package #打包项目 1java -Djava.security.egd=file:/dev/./urandom -jar /app.jar #运行项目 1.maven使用DockerFile构建镜像1mvn package docker:build #首次构建需要时间 构建好的镜像通过docker images查看 2.运行镜像1234docker run -p 8001:8080 -dti &lt;imagesName&gt; /bin/bash #启动一个 bash 终端，允许用户进行交互#-t 让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上#-i 让容器的标准输入保持打开#-d 让Docker容器在后台以守护态（Daemonized）形式运行 启动成功使用docker ps 查看运行的容器 3.删除镜像/容器12docker rm &lt;contaninerId&gt;/&lt;containerName&gt; #删除容器，一般删除之前要通过stop中断容器docker rmi &lt;imageId&gt;/&lt;imageName&gt; #删除镜像 4.导出/导入容器12docker export &lt;containerId&gt; &gt;**.tar #导出容器快照到本地文件cat **.tar | docker import - &lt;imagesName&gt;:&lt;version&gt; # 从容器快照文件中再导入为镜像 Tip 运行导入的镜像必须带command，否则启动会报错：Error response from daemon: No command specified 必须像下列输入命令 1docker run -d -p 9999:9093 sso:latest java -Djava.security.egd=file:/dev/./urandom -jar /app.jar github源代码]]></content>
+      <categories>
+        <category>spring</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[查看并中断端口占用]]></title>
     <url>%2F2019%2F07%2F29%2F%E6%9F%A5%E7%9C%8B%E5%B9%B6%E4%B8%AD%E6%96%AD%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8%2F</url>
     <content type="text"><![CDATA[查看端口/进程占用情况，终止进程1.lsof(list open files) 列出当前系统打开文件的工具,通过lsof工具能够查看应用程序打开文件的描述符列表，能对系统监测以及排错提供相当大的帮助。 1lsof -i :portNumber 列出谁在使用某个端口 2.netstat netstate 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。 常见参数 参数 说明 -a (all) 显示所有选项，默认不显示LISTEN相关 -t (tcp) 仅显示tcp相关选项 -u (udp) 仅显示udp相关选项 -n 拒绝显示别名，能显示数字的全部转化成数字 -l 拒绝显示别名，能显示数字的全部转化成数字 -p 显示建立相关链接的程序名 -r 显示路由信息，路由表 -e 显示扩展信息，例如uid等 -s 按各个协议进行统计 -c 每隔一个固定时间，执行该netstat命令 1netstat -anp |grep portNumber 查看占用某个端口的进程 3.ps ps命令用于报告当前系统的进程状态。可以搭配kill指令随时中断、删除不必要的程序。非常强大的进程查看命令，使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等，总之大部分信息都是可以通过执行该命令得到的 1ps -ef |grep ssh 4.kill常见参数 12345-a：当处理当前进程时，不限制命令名和进程号的对应关系；-l &lt;信息编号&gt;：若不加&lt;信息编号&gt;选项，则-l参数会列出全部的信息名称；-p：指定kill 命令只打印相关进程的进程号，而不发送任何信号；-s &lt;信息名称或编号&gt;：指定要送出的信息；-u：指定用户。 12kill -l 列出所有信号名称，只有第9种信号(SIGKILL)才可以无条件终止进程kill -9 pid 彻底杀死指定进程，init进程不可杀死，其它所有进程都是init进程的子孙]]></content>
