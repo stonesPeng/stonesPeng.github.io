@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="石头の博客">
 <meta property="og:description" content="Springboot with docker0.准备工程 在pom.xml增加docker构建插件 12345678910111213141516plugin&amp;gt;    &amp;lt;groupId&amp;gt;com.spotify&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;docker-maven-plugin&amp;lt;/artifactId&amp;gt;    &amp;lt;ver">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-31T06:51:30.828Z">
+<meta property="og:updated_time" content="2019-07-31T07:40:24.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot with docker">
 <meta name="twitter:description" content="Springboot with docker0.准备工程 在pom.xml增加docker构建插件 12345678910111213141516plugin&amp;gt;    &amp;lt;groupId&amp;gt;com.spotify&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;docker-maven-plugin&amp;lt;/artifactId&amp;gt;    &amp;lt;ver">
@@ -405,7 +405,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FROM openjdk:8-jdk-alpine</span><br><span class="line">VOLUME /tmp</span><br><span class="line">ADD webme-0.0.1-SNAPSHOT.jar app.jar</span><br><span class="line">ENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>测试项目是否能正常运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package  #打包项目</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -Dmaven.test.skip=true #打包项目</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Djava.security.egd=file:/dev/./urandom -jar /app.jar #运行项目</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
