@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python-函数]]></title>
+    <url>%2F2019%2F08%2F19%2Fpython-%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[学习大纲]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>language</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[(一) python-基础]]></title>
     <url>%2F2019%2F08%2F19%2Fpython-%E5%9F%BA%E7%A1%80%2F</url>
     <content type="text"><![CDATA[学习大纲]]></content>
