@@ -49,10 +49,10 @@
     <url>%2F2019%2F07%2F31%2Fspringbootdocker%2F</url>
     <content type="text"><![CDATA[Springboot with docker0.准备工程 在pom.xml增加docker构建插件 12345678910111213141516plugin&gt; &lt;groupId&gt;com.spotify&lt;/groupId&gt; &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt; &lt;version&gt;1.2.0&lt;/version&gt; &lt;configuration&gt; &lt;imageName&gt;$&#123;docker.image.prefix&#125;/$&#123;project.artifactId&#125;&lt;/imageName&gt; &lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt; &lt;resources&gt; &lt;resource&gt; &lt;targetPath&gt;/&lt;/targetPath&gt; &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt; &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt; &lt;/resource&gt; &lt;/resources&gt; &lt;/configuration&gt;&lt;/plugin&gt; 在工程src/main/docker目录下添加DockerFile文件 1234FROM openjdk:8-jdk-alpineVOLUME /tmpADD webme-0.0.1-SNAPSHOT.jar app.jarENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;] 测试项目是否能正常运行 1mvn package -Dmaven.test.skip=true #打包项目 1java -Djava.security.egd=file:/dev/./urandom -jar /app.jar #运行项目 1.maven使用DockerFile构建镜像1mvn package docker:build #首次构建需要时间 构建好的镜像通过docker images查看 2.运行镜像1234docker run -p 8001:8080 -dti &lt;imagesName&gt; /bin/bash #启动一个 bash 终端，允许用户进行交互#-t 让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上#-i 让容器的标准输入保持打开#-d 让Docker容器在后台以守护态（Daemonized）形式运行 启动成功使用docker ps 查看运行的容器 3.删除镜像/容器12docker rm &lt;contaninerId&gt;/&lt;containerName&gt; #删除容器，一般删除之前要通过stop中断容器docker rmi &lt;imageId&gt;/&lt;imageName&gt; #删除镜像 4.导出/导入容器12docker export &lt;containerId&gt; &gt;**.tar #导出容器快照到本地文件cat **.tar | docker import - &lt;imagesName&gt;:&lt;version&gt; # 从容器快照文件中再导入为镜像 Tip 运行导入的镜像必须带command，否则启动会报错：Error response from daemon: No command specified 必须像下列输入命令 1docker run -d -p 9999:9093 sso:latest java -Djava.security.egd=file:/dev/./urandom -jar /app.jar github源代码]]></content>
       <categories>
-        <category>spring</category>
+        <category>spring全家桶</category>
       </categories>
       <tags>
-        <tag>docker</tag>
+        <tag>spring-boot</tag>
       </tags>
   </entry>
   <entry>
@@ -82,10 +82,10 @@
     <url>%2F2019%2F07%2F25%2FSpring-Cache-Key%2F</url>
     <content type="text"><![CDATA[Spring Cache 设置Key 为了提升项目的并发性能，考虑引入本地内存Cache，对：外部数据源访问、Restful API调用、可重用的复杂计算 等3种类型的函数处理结果进行缓存。目前采用的是spring Cache的@Cacheable注解方式，缓存具体实现选取的是Guava Cache。具体缓存的配置此处不再介绍，重点对于key的配置进行说明： 1、基本形式@Cacheable(value=”cacheName”, key”#id”)public ResultDTO method(int id);2、组合形式@Cacheable(value=”cacheName”, key”T(String).valueOf(#name).concat(‘-‘).concat(#password))public ResultDTO method(int name, String password);3、对象形式@Cacheable(value=”cacheName”, key”#user.id)public ResultDTO method(User user);4、自定义key生成器@Cacheable(value=”gomeo2oCache”, keyGenerator = “keyGenerator”)public ResultDTO method(User user);注意：Spring默认的SimpleKeyGenerator是不会将函数名组合进key中的如下：@Componentpublic class CacheTestImpl implements CacheTest { @Cacheable(“databaseCache”) public Long test1() { return 1L; } 1234567891011@Cacheable(&quot;databaseCache&quot;)public Long test2()&#123; return 2L; &#125; @Cacheable(&quot;databaseCache&quot;)public Long test3()&#123; return 3L; &#125; @Cacheable(&quot;databaseCache&quot;)public String test4()&#123; return &quot;4&quot;; &#125; }我们期望输出：1234实际却输出：111ClassCastException: java.lang.Long cannot be cast to java.lang.String此外，原子类型的数组，直接作为key使用也是不会生效的为了解决上述2个问题，自定义了一个KeyGenerator如下：class CacheKeyGenerator implements KeyGenerator { // custom cache key public static final int NO_PARAM_KEY = 0; public static final int NULL_PARAM_KEY = 53; 123456789101112131415161718192021222324252627282930313233@Overridepublic Object generate(Object target, Method method, Object... params) &#123; StringBuilder key = new StringBuilder(); key.append(target.getClass().getSimpleName()).append(&quot;.&quot;).append(method.getName()).append(&quot;:&quot;); if (params.length == 0) &#123; return key.append(NO_PARAM_KEY).toString(); &#125; for (Object param : params) &#123; if (param == null) &#123; log.warn(&quot;input null param for Spring cache, use default key=&#123;&#125;&quot;, NULL_PARAM_KEY); key.append(NULL_PARAM_KEY); &#125; else if (ClassUtils.isPrimitiveArray(param.getClass())) &#123; int length = Array.getLength(param); for (int i = 0; i &lt; length; i++) &#123; key.append(Array.get(param, i)); key.append(&apos;,&apos;); &#125; &#125; else if (ClassUtils.isPrimitiveOrWrapper(param.getClass()) || param instanceof String) &#123; key.append(param); &#125; else &#123; log.warn(&quot;Using an object as a cache key may lead to unexpected results. &quot; + &quot;Either use @Cacheable(key=..) or implement CacheKey. Method is &quot; + target.getClass() + &quot;#&quot; + method.getName()); key.append(param.hashCode()); &#125; key.append(&apos;-&apos;); &#125; String finalKey = key.toString(); long cacheKeyHash = Hashing.murmur3_128().hashString(finalKey, Charset.defaultCharset()).asLong(); log.debug(&quot;using cache key=&#123;&#125; hashCode=&#123;&#125;&quot;, finalKey, cacheKeyHash); return key.toString();&#125; } 采用此方式后可以解决：多参数、原子类型数组、方法名识别 等问题]]></content>
       <categories>
-        <category>Spring</category>
+        <category>spring全家桶</category>
       </categories>
       <tags>
-        <tag>Cache</tag>
+        <tag>spring-boot</tag>
       </tags>
   </entry>
   <entry>
@@ -126,10 +126,10 @@
     <url>%2F2019%2F06%2F19%2FSpringboot%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%2F</url>
     <content type="text"><![CDATA[Spring boot 配置日志Spring Boot除了commons-logging API外没有其他强制性的日志依赖，你有很多可选的日志实现。想要使用Logback，你需要包含它，及一些对classpath下commons-logging的绑定。最简单的方式是通过依赖spring-boot-starter-logging的starter pom。对于一个web应用程序，你只需添加spring-boot-starter-web依赖，因为它依赖于logging starter。 例如，使用Maven： 1234&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt; Spring Boot有一个LoggingSystem抽象，用于尝试通过classpath上下文配置日志系统。如果Logback可用，则首选它。如果你唯一需要做的就是设置不同日志的级别，那可以通过在application.properties中使用logging.level前缀实现，比如： 12logging.level.org.springframework.web: DEBUGlogging.level.org.hibernate: ERROR 你也可以使用logging.file设置日志文件的位置（除控制台之外，默认会输出到控制台）。 想要对日志系统进行更细粒度的配置，你需要使用正在说的LoggingSystem支持的原生配置格式。默认情况下，Spring Boot从系统的默认位置加载原生配置（比如对于Logback为classpath:logback.xml），但你可以使用logging.config属性设置配置文件的位置。 1. 配置Logback如果你将一个logback.xml放到classpath根目录下，那它将会被从这加载。Spring Boot提供一个默认的基本配置，如果你只是设置日志级别，那你可以包含它，比如： 12345&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;configuration&gt; &lt;include resource="org/springframework/boot/logging/logback/base.xml"/&gt; &lt;logger name="org.springframework.web" level="DEBUG"/&gt;&lt;/configuration&gt; 如果查看spring-boot jar包中的默认logback.xml，你将会看到LoggingSystem为你创建的很多有用的系统属性，比如： ${PID}，当前进程id ${LOG_FILE}，如果在Boot外部配置中设置了logging.file ${LOG_PATH}，如果设置了logging.path（表示日志文件产生的目录） Spring Boot也提供使用自定义的Logback转换器在控制台上输出一些漂亮的彩色ANSI日志信息（不是日志文件）。具体参考默认的base.xml配置。 如果Groovy在classpath下，你也可以使用logback.groovy配置Logback。 2.配置Log4j2.1 常用配置方式Spring Boot也支持Log4j或Log4j 2作为日志配置，但只有在它们中的某个在classpath下存在的情况。如果你正在使用starter poms进行依赖装配，这意味着你需要排除Logback，然后包含你选择的Log4j版本。如果你不使用starter poms，那除了你选择的Log4j版本外还要提供commons-logging（至少）。 最简单的方式可能就是通过starter poms，尽管它需要排除一些依赖，比如，在Maven中： 123456789101112131415161718&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt; &lt;exclusions&gt; &lt;exclusion&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-logging&lt;/artifactId&gt; &lt;/exclusion&gt; &lt;/exclusions&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-log4j&lt;/artifactId&gt;&lt;/dependency&gt; 想要使用Log4j 2，只需要依赖spring-boot-starter-log4j2而不是spring-boot-starter-log4j。 注：使用Log4j各版本的starters都会收集好依赖以满足common logging的要求（比如，Tomcat中使用java.util.logging，但使用Log4j或 Log4j 2作为输出）。具体查看Actuator Log4j或Log4j 2的示例，了解如何将它用于实战。 2.2 使用Yaml或Json配置Log4j2除了它的默认XML配置格式，Log4j 2也支持YAML和JSON配置文件。想要使用其他配置文件格式来配置Log4j 2，你需要添加合适的依赖到classpath。为了使用YAML，你需要添加com.fasterxml.jackson.dataformat:jackson-dataformat-yaml依赖，Log4j 2将查找名称为log4j2.yaml或log4j2.yml的配置文件。为了使用JSON，你需要添加com.fasterxml.jackson.core:jackson-databind依赖，Log4j 2将查找名称为log4j2.json或log4j2.jsn的配置文件 转载自 Spring Boot参考指南]]></content>
       <categories>
-        <category>spring</category>
+        <category>spring全家桶</category>
       </categories>
       <tags>
-        <tag>log</tag>
+        <tag>spring-boot</tag>
       </tags>
   </entry>
   <entry>
@@ -137,10 +137,10 @@
     <url>%2F2019%2F06%2F13%2FQualifier-Primary%2F</url>
     <content type="text"><![CDATA[@Qualifier @Primary的区别 当接口的实现类有多个的时候，同时使用@Component注解让Spring容器托管，使用类用@Autowired注解实现注入时候，Spring不知道注入哪一个，需要使用@Qualifier @Primary解决问题 区别@Primary：在众多相同的bean中，优先选择用@Primary注解的bean（该注解加在各个bean上） @Qualifier：在众多相同的bean中，@Qualifier指定需要注入的bean（该注解跟随在@Autowired后）]]></content>
       <categories>
-        <category>spring</category>
+        <category>spring全家桶</category>
       </categories>
       <tags>
-        <tag>annotation</tag>
+        <tag>spring-boot</tag>
       </tags>
   </entry>
   <entry>
@@ -192,7 +192,7 @@
     <url>%2F2019%2F05%2F10%2FMysql%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-%E7%B4%A2%E5%BC%95%EF%BC%88-%EF%BC%89%2F</url>
     <content type="text"><![CDATA[]]></content>
       <categories>
-        <category>database</category>
+        <category>关系型数据库</category>
       </categories>
       <tags>
         <tag>mysql</tag>
