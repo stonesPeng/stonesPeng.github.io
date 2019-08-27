@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://stonesPeng.github.io/2019/06/11/mysql%E6%97%B6%E9%97%B4%E9%BB%98%E8%AE%A4%E5%80%BC/</loc>
+    
+    <lastmod>2019-08-27T09:21:14.432Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://stonesPeng.github.io/2019/04/15/%E6%9E%B6%E6%9E%84%E6%98%AF%E4%BB%80%E4%B9%88/</loc>
     
     <lastmod>2019-08-27T09:19:38.639Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>https://stonesPeng.github.io/2019/06/11/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2019-06-11T10:42:20.015Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://stonesPeng.github.io/2019/06/11/mysql%E6%97%B6%E9%97%B4%E9%BB%98%E8%AE%A4%E5%80%BC/</loc>
-    
-    <lastmod>2019-06-11T03:34:55.032Z</lastmod>
     
   </url>
   
