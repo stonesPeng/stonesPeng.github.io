@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PC查看WiFi的连接密码]]></title>
+    <url>%2F2019%2F08%2F30%2FPC%E6%9F%A5%E7%9C%8BWiFi%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%AF%86%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[查看笔记连接过WiFi的密码操作方法1.以管理员身份进入命令行页面 2.进入netsh 3.查看WLAN配置文件信息 4.获取指定连接安全密钥 12341234即WiFi连接密码，done…]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[并发编程-并发编程工具类]]></title>
     <url>%2F2019%2F08%2F26%2F%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7%E7%B1%BB%2F</url>
     <content type="text"><![CDATA[并发编程工具类大纲]]></content>
