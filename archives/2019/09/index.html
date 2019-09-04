@@ -17,21 +17,19 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Git命令大全 | 石头の博客</title>
-  <meta name="description" content="git init                                                  # 初始化本地git仓库（创建新仓库）git config –global user.name “xxx”                       # 配置用户名git config –global user.email “xxx@xxx.com“              #">
-<meta name="keywords" content="git">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Git命令大全">
-<meta property="og:url" content="https://stonesPeng.github.io/2019/07/25/Git命令大全/index.html">
+  <title>Archive: 2019/9 | 石头の博客</title>
+  <meta name="description" content="律己宜带秋风，处事宜带春风!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="石头の博客">
+<meta property="og:url" content="https://stonesPeng.github.io/archives/2019/09/index.html">
 <meta property="og:site_name" content="石头の博客">
-<meta property="og:description" content="git init                                                  # 初始化本地git仓库（创建新仓库）git config –global user.name “xxx”                       # 配置用户名git config –global user.email “xxx@xxx.com“              #">
+<meta property="og:description" content="律己宜带秋风，处事宜带春风!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-27T09:35:51.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git命令大全">
-<meta name="twitter:description" content="git init                                                  # 初始化本地git仓库（创建新仓库）git config –global user.name “xxx”                       # 配置用户名git config –global user.email “xxx@xxx.com“              #">
+<meta name="twitter:title" content="石头の博客">
+<meta name="twitter:description" content="律己宜带秋风，处事宜带春风!">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/2019/07/25/Git命令大全/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/archives/2019/09/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -346,196 +344,49 @@
 
   
   
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">Catalogue</h3>
-      
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
-  <div class="content">
-  <article id="post-Git命令大全" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  	<article class="content article article-archives article-type-list" itemscope="">
+	    <header class="article-header">
+	      <h1 itemprop="title">Archive: 2019/9</h1>
+	      <p class="text-muted">Total 1 articles</p>
+	    </header>
+	    <div class="article-body">
+	      
+  
+  
     
-    <div class="article-header">
+    
       
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Git命令大全
-    </h1>
-  
-
       
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2019/07/25/Git命令大全/" class="article-date">
-	  <time datetime="2019-07-25T06:25:44.000Z" itemprop="datePublished">2019-07-25</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/部署运维/">部署运维</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/git/">git</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/25/Git命令大全/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry markdown-body" itemprop="articleBody">
-      
-        <p>git init                                                  # 初始化本地git仓库（创建新仓库）<br>git config –global user.name “xxx”                       # 配置用户名<br>git config –global user.email “<a href="mailto:xxx@xxx.com" target="_blank" rel="noopener">xxx@xxx.com</a>“              # 配置邮件<br>git config –global color.ui true                         # git status等命令自动着色<br>git config –global color.status auto<br>git config –global color.diff auto<br>git config –global color.branch auto<br>git config –global color.interactive auto<br>git config –global –unset http.proxy                    # remove  proxy configuration on git<br>git clone git+ssh:<a href="mailto://git@192.168.53.168" target="_blank" rel="noopener">//git@192.168.53.168</a>/VT.git             # clone远程仓库<br>git status                                                # 查看当前版本状态（是否修改）<br>git add xyz                                               # 添加xyz文件至index<br>git add .                                                 # 增加当前子目录下所有更改过的文件至index<br>git commit -m ‘xxx’                                       # 提交<br>git commit –amend -m ‘xxx’                               # 合并上一次提交（用于反复修改）<br>git commit -am ‘xxx’                                      # 将add和commit合为一步<br>git rm xxx                                                # 删除index中的文件<br>git rm -r *                                               # 递归删除<br>git log                                                   # 显示提交日志<br>git log -1                                                # 显示1行日志 -n为n行<br>git log -5<br>git log –stat                                            # 显示提交日志及相关变动文件<br>git log -p -m<br>git show dfb02e6e4f2f7b573337763e5c0013802e392818         # 显示某个提交的详细内容<br>git show dfb02                                            # 可只用commitid的前几位<br>git show HEAD                                             # 显示HEAD提交日志<br>git show HEAD^                                            # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本<br>git tag                                                   # 显示已存在的tag<br>git tag -a v2.0 -m ‘xxx’                                  # 增加v2.0的tag<br>git show v2.0                                             # 显示v2.0的日志及详细内容<br>git log v2.0                                              # 显示v2.0的日志<br>git diff                                                  # 显示所有未添加至index的变更<br>git diff –cached                                         # 显示所有已添加index但还未commit的变更<br>git diff HEAD^                                            # 比较与上一个版本的差异<br>git diff HEAD – ./lib                                    # 比较与HEAD版本lib目录的差异<br>git diff origin/master..master                            # 比较远程分支master上有本地分支master上没有的<br>git diff origin/master..master –stat                     # 只显示差异的文件，不显示具体内容<br>git remote add origin git+ssh:<a href="mailto://git@192.168.53.168" target="_blank" rel="noopener">//git@192.168.53.168</a>/VT.git # 增加远程定义（用于push/pull/fetch）<br>git branch                                                # 显示本地分支<br>git branch –contains 50089                               # 显示包含提交50089的分支<br>git branch -a                                             # 显示所有分支<br>git branch -r                                             # 显示所有原创分支<br>git branch –merged                                       # 显示所有已合并到当前分支的分支<br>git branch –no-merged                                    # 显示所有未合并到当前分支的分支<br>git branch -m master master_copy                          # 本地分支改名<br>git checkout -b master_copy                               # 从当前分支创建新分支master_copy并检出<br>git checkout -b master master_copy                        # 上面的完整版<br>git checkout features/performance                         # 检出已存在的features/performance分支<br>git checkout –track hotfixes/BJVEP933                    # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支<br>git checkout v2.0                                         # 检出版本v2.0<br>git checkout -b devel origin/develop                      # 从远程分支develop创建新本地分支devel并检出<br>git checkout – README                                    # 检出head版本的README文件（可用于修改错误回退）<br>git merge origin/master                                   # 合并远程master分支至当前分支<br>git cherry-pick ff44785404a8e                             # 合并提交ff44785404a8e的修改<br>git push origin master                                    # 将当前分支push到远程master分支<br>git push origin :hotfixes/BJVEP933                        # 删除远程仓库的hotfixes/BJVEP933分支<br>git push –tags                                           # 把所有tag推送到远程仓库<br>git fetch                                                 # 获取所有远程分支（不更新本地分支，另需merge）<br>git fetch –prune                                         # 获取所有原创分支并清除服务器上已删掉的分支<br>git pull origin master                                    # 获取远程分支master并merge到当前分支<br>git mv README README2                                     # 重命名文件README为README2<br>git reset –hard HEAD                                     # 将当前版本重置为HEAD（通常用于merge失败回退）<br>git rebase<br>git branch -d hotfixes/BJVEP933                           # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）<br>git branch -D hotfixes/BJVEP933                           # 强制删除分支hotfixes/BJVEP933<br>git ls-files                                              # 列出git index包含的文件<br>git show-branch                                           # 图示当前分支历史<br>git show-branch –all                                     # 图示所有分支历史<br>git whatchanged                                           # 显示提交历史对应的文件修改<br>git revert dfb02e6e4f2f7b573337763e5c0013802e392818       # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818<br>git ls-tree HEAD                                          # 内部命令：显示某个git对象<br>git rev-parse v2.0                                        # 内部命令：显示某个ref对于的SHA1 HASH<br>git reflog                                                # 显示所有提交，包括孤立节点<br>git show HEAD@{5}<br>git show master@{yesterday}                               # 显示master分支昨天的状态<br>git log –pretty=format:’%h %s’ –graph                   # 图示提交日志<br>git show HEAD~3<br>git show -s –pretty=raw 2be7fcb476<br>git stash                                                 # 暂存当前修改，将所有至为HEAD状态<br>git stash list                                            # 查看所有暂存<br>git stash show -p stash@{0}                               # 参考第一次暂存<br>git stash apply stash@{0}                                 # 应用第一次暂存<br>git grep “delete from”                                    # 文件中搜索文本“delete from”<br>git grep -e ‘#define’ –and -e SORT_DIRENT<br>git gc<br>git fsck</p>
-
-      
-    </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="https://stonesPeng.github.io/2019/07/25/Git命令大全/" title="Git命令大全" target="_blank" rel="external">https://stonesPeng.github.io/2019/07/25/Git命令大全/</a>
-    </li>
-    
-    
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
-  <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
-        <div>正儿八经不开黄腔的二号线吴彦祖</div>
-      </div>
-    </figure>
-  </div>
-</div>
-
-
-    </div>
-  </article>
-  
-    
-  <section id="comments">
-  	
-       
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
-  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-      
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2019/07/29/查看并中断端口占用/" title="查看并中断端口占用"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2019/07/25/Spring-Cache-Key/" title="Spring Cache Key"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-    <li class="toggle-toc">
-      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
-        <span>[&nbsp;</span><span>Catalogue</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
-    
-  </ul>
-  
-  
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
-  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
-    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
-  </div> -->
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-<!-- Modal -->
-<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content donate">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <div class="modal-body">
-        <div class="donate-box">
-          <div class="donate-head">
-            <p>Maybe you could buy me a cup of coffee.</p>
-          </div>
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
-              <div class="donate-payimg">
-                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
-              <div class="donate-payimg">
-                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
-              </div>
-              <p class="text-muted mv">Scan this qrcode</p>
-              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
-            </div>
-          </div>
-          <div class="donate-footer">
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active">
-                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
-              </li>
-              <li role="presentation" class="">
-                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
-              </li>
-            </ul>
-          </div>
+      <section class="panel panel-default b-no">
+        <div class="panel-heading" role="tab">
+          <h3 class="panel-title">
+            <a data-toggle="collapse" href="#collapse2019" aria-expanded="true">
+              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
+              2019
+            </a>
+            <!-- <a href="/archives/2019" class="archive-year">2019</a> -->
+          </h3>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <div id="collapse2019" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2019">
+        <div class="panel-body">
+          <div class="collection">
+    
+    
+<a href="/2019/09/04/AutoCloseable/" class="collection-item" target="_blank" itemprop="url">
+  <time datetime="2019-09-04T07:20:14.000Z" itemprop="datePublished">2019-09-04</time>
+  <span>&nbsp;&nbsp;&nbsp;</span> AutoCloseable &amp; Closable
+</a>
 
 
+  
+  
+    </div></div></div></section>
+  
 
+	    </div>
+  	</article>
+  	 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -592,28 +443,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
     
     
     
-        
-
-
-    
-    
-        
-    
-<script defer type="text/javascript">
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-
-    if (typeof LivereTower === 'function') { return; }
-
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-</script>
-
-
     
     
 
