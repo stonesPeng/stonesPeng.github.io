@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[yarn换源]]></title>
+    <title><![CDATA[yarn换镜像源]]></title>
     <url>%2F2019%2F09%2F06%2Fyarn%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90%2F</url>
     <content type="text"><![CDATA[yarn换镜像源 yarn或者npm默认配置的数据源在国内开发环境下，安装包的速度可能比较慢，影响开发效率，可以切换为国内的taobao源，大大地提升下载包速度。 1.查看当前源配置地址12yarn config get registry# -&gt;https://registry.yarnpkg.com 2.设置taobao镜像源1yarn config set registry &apos;https://registry.npm.taobao.org&apos; -设置后执行结果- 设置成功，用yarn install即可享受更快速的下载速度，npm换源同理 6.部分源地址12345678910111213npm --- https://registry.npmjs.org/cnpm --- https://r.cnpmjs.org/taobao --- https://registry.npm.taobao.org/nj --- https://registry.nodejitsu.com/rednpm --- https://registry.mirror.cqupt.edu.cn/npmMirror --- https://skimdb.npmjs.com/registry/deunpm --- http://registry.enpmjs.org/]]></content>
       <categories>
