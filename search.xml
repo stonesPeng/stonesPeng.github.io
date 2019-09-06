@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[yarn换源]]></title>
+    <url>%2F2019%2F09%2F06%2Fyarn%E6%8D%A2%E9%95%9C%E5%83%8F%E6%BA%90%2F</url>
+    <content type="text"><![CDATA[yarn换镜像源 yarn或者npm默认配置的数据源在国内开发环境下，安装包的速度可能比较慢，影响开发效率，可以切换为国内的taobao源，大大地提升下载包速度。 1.查看当前源配置地址12yarn config get registry# -&gt;https://registry.yarnpkg.com 2.设置taobao镜像源1yarn config set registry &apos;https://registry.npm.taobao.org&apos; -设置后执行结果- 设置成功，用yarn install即可享受更快速的下载速度，npm换源同理 6.部分源地址12345678910111213npm --- https://registry.npmjs.org/cnpm --- https://r.cnpmjs.org/taobao --- https://registry.npm.taobao.org/nj --- https://registry.nodejitsu.com/rednpm --- https://registry.mirror.cqupt.edu.cn/npmMirror --- https://skimdb.npmjs.com/registry/deunpm --- http://registry.enpmjs.org/]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>node</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[AutoCloseable & Closable]]></title>
     <url>%2F2019%2F09%2F04%2FAutoCloseable%2F</url>
     <content type="text"><![CDATA[AutoCloseable &amp; ClosableAutoCloseable &amp; Closable 是 Java IO流中的两个接口，后者继承自前者。都只有一个 close 方法。 Syntactic sugar AutoCloseable 出现在 Java7 中，它的作用是：减少代码的繁冗度，对于需要关闭的资源使用一种“try-with-resource”方式关闭，这是一个语法糖，即便于程序员编写代码的一种特制语法。 AutoCloseable 是为了支持 try-with-resource 语法出现的工具，实现这个接口的资源类意味着该类可以使用 try-with-resource，否则不能使用。 Who call close? 实际上这个语法糖在代码编译时会被编译为“经典写法”，可以使用如下的代码验证最终 close 方法的调用者是资源类使用所在地。 What else? AutoCloseable 是一个更高抽象层次的接口，不一定用在 IO 上，所以它里面的 close 方法抛出的异常是 Exception，而非 IOException。 Closable 是一个被具现化了的接口：只用作 IO 流上，所以 close 方法抛出的异常是 IOException。 最后一个区别是，Closeable 方法被设计为可重复调用：可以被自动调用：故 Closeable 继承了 AutoCloseable，也可以被手动调用，所以实现了 Closeable 的类的 close 方法必须要被设计为可重复被多次调用。而 AutoCloseabe 不具体这个性质，它就是被设计为“自动关闭”的，所以实现这个接口的类的 close 方法可以不被设计为“可被多次调用”。 &gt;原文链接]]></content>
