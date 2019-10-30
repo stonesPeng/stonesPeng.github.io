@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta name=referrer content=never>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>install docker ,docker-compose in centos 7 | 石头の博客</title>
+  <meta name="description" content="安装Docker，Docker-Compose in centos 7本教程指导如何安装Docker CE ，Docker-compose 在Centos 7 上 1.安装Docker CEDocker CE 分为 stable test 和 nightly 三个更新频道。每六个月发布一个 stable 版本 (18.09, 19.03, 19.09…)，生产环境使用stable版本。 1.1 卸">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="install docker ,docker-compose in centos 7">
+<meta property="og:url" content="https://stonesPeng.github.io/2019/10/30/install-docker-in-centos/index.html">
+<meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="安装Docker，Docker-Compose in centos 7本教程指导如何安装Docker CE ，Docker-compose 在Centos 7 上 1.安装Docker CEDocker CE 分为 stable test 和 nightly 三个更新频道。每六个月发布一个 stable 版本 (18.09, 19.03, 19.09…)，生产环境使用stable版本。 1.1 卸">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:updated_time" content="2019-10-30T05:43:50.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="install docker ,docker-compose in centos 7">
+<meta name="twitter:description" content="安装Docker，Docker-Compose in centos 7本教程指导如何安装Docker CE ，Docker-compose 在Centos 7 上 1.安装Docker CEDocker CE 分为 stable test 和 nightly 三个更新频道。每六个月发布一个 stable 版本 (18.09, 19.03, 19.09…)，生产环境使用stable版本。 1.1 卸">
+<meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAasAAAAzCAYAAAApUyf3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAA8gSURBVHhe7Z2/deS6DsbdwA033nAzZ3MDFzPhVjIFuIwp4B7HL54W3IJ70AP/QAQJkIQoaUYe453zO28tkRRJfMQnaSTdlwn+9/LyEjhfp6+vr+l6jn9TzufpHP99utyg3G26nMj+02W6Qd3b5RS3nacr/P11PRdlbtPtBtu/rnN7lPN1+b7QH6nfp+lSPdaC/rXmZUZoz9Pqg5aF43Co+myMMRAPT6x3u0wn+Fut50osWX2LufFI9vaPzKwAbOh6xkqwDTpxyxZVasgtOrcI+cKTFi0u8rJsom5WjSQQB8r3LU0qlf6pkkCjf7G+uE/FsnGczrX5MLZhqa6QWM+b1TI9z+tiXuBCH8ysjAezq3+UZuVwye46J23gdp0u5OCeEzRWlEkLyVFZjJi4xYXeMKtYLzkvpVi48zE4TefO6pI+NNrz+DYq7Xmwf8XZRI8l46D7brlYjI1YoysPMavYlkrPkdPFLfp0zK8yziqdpvYMYw928w/JrAzDMAzjUJhZGYZhGIfHzMowDMM4PGZWhmEYxuExszIMwzAOj5mVYRiGcXjMrAzDMIzDI5oVvpQYkd8F+eb8+pimf2HwhM/fb3LZR6Du39v0/gr7X9+nN7bviTmQRsU38reEvd1vHIXdY28kIM3xjQdfHEEg/Tf1VS+nOf55nz6PZlaUZv8eb1Zvvz+9mX78kvfvygG0amb1czGzuiPPalYoovSG/2k61+qZWa3i+GYVvgiBZbw24vf5eNnlmFkZxh14SrOKn53h++NnbMrPzphZreLwZuXLJDPxn/Ta8NNDZlaGcQfGzYp+u4l856n8xhP7BlTlu3XdcvF4NeYzZW5I52swN9e3q0tUUDa1C2jM6p+/04czBSjnef2E5Cybx98/n769UBbK/f7LjOTt1zu0F5I8lvv8w8t5lGb199dHOu7rx/T+T1kW0I4Dyr3DOOr9g3bmfQL3Mk+NVv3JC35nL+iodwu5SqHT2/USr9gLs9Lq3l3xgz7dGEJZKHfBD3xGpDG69mOdvF3QP+od2xOPG+v31u8DkL8PKn8vcfPxwryW7d2gTn4Vjn1JZaonKl0dxLYgJ51Bp7MO3E8WD47D4YC0wjcuMqsLBDcF3H9hF+vFdpxAMNjiVZG2nGIftjXv84kqiilecS02q7h/IslavpqIRgBG8ZcYxRuYyDstB+19/AFzoWbittWSvMas/P7Yv9mQoB+07JJxxL6U45CM7ZhXVlGfTRZeDTGdplvLWVtqPcdEViRMt4Yuwvpg68q3R8cdx+wSH1mP/LikbGv9Pgqpz2ROU9mtx8vbwzKyAcI+H9eKjlQ6SMZ3w5OU2eCgn7GeAUBK4hvLxSGCgeWBOp1CvXCGVO5PZxIYQG05pGlWXqzYVtlG+jur0zSDF7hScon/s7hS4bffQtIuy+kJ9QuDcajMKq8n9UU7jt58lGxjVsUVRjwDnRf5GZKMlDC6Wg06Ra2suQXY1CnZrtVzM9FR6BgxAUK9Uv9ye7V11F+/jyOZRj5X+ZrffLyqvJfTiqFOB6if3JjU2vhJQJriGxeZVSkKpCYaDCIGR1suIQk334dBjn0kycm3CceidVRmIFzxhOSPJlEvJ+GuUj69yZQIZjfQP24g2nE4yC0+d5sQrgLf4YqqNq5NzCqeEbcQ9djTqt+PeghaW5KMEj2d5sdYo3sGjhGuCGpGtXwd9dbvUmJ7BGl9asuJc5qNYY/xkr65kyV3FUZOmCTqprJOB60c92OBdMQ3LjGr6llqPVh5gLXlyu0ts0IhhD7ScXihwLFonVGzyq9e9GaFyX2+bZdtv79Zicf1txJDGwnhqg/gxxrAvWZAf6spfjvwvw2xhODKtbXq9TBrK+hhLAFsred6OUYcI86Fnw823theUS5RrqPe+l0KSfSRNWaFJy9+nDj+rK87jdffgku6C5TGl8hjSlmng1DGzCoDUhDfuLNZac4seLlEK5C5EHgftzSrsSurXntHuLIqcA9buLqVPmxiVqOIWuUJkSMlmBY9nbaTTyrX1z1jNit3jFgP/s71v6A9jzJ5P4zYPxiP+ADLPcbrTpjiXDdPhkQtrdOBmZUApCC+cROzKhcxwoOjLYc0A3n436xqpoG33vYyK/04RBp9OJ5ZIUGjqBOvsxXJWU5MUVNku1bP9URXwMYY115xIhfa4yd3MgPJ+86EeYxU88DO4+3kwlYMdTrgunCEds2sMiBN8Y0bmRW248rkC7QIgrYcgv0j5dk+7Ds1L/xdpDQrTNju6kIympio1U8DFu2UTwOmupj4w+Pubptsdq3+6c1KPQ73e5orMx8L+tcyJDQy0u7daGnVxxuTWW5cQzCdbvQ0oOsjSWju6bPm04AOouW0BuKahG2pvZN/OMX9/pKvlcHkfU9wjOXYZzYeLxzP5xTSVvVDApGWWel0YGalBlIX39hKADNKsXffM1hYLnK64I/NWD4F25/RZH+HwFffs3Kw94+KKw22f817VtScsMxbNI7KlVm1fwvMyqEcR3gPjJZzhiuNN5b/Td7x8uU7V2pb0dCqX/CoT1+uklSWUOj0Ye9ZAXjlkW/n7cm/9ynX70OJfWzGbdvxaj7RhkZSIzOYrg7MrNRAWuEbVWZ1YL57/w09FmvD+Bm0zArPBr5jIsCXA8Vbhcb35wk0ahjGAkSzehb8JTi9ZL/lvwUYhmEY34OnNivDMAzjOTCzMgzDMA6PmZVhGIZxeMysDMMwjMNzCLOyx483I7yfscH7RMY3Q35fZyuquiIv7iJL1/FzanY0HlCPfBNT/4WOH0AyK3wBL3HrvJi7GWZWm3HYhX9yXwNIL3JXYw1aYC9lrhpLsfjF9txXD6Bv5XE30j6+4LmXkQQeZFaUwXW8SrNqvWh0AKh0qtHLWDzkTzRFhBMDhL08XM4LtHllY9lX95vDzIq84e3e5vZB2/stdzOrJye8QuC/zNCKddzn9IYLPLwvN2q+KWGELxq4RMQTo/saSuhbqtf7zI4aHJPjG5uVisF1PGxWar3odKDVqU4vI/Ho1Ilm1dVkdV7y8eyq+z1omZVHO0FrGBS58Q1pxDqcVfLbHn77yAmTqN2KzhlbJP/Qxu0CZ7numLsayRb9XcngOh41K7VeRnSweCzl/I/Eo1NHmYvl+dT25wA6qtE1q9r2vb995tqPddi3tLJ7urXj0n6TvsJlLv9uWBt5UcSgStu37B/MQ9ke/yoH9iWVqS78Bd8qO8PimONWu22ylGoSSMctF0lYfDwp9Wgms2579f5o8f329WOsd00AJG7kNhbXnzyuMMdlIoxlSVtNDWgSfKG/6rcVu+j1MqSDDc2qHQ8gmpAM6d8DzSp8MzFoJCDloZ3pm5XQ+RhIVxa3yWKPwiwSsLskbX5VGtv37dHApkWP7eHlLQ8gjucCyT4d35XXCzAiHYPMQSq7df94e1hGNkDY11r4qrjFeMO2G55UzAmmsrCXUMZ6pr6YmmOqsqa9DW6H+HHiMVIcy75sR4qbKr5FX3i5HFUMqrHN96f+pXneL76DOuiNJaNxGzAbb2+e6331xFySIf7GFNcrPa6v64ySliup6B7mwn3FnuYgv80ff09NF/TNip+BhL/LIPOJVgncQYWBghYmVm6vFmBMEPz4p5NGgBSebCTRbd6/RQsm0JpzXdzi34UxqWPZozGm9hnw0mPTcaV/u7abcXIx8XFZcyUZ25rXEtfP9mD/lfEt+iLpmaKKf0evTf0tjq9WL3S86d91HUS6aw/7HWF6qY2L9odu7+0D3NVNdlcq3LUS4+buyGT9g36Ise2No06Yvw1OYLUsN6v6hGrLMVAYcIXh/t8FmC8a7XGRbROEuACyY+7Rv1jGl4M5cVdhcBbVGk99Aa6LWy+ZqWklATxzLM4IURPaRRSg40j/dmPsJ950hrnkRAHhi/iOZrVTfPtzBjQTfK9/S+MLqPQyqIOuWVEkvWjjQanXqRPr0PbmvvN5aY+nrntf3x+nZCBuo/TNqpzA+oTmwV8w8XFy6STwScWg1CgnrTaeQeLC8P3C/mZt79Q/fwsuCCghCT1QX4Dr4hbK7GxWQPnfE3L3xcMCksbUQjveOvWk0iCOL5+nx5rVFvFVzVkztuvjIdHXy+BxOzqV0JwUOOrHrddpUbZX061Wz2W50L6bC3pV15m/PeibVbm9PqHaYDEw+fuBx3rwd75wlgZSaQZqUsKRk+cd+kcu7avJfmAhaOKGgt3brCR8/9Tzmqgtztr2kqHFOGu5zpKx69k3vqq5GDSr0L+F89yg1MuQDgZ0ms+RNh6Uep0W2uNq9bxsHNvFrUvXrOIVBRWx3Ek+KO3kcGHEvhQBDe1VxMXY2qxw3JGqGHbuX2cRteZcFzdZnKHdR5hVmCe5vKyTGUG7S+a9nlQ6x2XE8oJmsv2rFn6M22B8Udv7mVWtjVq/RwlzmfVhRAcDZpXrRRsP7b4aeJzyuFyb8vrniONgfdpCswtpmVX1peAYSLcdByAnM2gTJ44MyN3/bD4N6IgCyycp9hG2pfbcW9jhaRVxMhVJSQ32qezrzMb9g+P5x0NJW3hPeSipqOImi1OO7wDNJOAe0ye3GvBK0j1NmpVD4hwKCzOQxhLigfNH5wfKXMMTVWm8vd+sesctSbrINVDsX7XwMUkBzfjSbWFs8zovylGauprBPuTrfYbpL83z2Ni1etHooKCqU61e9PFIpH6mtsm+eFy6TXzAIuYp+mj5/FsebMO6Wt2XeqHHXafZhTCzIjQ/t+R/SyHlq2XDwHAxuMGp3rMC8Gwv387b8+9qsAmL45mDswWapLJt/8p78v5pnWKeUUw1MiF34yYvmPYi64Ox5ORzmY/XzV2hlQyMR8s03KIk8yM97eSSXBYzV66hfdVxKbF8zawwiVfNTEOKW/e9nmJO0rtOeXwX6Qph+irGVOwff88qoNeLQgeASqcqvSyJB68j68TNXR6TmzNmYRwsb7jjsryr1T01J2wLTG5F3IZIZmUYxkOIZ8KjJwKG8SMwszKMx+LP5lddVRnGD8DMyjAMwzg8ZlaGYRjG4TGzMow+//33PxVSXcMwNsDMyjD6SMYkIdU1DGMDzKwMo49kTBJSXcMwNkA0K3zvI8JfjHsCfn1M078weMLn7ze57CNQ9+9ten+F/a/v0xvb98TcWaOSMUlIdQ3DWMvL9H9Ej7kIfKV/8gAAAABJRU5ErkJggg==">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://stonesPeng.github.io/2019/10/30/install-docker-in-centos/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/stonesPeng" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">石头</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>自律致自由</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/spring全家桶/">spring全家桶</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与模式/">算法与模式</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业领域/">行业领域</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计与架构/">设计与架构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署运维/">部署运维</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser/">browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/">kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/">spring-boot</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/书单/">书单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/医药/">医药</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信平台/">微信平台</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/规则引擎/">规则引擎</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集群/">集群</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/browser/" style="font-size: 13px;">browser</a> <a href="/tags/docker/" style="font-size: 13.2px;">docker</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/java/" style="font-size: 13.6px;">java</a> <a href="/tags/kotlin/" style="font-size: 13px;">kotlin</a> <a href="/tags/linux/" style="font-size: 13px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.2px;">mysql</a> <a href="/tags/network/" style="font-size: 13px;">network</a> <a href="/tags/node/" style="font-size: 13px;">node</a> <a href="/tags/python/" style="font-size: 13.4px;">python</a> <a href="/tags/spring-boot/" style="font-size: 14px;">spring-boot</a> <a href="/tags/书单/" style="font-size: 13px;">书单</a> <a href="/tags/医药/" style="font-size: 13px;">医药</a> <a href="/tags/协议/" style="font-size: 13.2px;">协议</a> <a href="/tags/微信平台/" style="font-size: 13px;">微信平台</a> <a href="/tags/数据结构与算法/" style="font-size: 13.8px;">数据结构与算法</a> <a href="/tags/架构/" style="font-size: 13px;">架构</a> <a href="/tags/编程语言/" style="font-size: 13px;">编程语言</a> <a href="/tags/规则引擎/" style="font-size: 13px;">规则引擎</a> <a href="/tags/设计/" style="font-size: 13.2px;">设计</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a> <a href="/tags/集群/" style="font-size: 13px;">集群</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/部署运维/">部署运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/10/30/install-docker-in-centos/" class="title">install docker ,docker-compose in centos 7</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-10-30T05:41:51.000Z" itemprop="datePublished">2019-10-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/部署运维/">部署运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/10/21/高可用服务集群-引导篇/" class="title">高可用服务集群-先导篇</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-10-21T15:19:18.000Z" itemprop="datePublished">2019-10-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/部署运维/">部署运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/06/yarn换镜像源/" class="title">yarn换镜像源</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-06T02:48:56.000Z" itemprop="datePublished">2019-09-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/编程语言/">编程语言</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/09/04/AutoCloseable/" class="title">AutoCloseable &amp; Closable</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-09-04T07:20:14.000Z" itemprop="datePublished">2019-09-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/部署运维/">部署运维</a>
+              </p>
+              <p class="item-title">
+                <a href="/2019/08/30/PC查看WiFi的连接密码/" class="title">PC查看WiFi的连接密码</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2019-08-30T06:04:20.000Z" itemprop="datePublished">2019-08-30</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Docker，Docker-Compose-in-centos-7"><span class="toc-number">1.</span> <span class="toc-text">安装Docker，Docker-Compose in centos 7</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-安装Docker-CE"><span class="toc-number">1.1.</span> <span class="toc-text">1.安装Docker CE</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-1-卸载旧版本Docker-Docker-Engine"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 卸载旧版本Docker,Docker-Engine</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-2-配置-Ali-Docker-YUM源"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 配置 Ali Docker YUM源</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-3安装Docker-CE"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3安装Docker CE</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-4启动Docker-服务"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4启动Docker 服务</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-设置Docker-国内镜像源"><span class="toc-number">1.2.</span> <span class="toc-text">2.设置Docker 国内镜像源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-安装Docker-Compose"><span class="toc-number">1.3.</span> <span class="toc-text">3.安装Docker-Compose</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-install-docker-in-centos" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      install docker ,docker-compose in centos 7
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/10/30/install-docker-in-centos/" class="article-date">
+	  <time datetime="2019-10-30T05:41:51.000Z" itemprop="datePublished">2019-10-30</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/部署运维/">部署运维</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/docker/">docker</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/10/30/install-docker-in-centos/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h4 id="安装Docker，Docker-Compose-in-centos-7"><a href="#安装Docker，Docker-Compose-in-centos-7" class="headerlink" title="安装Docker，Docker-Compose in centos 7"></a>安装Docker，Docker-Compose in centos 7</h4><p>本教程指导如何安装Docker CE ，Docker-compose 在Centos 7 上</p>
+<h5 id="1-安装Docker-CE"><a href="#1-安装Docker-CE" class="headerlink" title="1.安装Docker CE"></a>1.安装Docker CE</h5><p>Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 三个更新频道。每六个月发布一个 <code>stable</code> 版本 (<code>18.09</code>, <code>19.03</code>, <code>19.09</code>…)，生产环境使用stable版本。</p>
+<h6 id="1-1-卸载旧版本Docker-Docker-Engine"><a href="#1-1-卸载旧版本Docker-Docker-Engine" class="headerlink" title="1.1 卸载旧版本Docker,Docker-Engine"></a>1.1 卸载旧版本Docker,Docker-Engine</h6><p>确定未安装过Docker可不进行此步骤</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-selinux \</span><br><span class="line">                  docker-engine-selinux \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure>
+<h6 id="1-2-配置-Ali-Docker-YUM源"><a href="#1-2-配置-Ali-Docker-YUM源" class="headerlink" title="1.2 配置 Ali Docker YUM源"></a>1.2 配置 Ali Docker YUM源</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#first 安装依赖包</span><br><span class="line">$sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#then  使用ali仓库源</span><br><span class="line">$sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h6 id="1-3安装Docker-CE"><a href="#1-3安装Docker-CE" class="headerlink" title="1.3安装Docker CE"></a>1.3安装Docker CE</h6><p>查看可供安装的版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#按需选择适合自己的版本</span><br><span class="line">$yum list docker-ce --showduplicates</span><br></pre></td></tr></table></figure>
+<p>非脚本安装latest stable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#更新源缓存</span><br><span class="line">$sudo yum makecache fast</span><br><span class="line">$sudo yum install docker-ce</span><br></pre></td></tr></table></figure>
+<p>脚本安装latest stable</p>
+<p>仅限于centos上使用此方法，简化安装步骤，使用–mirror 设定国内源，加快下载速度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL get.docker.com -o get-docker.sh</span><br><span class="line">$ sudo sh get-docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+<p>若是需要旧版本的Docker ce，可按照以下方法安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#安装较旧版本，需要指定完整的rpm包的包名，并加上参数--setopt=obsoletes=0</span><br><span class="line">$yum install -y --setopt=obsoletes=0 \</span><br><span class="line">   docker-ce-17.03.3.ce-1.el7.centos.x86_64 \</span><br><span class="line">   docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#安装较新的版本，加上rpm包名的版本号部分即可</span><br><span class="line">$sudo yum install docker-ce-18.03.0.ce</span><br></pre></td></tr></table></figure>
+<h6 id="1-4启动Docker-服务"><a href="#1-4启动Docker-服务" class="headerlink" title="1.4启动Docker 服务"></a>1.4启动Docker 服务</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 配置开机启动</span><br><span class="line">$ sudo systemctl enable docker</span><br><span class="line"># 启动docker 服务</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+<p>使用<strong>Docker –version</strong> Docker 安装启动成功</p>
+<p><img src="data:image/png;base64,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" alt="alt"></p>
+<h5 id="2-设置Docker-国内镜像源"><a href="#2-设置Docker-国内镜像源" class="headerlink" title="2.设置Docker 国内镜像源"></a>2.设置Docker 国内镜像源</h5><p>使用 Docker 需要经常从官方获取镜像，国内拉取镜像的过程非常耗时，所以要更换到国内镜像源</p>
+<p>a.创建或修改 <strong>/etc/docker/daemon.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置网易镜像源，也可选择其它</span><br><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [&quot;http://hub-mirror.c.163.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>b.重启Docker服务，done</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>若不想设置全局的镜像源，也可在拉取镜像时指定镜像源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#临时指定镜像源</span><br><span class="line">$docker pull registry.docker-cn.com/library/ubuntu:16.04</span><br></pre></td></tr></table></figure>
+<h5 id="3-安装Docker-Compose"><a href="#3-安装Docker-Compose" class="headerlink" title="3.安装Docker-Compose"></a>3.安装Docker-Compose</h5><p>安装Docker  CE 并不会安装Docker-Compose，需要另外安装</p>
+<p>a.使用Curl下载Docker-Compose 的二进制文件到/usr/local/bin目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<p>因为网络状况，下载过程也许会很缓慢，耐心等待…</p>
+<p>b.使二进制文件可执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sudo chmod +x /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
+<p>c.验证是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$docker-compose --version</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2019/10/30/install-docker-in-centos/" title="install docker ,docker-compose in centos 7" target="_blank" rel="external">https://stonesPeng.github.io/2019/10/30/install-docker-in-centos/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/10/21/高可用服务集群-引导篇/" title="高可用服务集群-先导篇"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
