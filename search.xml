@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[正向代理和反向代理]]></title>
+    <url>%2F2019%2F11%2F05%2F%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%2F</url>
+    <content type="text"><![CDATA[图解正向代理和反向代理]]></content>
+      <categories>
+        <category>部署运维</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[install docker ,docker-compose in centos 7]]></title>
     <url>%2F2019%2F10%2F30%2Finstall-docker-in-centos%2F</url>
     <content type="text"><![CDATA[安装Docker，Docker-Compose in centos 7本教程指导如何安装Docker CE ，Docker-compose 在Centos 7 上 1.安装Docker CEDocker CE 分为 stable test 和 nightly 三个更新频道。每六个月发布一个 stable 版本 (18.09, 19.03, 19.09…)，生产环境使用stable版本。 1.1 卸载旧版本Docker,Docker-Engine确定未安装过Docker可不进行此步骤 12345678910$ sudo yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-selinux \ docker-engine-selinux \ docker-engine 1.2 配置 Ali Docker YUM源12#first 安装依赖包$sudo yum install -y yum-utils device-mapper-persistent-data lvm2 12#then 使用ali仓库源$sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo 1.3安装Docker CE查看可供安装的版本 12#按需选择适合自己的版本$yum list docker-ce --showduplicates 非脚本安装latest stable 123#更新源缓存$sudo yum makecache fast$sudo yum install docker-ce 脚本安装latest stable 仅限于centos上使用此方法，简化安装步骤，使用–mirror 设定国内源，加快下载速度 12$ curl -fsSL get.docker.com -o get-docker.sh$ sudo sh get-docker.sh --mirror Aliyun 若是需要旧版本的Docker ce，可按照以下方法安装 1234#安装较旧版本，需要指定完整的rpm包的包名，并加上参数--setopt=obsoletes=0$yum install -y --setopt=obsoletes=0 \ docker-ce-17.03.3.ce-1.el7.centos.x86_64 \ docker-ce-selinux-17.03.2.ce-1.el7.centos.noarch 12#安装较新的版本，加上rpm包名的版本号部分即可$sudo yum install docker-ce-18.03.0.ce 1.4启动Docker 服务1234# 配置开机启动$ sudo systemctl enable docker# 启动docker 服务$ sudo systemctl start docker 使用Docker –version Docker 安装启动成功 2.设置Docker 国内镜像源使用 Docker 需要经常从官方获取镜像，国内拉取镜像的过程非常耗时，所以要更换到国内镜像源 a.创建或修改 /etc/docker/daemon.json 1234# 设置网易镜像源，也可选择其它&#123; &quot;registry-mirrors&quot;: [&quot;http://hub-mirror.c.163.com&quot;]&#125; b.重启Docker服务，done 1$systemctl restart docker 若不想设置全局的镜像源，也可在拉取镜像时指定镜像源 12#临时指定镜像源$docker pull registry.docker-cn.com/library/ubuntu:16.04 3.安装Docker-Compose安装Docker CE 并不会安装Docker-Compose，需要另外安装 a.使用Curl下载Docker-Compose 的二进制文件到/usr/local/bin目录 1$sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose 因为网络状况，下载过程也许会很缓慢，耐心等待… b.使二进制文件可执行 1$sudo chmod +x /usr/local/bin/docker-compose c.验证是否成功 1$docker-compose --version]]></content>
