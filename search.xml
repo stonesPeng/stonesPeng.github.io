@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Sersync&&Rsync]]></title>
+    <url>%2F2019%2F11%2F15%2FSersync%26%26Rsync%2F</url>
+    <content type="text"><![CDATA[rsync基于SSH协议的一种文件传输应用。 它引入了分片比较传输的方式，因此对于相似文件传输效率很高。 简单说就是，它的算法会高效的分片计算源文件中和目标文件特征码，然后进r行比较，最后仅发送不一致的部分。 rsync会根据文件大小自动判断数据块大小，也可以用命令手动指定，官方建议大小在500-1000字节之间。 对于我们的应用场景，OSS文件同步，文件都是也不可修改，都是全量传输，所以并不用担心效率问题；同时rsync这种方式也非常利于断点续传。 SersyncSersync是金山的工程师基于inotify开发的。 而inotify 是linux的内核的一个用来监控文件系统的变化的模块，它可以监控相应的目录，并把其变化通知到用户空间的应用。但是它的记录只包含了目录发生了变化，并没有把具体是哪个文件或者哪个目录发生了变化记录下来。 Sersync则可以记录下被监听目录中发生变化的（包括增加、删除、修改）具体某一个文件或者某一个目录的名字，而且是持久化的记录，所以可以实现与历史数据的对比。例如开启sersync，然后关闭sersync，修改目录中的文件，再启动sersync。sersync是可以比较出当前目录和历史目录的区别的。 sersync内置了rsync命令调用，从而实现自动同步发生变化的文件或者目录。 不同服务器上目录的双向同步A服务器监控目标目录变化，并将变化通过rsync client命令发到服务器B的rsync server； B服务器监控目标目录变化，并将变化通过rsync client命令发到服务器A的rsync server； 以下未完全验证： A同步变化到B后，B会检查新变化的文件，发送特征到A。A服务器发现特征码完全一致，也就知道B服务器收到了刚才的同步请求。循环的链条就断掉了。]]></content>
+      <categories>
+        <category>运维部署</category>
+      </categories>
+      <tags>
+        <tag>sync</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Nginx配置单页面应用]]></title>
     <url>%2F2019%2F11%2F13%2FNginx%E9%85%8D%E7%BD%AE%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%2F</url>
     <content type="text"><![CDATA[Nginx配置单页面应用1.error起初在nginx.conf静态资源映射的配置如下: 12root /usr/share/nginx/html/appname/;index index.html index.htm; 以上的配置能正常访问index.html,能点击顺序地进入其他页面。但是使用浏览器的browserHistory 和 refresh 页面会报404。 2. reason因为我们部署的是单页面应用,目前主流的前端框架都是单页面的，例如React 和Vue。 单页面简单来说就是访问所有资源路径、其实页面内容只有一个（一般是index.html）。这个页面中引入的js框架会根据当前访问的url去路由到相应的子页面组件（可以理解为页面片段）进行逻辑处理和页面渲染。 所以我们直接访问某个页面资源（例如/usr/info），这个资源是不存在的，所以报服务端就会报404。 3.soulution12345root /usr/share/nginx/html/appname/;index index.html index.htm;location / &#123; try_files $uri $uri/ /index.html;&#125; 原理是，当配置try_files找不到某个页面资源，这时，nginx会尝试加载index.html，加载index.html之后，react-router就能起作用并匹配我们输入的/home路由，从而显示正确的home页面。 4.complete 完整配置，供参考。 123456789101112131415161718192021222324252627access_log /var/log/nginx/access.log; error_log /var/log/nginx/error.log; server &#123; listen 80; # gzip config gzip on; gzip_min_length 1k; gzip_comp_level 9; gzip_types text/plain text/css text/javascript application/json application/javascript application/x-javascript application/xml; gzip_vary on; gzip_disable &quot;MSIE [1-6]\.&quot;; root /usr/share/nginx/html/appname/; index index.html index.htm; location / &#123; try_files $uri $uri/ /index.html; &#125; location ^~ /assets/ &#123; gzip_static on; expires max; add_header Cache-Control public; &#125; error_page 500 502 503 504 /500.html; client_max_body_size 20M; keepalive_timeout 10; &#125;]]></content>
