@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Drools--Group | 石头の博客</title>
-  <meta name="description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
-<meta name="keywords" content="规则引擎">
+  <title>Nginx配置单页面应用 | 石头の博客</title>
+  <meta name="description" content="当一台电脑需要连接多个远程仓库的时候如何配置。如一个仓库需要连接github、另一个仓库需要谅解gitlab、还有一个仓库需要连接gitee等。 同一电脑配置多个仓库，如果仓库不为同一网站则使用同一个公钥即可。本文讲的是分开配置的方法  1.配置一个远程仓库(1)生成ssh-key 输入如下代码生成一个ssh-key ssh-keygen -t rsa -C &amp;quot;yourmail@gma">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Drools--Group">
-<meta property="og:url" content="https://stonesPeng.github.io/2018/09/05/Drools/index.html">
+<meta property="og:title" content="Nginx配置单页面应用">
+<meta property="og:url" content="https://stonesPeng.github.io/2020/01/03/配置多个远程仓库/index.html">
 <meta property="og:site_name" content="石头の博客">
-<meta property="og:description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
+<meta property="og:description" content="当一台电脑需要连接多个远程仓库的时候如何配置。如一个仓库需要连接github、另一个仓库需要谅解gitlab、还有一个仓库需要连接gitee等。 同一电脑配置多个仓库，如果仓库不为同一网站则使用同一个公钥即可。本文讲的是分开配置的方法  1.配置一个远程仓库(1)生成ssh-key 输入如下代码生成一个ssh-key ssh-keygen -t rsa -C &amp;quot;yourmail@gma">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-27T09:49:20.000Z">
+<meta property="og:updated_time" content="2020-01-03T08:07:56.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Drools--Group">
-<meta name="twitter:description" content="Drools-Group123456789101112131415/***具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。*可以用类似salience之类的属性来实现规则的执行优先级*/activation-group/***将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用*对应的规则，该属性会通过流程的走向确定">
+<meta name="twitter:title" content="Nginx配置单页面应用">
+<meta name="twitter:description" content="当一台电脑需要连接多个远程仓库的时候如何配置。如一个仓库需要连接github、另一个仓库需要谅解gitlab、还有一个仓库需要连接gitee等。 同一电脑配置多个仓库，如果仓库不为同一网站则使用同一个公钥即可。本文讲的是分开配置的方法  1.配置一个远程仓库(1)生成ssh-key 输入如下代码生成一个ssh-key ssh-keygen -t rsa -C &amp;quot;yourmail@gma">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/2018/09/05/Drools/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/2020/01/03/配置多个远程仓库/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -350,21 +350,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Drools-Group"><span class="toc-number">1.</span> <span class="toc-text">Drools-Group</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-配置一个远程仓库"><span class="toc-number">1.</span> <span class="toc-text">1.配置一个远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-生成ssh-key"><span class="toc-number">1.0.1.</span> <span class="toc-text">(1)生成ssh-key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-查看的公钥文件的实际内容，添加到对应的-远程仓库账户中"><span class="toc-number">1.0.2.</span> <span class="toc-text">(2) 查看的公钥文件的实际内容，添加到对应的 远程仓库账户中</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数解释"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">参数解释</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-配置多个远程仓库"><span class="toc-number">2.</span> <span class="toc-text">2. 配置多个远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#生成三个ssh-key"><span class="toc-number">2.1.</span> <span class="toc-text">生成三个ssh-key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑config文件，配置不同的仓库指向不同的密钥文件"><span class="toc-number">2.2.</span> <span class="toc-text">编辑config文件，配置不同的仓库指向不同的密钥文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#清空本地的-SSH-缓存，添加新的-SSH-密钥-到-SSH-agent中"><span class="toc-number">2.2.1.</span> <span class="toc-text">清空本地的 SSH 缓存，添加新的 SSH 密钥 到 SSH agent中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试-ssh-链接"><span class="toc-number">2.3.</span> <span class="toc-text">测试 ssh 链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#取消-git-全局用户名-邮箱的设置，设置独立的-用户名-邮箱"><span class="toc-number">2.4.</span> <span class="toc-text">取消 git 全局用户名/邮箱的设置，设置独立的 用户名/邮箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行进入项目目录，重建-origin-whatever-为相应项目地址"><span class="toc-number">2.5.</span> <span class="toc-text">命令行进入项目目录，重建 origin (whatever 为相应项目地址)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理分析"><span class="toc-number">2.6.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用新的公私钥"><span class="toc-number">2.7.</span> <span class="toc-text">使用新的公私钥</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Drools" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-配置多个远程仓库" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Drools--Group
+      Nginx配置单页面应用
     </h1>
   
 
@@ -372,47 +372,85 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2018/09/05/Drools/" class="article-date">
-	  <time datetime="2018-09-05T13:01:24.000Z" itemprop="datePublished">2018-09-05</time>
+	<a href="/2020/01/03/配置多个远程仓库/" class="article-date">
+	  <time datetime="2020-01-03T11:26:31.000Z" itemprop="datePublished">2020-01-03</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/技术杂记/">技术杂记</a>
+    <a class="article-category-link" href="/categories/运维部署/">运维部署</a>
   </span>
 
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link" href="/tags/规则引擎/">规则引擎</a>
+	<a class="article-tag-link" href="/tags/git/">git</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/05/Drools/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/03/配置多个远程仓库/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h3 id="Drools-Group"><a href="#Drools-Group" class="headerlink" title="Drools-Group"></a><strong>Drools-Group</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。</span></span><br><span class="line"><span class="comment">*可以用类似salience之类的属性来实现规则的执行优先级</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">activation-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用</span></span><br><span class="line"><span class="comment">*对应的规则，该属性会通过流程的走向确定要执行哪一条规则</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">ruleflow-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*Agenda Group 是用来在Agenda基础上对规则进行再次分组。引擎在调用设置了agenda-group</span></span><br><span class="line"><span class="comment">*属性的规则时需要显示的指定某个agenda group 获得focus，否则将不执行此组的规则。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">agenda-group</span><br></pre></td></tr></table></figure>
-<p><strong>1. Agenda-group</strong></p>
-<blockquote>
-<p>议程组允许将规则以组的形式，并将这么组放入堆栈，堆栈具有push/pop操作，通过SetFocus完成Push操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br></pre></td></tr></table></figure></p>
+        <blockquote>
+<p>当一台电脑需要连接多个远程仓库的时候如何配置。如一个仓库需要连接github、另一个仓库需要谅解gitlab、还有一个仓库需要连接gitee等。<br> <strong>同一电脑配置多个仓库，如果仓库不为同一网站则使用同一个公钥即可。本文讲的是分开配置的方法</strong></p>
 </blockquote>
-<blockquote>
-<p>议程总是在栈顶执行，当议程组所有的规则执行后，这个议程组会被移除然后执行下一组。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuteAgendaGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getAgendaGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    <span class="comment">//group2 后执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br><span class="line">    <span class="comment">//group1 先执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group1"</span>).setFocus();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">    kieSession.dispose();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getAgendaGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-agenda-group1\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group2\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group2\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-agenda-group2 被触发\"); end\n"</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group3\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-2 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>2.Activation-Group</strong></p>
-<blockquote>
-<p>激活组要求相同组只执行一个<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">executeActivationGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getActivationGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getActivationGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-activation-group1\" "</span> +</span><br><span class="line">            <span class="string">"salience  1"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-activation-group1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-activation-group2\" "</span> +</span><br><span class="line">            <span class="string">"salience  2"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-activation-group2 被触发\"); end\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p><strong>3. Flow-Group</strong></p>
-<blockquote>
-<p>流式组支持服务编排，像工作流一样先后顺序运行规则</p>
-</blockquote>
+<h1 id="1-配置一个远程仓库"><a href="#1-配置一个远程仓库" class="headerlink" title="1.配置一个远程仓库"></a>1.配置一个远程仓库</h1><h3 id="1-生成ssh-key"><a href="#1-生成ssh-key" class="headerlink" title="(1)生成ssh-key"></a>(1)生成ssh-key</h3><ul>
+<li>输入如下代码生成一个ssh-key<br> <code>ssh-keygen -t rsa -C &quot;yourmail@gmail.com&quot;</code></li>
+<li>一般情况下连续三个回车直接生成ssh-key出现如下方代码</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Generating <span class="keyword">public</span>/<span class="keyword">private</span> ecdsa key pair.</span><br><span class="line"><span class="function">Enter file <span class="keyword">in</span> which to save the <span class="title">key</span> (<span class="params">/home/username/.ssh/id_ecdsa</span>):</span></span><br><span class="line"><span class="function">Enter <span class="title">passphrase</span> (<span class="params">empty <span class="keyword">for</span> no passphrase</span>):</span></span><br><span class="line"><span class="function">Enter same passphrase again:</span></span><br><span class="line"><span class="function">Your identification has been saved <span class="keyword">in</span> /home/username/.ssh/id_ecdsa.</span></span><br><span class="line"><span class="function">Your <span class="keyword">public</span> key has been saved <span class="keyword">in</span> /home/username/.ssh/id_ecdsa.pub.</span></span><br><span class="line"><span class="function">The key fingerprint <span class="keyword">is</span>:</span></span><br><span class="line"><span class="function">dd:15:ee:24:20:14:11:01:b8:72:a2:0f:99:4c:79:7f username@localhost-2011-12-22</span></span><br><span class="line"><span class="function">The key's randomart image <span class="keyword">is</span>:</span></span><br><span class="line"><span class="function">+--[ECDSA  521]---+</span></span><br><span class="line"><span class="function">|     ..oB</span>=.   .  |</span><br><span class="line">|    .    . . . . |</span><br><span class="line">|  .  .      . +  |</span><br><span class="line">| oo.o    . . =   |</span><br><span class="line">|o+.+.   S . . .  |</span><br><span class="line">|=.   . E         |</span><br><span class="line">| o    .          |</span><br><span class="line">|  .              |</span><br><span class="line">|                 |</span><br><span class="line">+-----------------+</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一个回车后会出现<br> <code>Generating public/private rsa key pair.Enter file in which to save the key (/c/Users/Administrator.2017.V.2.12-318/.ssh/id_rsa):</code><br> 要求输入想要存储的文件名的位置和名称 （ <strong>如果不输入则名称默认为~/.ssh/id_rsa、如果你仅仅要配置一个帐号，那么我们使用默认名称即可</strong>）</li>
+<li>第二个回车后出现：输入私钥的密码<br> <code>Enter passphrase (empty for no passphrase):</code></li>
+<li>第三个回车后：为确认输入私钥的密码<br> <code>Enter same passphrase again:</code></li>
+<li>这里直接回车默认设置为无密码，使用默认即可</li>
+<li>到这里生成SSH-KEY的事就完成了，你在当前文件夹会看到两个文件：<br> <code>id_rsa你的私钥）； id_rsa.pub（你的公钥）</code></li>
+</ul>
+<h3 id="2-查看的公钥文件的实际内容，添加到对应的-远程仓库账户中"><a href="#2-查看的公钥文件的实际内容，添加到对应的-远程仓库账户中" class="headerlink" title="(2) 查看的公钥文件的实际内容，添加到对应的 远程仓库账户中"></a>(2) 查看的公钥文件的实际内容，添加到对应的 远程仓库账户中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<h4 id="参数解释"><a href="#参数解释" class="headerlink" title="参数解释"></a>参数解释</h4><ul>
+<li>也可以通过如下代码来生成ssh-key<br> <code>ssh-keygen -t rsa -f ~/.ssh/id_rsa_x -C &quot;yourmail@xxx.com&quot;</code></li>
+<li>-f 后面内容为指定的ssh-key生成的位置和名称</li>
+<li>-t 参数之后，我们请求建立一个 “RSA” 类型的密钥。RSA 是当前最新并且最安全的一种形式。</li>
+<li>-C 参数之后，我们提供了一个注释，你可以把它想象为对这个密钥的一种描述或标签。例如使用你的 email 地址。总之，一个能让你之后更容易识别的注释。</li>
+</ul>
+<h1 id="2-配置多个远程仓库"><a href="#2-配置多个远程仓库" class="headerlink" title="2. 配置多个远程仓库"></a>2. 配置多个远程仓库</h1><h2 id="生成三个ssh-key"><a href="#生成三个ssh-key" class="headerlink" title="生成三个ssh-key"></a>生成三个ssh-key</h2><ul>
+<li>生成三个名称不同ssh-key<br> 分别命名为id_rsa_github；id_rsa_github2；id_rsa_github；id_rsa_gitee</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 可以采用如下方式 在第一个回车后输入名称</span><br><span class="line"><span class="selector-tag">ssh-keygen</span> <span class="selector-tag">-t</span> <span class="selector-tag">rsa</span> <span class="selector-tag">-C</span> "<span class="selector-tag">yourmail</span>@<span class="keyword">gmail</span>.<span class="keyword">com</span></span><br><span class="line"><span class="keyword">Generating</span> public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/Users/QuQu/.ssh/id_rsa): id_rsa_gitlab</span><br></pre></td></tr></table></figure>
+<h2 id="编辑config文件，配置不同的仓库指向不同的密钥文件"><a href="#编辑config文件，配置不同的仓库指向不同的密钥文件" class="headerlink" title="编辑config文件，配置不同的仓库指向不同的密钥文件"></a>编辑config文件，配置不同的仓库指向不同的密钥文件</h2><ul>
+<li>如果没有则在~/.ssh文件夹下新建 config文件</li>
+<li>windows 在Window进入C:/Users/你的用户名/.ssh文件夹，右键新建一个文本文件，改名为config即可。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</li>
+<li>Linux进入.ssh文件夹：cd ~/.ssh，新建config文件：touch config；或者：touch ~/.ssh/config。这里要注意，没有.ssh文件夹的要新建一个.ssh名的文件夹。</li>
+<li>添加如下内容</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># github配置</span></span><br><span class="line">Host github.com(可更改)<span class="comment">// 主机名字，不能重名</span></span><br><span class="line">    HostName github.com<span class="comment">// 主机所在域名或IP</span></span><br><span class="line">    User git<span class="comment">// 用户名称</span></span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github<span class="comment">// 私钥路径</span></span><br><span class="line"><span class="meta"># github配置(第二个与第一个不是一个仓库但是同为github)</span></span><br><span class="line">Host github2.com(可更改)<span class="comment">// 主机名字，不能重名</span></span><br><span class="line">    HostName github.com<span class="comment">// 主机所在域名或IP</span></span><br><span class="line">    User git<span class="comment">// 用户名称</span></span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github2<span class="comment">// 私钥路径</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># gitlab配置</span></span><br><span class="line">Host gitlib.com(可更改)</span><br><span class="line">    HostName gitlab.xxx.com(gitlab仓库域名)</span><br><span class="line">    User  git</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github</span><br><span class="line"><span class="meta"># gitee配置</span></span><br><span class="line">Host gitee.com(可更改)</span><br><span class="line">    HostName gitee.com</span><br><span class="line">    User  git</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+<h3 id="清空本地的-SSH-缓存，添加新的-SSH-密钥-到-SSH-agent中"><a href="#清空本地的-SSH-缓存，添加新的-SSH-密钥-到-SSH-agent中" class="headerlink" title="清空本地的 SSH 缓存，添加新的 SSH 密钥 到 SSH agent中"></a>清空本地的 SSH 缓存，添加新的 SSH 密钥 到 SSH agent中</h3><ul>
+<li>这里如果你用的github官方的bash，ssh-agent -s,如果是其他的，比如msysgit,eval $(ssh-agent -s)</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 如果在.ssh目录下可省略文件路径 :ssh-add id_rsa_github</span></span><br><span class="line">ssh-<span class="keyword">add</span> -D</span><br><span class="line">ssh-<span class="keyword">add</span> ~/.ssh/id_rsa_github</span><br><span class="line">ssh-<span class="keyword">add</span> ~/.ssh/id_rsa_gitlab</span><br></pre></td></tr></table></figure>
+<h2 id="测试-ssh-链接"><a href="#测试-ssh-链接" class="headerlink" title="测试 ssh 链接"></a>测试 ssh 链接</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@github2.com</span><br><span class="line">ssh -T git@gitee.com</span><br><span class="line">ssh -T git@gitlab.com</span><br><span class="line"><span class="comment"># xxx! You’ve successfully authenticated, but GitHub does not provide bash access.</span></span><br><span class="line"><span class="comment"># 出现上述提示，连接成功</span></span><br></pre></td></tr></table></figure>
+<h2 id="取消-git-全局用户名-邮箱的设置，设置独立的-用户名-邮箱"><a href="#取消-git-全局用户名-邮箱的设置，设置独立的-用户名-邮箱" class="headerlink" title="取消 git 全局用户名/邮箱的设置，设置独立的 用户名/邮箱"></a>取消 git 全局用户名/邮箱的设置，设置独立的 用户名/邮箱</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取消全局 用户名/邮箱 配置</span></span><br><span class="line">$ git config --<span class="keyword">global</span> --<span class="keyword">unset</span> user.name</span><br><span class="line">$ git config --<span class="keyword">global</span> --<span class="keyword">unset</span> user.email</span><br><span class="line"><span class="comment"># 进入项目文件夹，单独设置每个repo 用户名/邮箱</span></span><br><span class="line">$ git config user.email <span class="string">"xxxx@xx.com"</span></span><br><span class="line">$ git config user.name <span class="string">"xxxx"</span></span><br></pre></td></tr></table></figure>
+<h2 id="命令行进入项目目录，重建-origin-whatever-为相应项目地址"><a href="#命令行进入项目目录，重建-origin-whatever-为相应项目地址" class="headerlink" title="命令行进入项目目录，重建 origin (whatever 为相应项目地址)"></a>命令行进入项目目录，重建 origin (whatever 为相应项目地址)</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin</span><br><span class="line"><span class="comment"># 远程仓库地址，注意Host名称</span></span><br><span class="line">$ git remote add origin git@second.github.<span class="symbol">com:</span>githubUserName/repName.git</span><br><span class="line">$ git remote -v <span class="comment"># 查看远程</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ssh -vT git<span class="doctag">@github</span>.com可以打印log 通过此方法可以debug如果连接不成功</span></span><br></pre></td></tr></table></figure>
+<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><ol>
+<li>ssh 客户端是通过类似 <a href="https://link.jianshu.com?t=mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:githubUserName/repName.git 的地址来识别使用本地的哪个私钥的，地址中的 User 是@前面的git， Host 是@后面的<a href="https://link.jianshu.com?t=http://github.com" target="_blank" rel="noopener">github.com</a>。</li>
+<li>如果所有账号的 User 和 Host 都为 git 和 github.com，那么就只能使用一个私钥。所以要对User 和 Host 进行配置，让每个账号使用自己的 Host，每个 Host 的域名解析到 github.com，如上面配置中的Host gitlab.com。</li>
+<li>配置了别名之后，新的地址就是user@<a href="https://link.jianshu.com?t=host:repName/repName.git" target="_blank" rel="noopener">host:repName/repName.git</a>（在添加远程仓库时使用）。<br> 这样 ssh 在连接时就可以区别不同的账号了。</li>
+</ol>
+<h2 id="使用新的公私钥"><a href="#使用新的公私钥" class="headerlink" title="使用新的公私钥"></a>使用新的公私钥</h2><ul>
+<li>情景1：使用新的公私钥进行克隆操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@gitlab.com:username/repo.git </span><br><span class="line">注意此时要把原来的github.com配置成你定义的github</span><br></pre></td></tr></table></figure>
+<ul>
+<li>情景2：已经克隆，之后才添加新的公私钥，我要为仓库设置使用新的公私钥进行push操作</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修改仓库的配置文件：.git/config 为</span><br><span class="line">[<span class="meta">remote <span class="meta-string">"origin"</span></span>]</span><br><span class="line">    url = git@gitlab.com:gitlabUserName/repName.git</span><br></pre></td></tr></table></figure>
+<p>转载链接：<a href="https://www.jianshu.com/p/93f846cef40d" target="_blank" rel="noopener">https://www.jianshu.com/p/93f846cef40d</a></p>
 
       
     </div>
@@ -422,7 +460,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://stonesPeng.github.io/2018/09/05/Drools/" title="Drools--Group" target="_blank" rel="external">https://stonesPeng.github.io/2018/09/05/Drools/</a>
+      <a href="https://stonesPeng.github.io/2020/01/03/配置多个远程仓库/" title="Nginx配置单页面应用" target="_blank" rel="external">https://stonesPeng.github.io/2020/01/03/配置多个远程仓库/</a>
     </li>
     
     
@@ -470,10 +508,10 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/01/31/Map/" title="Map--Usage"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
     
+    <li class="next">
+      <a href="/2019/11/15/Sersync&&Rsync/" title="Sersync&amp;&amp;Rsync"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
     
     <li class="toggle-toc">
