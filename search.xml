@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[配置多个远程仓库]]></title>
+    <title><![CDATA[windows普通用户使用cmd命令]]></title>
     <url>%2F2020%2F01%2F08%2Fwindows%20%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8cmd%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[windows 普通用户使用cmd命令 ping、telnet 都是要打开带管理员权限的命令提示符（cmd）才可以使用的命令，除非您调用管理员账户。 原因是缺少系统环境变量导致的。 1.使用cmd需配置系统环境变量设置的环境path路径，操作步骤如下： 鼠标移到左下角右击后选“系统” 系统属性中选“高级” 在高级中选“环境变量” 进入环境变量后，查看系统变量的path处，将下列代码复制进入粘贴 1%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\; 点确定后，重新尝试即可恢复使用 2.使用telenet要进行额外加载关于telnet，则需要你进行加载后才能使用，步骤如下： 按win+x； 输入appwiz.cpl 点击界面左侧“启动和关闭windows功能” 在windows功能列表中勾选“telnet”客户端 系统正常联网加载后，才能使用telnet功能，其他特殊操作一样，可以参考windows 功能列表]]></content>
+    <content type="text"><![CDATA[windows普通用户使用cmd命令 ping、telnet 都是要打开带管理员权限的命令提示符（cmd）才可以使用的命令，除非您调用管理员账户。 原因是缺少系统环境变量导致的。 1.使用cmd需配置系统环境变量设置的环境path路径，操作步骤如下： 鼠标移到左下角右击后选“系统” 系统属性中选“高级” 在高级中选“环境变量” 进入环境变量后，查看系统变量的path处，将下列代码复制进入粘贴 1%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\; 点确定后，重新尝试即可恢复使用 2.使用telenet要进行额外加载关于telnet，则需要你进行加载后才能使用，步骤如下： 按win+x； 输入appwiz.cpl 点击界面左侧“启动和关闭windows功能” 在windows功能列表中勾选“telnet”客户端 系统正常联网加载后，才能使用telnet功能，其他特殊操作一样，可以参考windows 功能列表]]></content>
       <categories>
         <category>运维部署</category>
       </categories>
