@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Mysql主主高可用备份部署例子 | 石头の博客</title>
-  <meta name="description" content="Mysql Master-Master Docker 部署例子此教程简要指导Mysql数据库双主备份。 0.环境准备 两台CentOS系统的服务器,服务器分配在同一网段，并保证相互网络畅通 -server-a ip : 192.168.1.220 -server-b ip : 192.168.1.221  服务器预先安装好Docker，Docker-Compose，pull Mysql:8.0镜像">
+  <title>Mysql数据库备份迁移 | 石头の博客</title>
+  <meta name="description" content="Mysql 数据库备份迁移1.导出和导入数据库在日常的数据库操作时候，需要对数据库进行整体的备份，迁移，可以用采用下面的方式: 导出数据库 1234#进入可创建文件的目录，例如/var/lib/mysql$ cd /var/lib/mysql#导出指定数据库完整备份到当前目录$ mysqldump -h127.0.0.1 -uroot -proot -P3306  -B databaseName&amp;">
 <meta name="keywords" content="mysql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql主主高可用备份部署例子">
-<meta property="og:url" content="https://stonesPeng.github.io/2019/11/07/Mysql主主高可用备份部署例子/index.html">
+<meta property="og:title" content="Mysql数据库备份迁移">
+<meta property="og:url" content="https://stonesPeng.github.io/2020/01/09/Mysql 数据库备份迁移/index.html">
 <meta property="og:site_name" content="石头の博客">
-<meta property="og:description" content="Mysql Master-Master Docker 部署例子此教程简要指导Mysql数据库双主备份。 0.环境准备 两台CentOS系统的服务器,服务器分配在同一网段，并保证相互网络畅通 -server-a ip : 192.168.1.220 -server-b ip : 192.168.1.221  服务器预先安装好Docker，Docker-Compose，pull Mysql:8.0镜像">
+<meta property="og:description" content="Mysql 数据库备份迁移1.导出和导入数据库在日常的数据库操作时候，需要对数据库进行整体的备份，迁移，可以用采用下面的方式: 导出数据库 1234#进入可创建文件的目录，例如/var/lib/mysql$ cd /var/lib/mysql#导出指定数据库完整备份到当前目录$ mysqldump -h127.0.0.1 -uroot -proot -P3306  -B databaseName&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-07T09:55:33.000Z">
+<meta property="og:updated_time" content="2020-01-09T06:19:39.498Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql主主高可用备份部署例子">
-<meta name="twitter:description" content="Mysql Master-Master Docker 部署例子此教程简要指导Mysql数据库双主备份。 0.环境准备 两台CentOS系统的服务器,服务器分配在同一网段，并保证相互网络畅通 -server-a ip : 192.168.1.220 -server-b ip : 192.168.1.221  服务器预先安装好Docker，Docker-Compose，pull Mysql:8.0镜像">
+<meta name="twitter:title" content="Mysql数据库备份迁移">
+<meta name="twitter:description" content="Mysql 数据库备份迁移1.导出和导入数据库在日常的数据库操作时候，需要对数据库进行整体的备份，迁移，可以用采用下面的方式: 导出数据库 1234#进入可创建文件的目录，例如/var/lib/mysql$ cd /var/lib/mysql#导出指定数据库完整备份到当前目录$ mysqldump -h127.0.0.1 -uroot -proot -P3306  -B databaseName&amp;">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/2019/11/07/Mysql主主高可用备份部署例子/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/2020/01/09/Mysql 数据库备份迁移/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -350,21 +350,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql-Master-Master-Docker-部署例子"><span class="toc-number">1.</span> <span class="toc-text">Mysql Master-Master Docker 部署例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0-环境准备"><span class="toc-number">1.1.</span> <span class="toc-text">0.环境准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-设置Mysql配置文件"><span class="toc-number">1.2.</span> <span class="toc-text">1.设置Mysql配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1设置server-a的配置文件"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1设置server-a的配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-设置server-b配置"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2 设置server-b配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-编辑docker-compose-yml"><span class="toc-number">1.3.</span> <span class="toc-text">2.编辑docker-compose.yml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-docker-开启数据库容器"><span class="toc-number">1.4.</span> <span class="toc-text">3.docker 开启数据库容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-配置同步信息并启动同步"><span class="toc-number">1.5.</span> <span class="toc-text">4.配置同步信息并启动同步</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-查看两台服务器Mysql状态"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 查看两台服务器Mysql状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2创建Replication用户"><span class="toc-number">1.5.2.</span> <span class="toc-text">4.2创建Replication用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3配置同步信息"><span class="toc-number">1.5.3.</span> <span class="toc-text">4.3配置同步信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4-启动同步和查看同步状态"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.4 启动同步和查看同步状态</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mysql-数据库备份迁移"><span class="toc-number">1.</span> <span class="toc-text">Mysql 数据库备份迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-导出和导入数据库"><span class="toc-number">1.1.</span> <span class="toc-text">1.导出和导入数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-mysqldump深入浅出"><span class="toc-number">1.2.</span> <span class="toc-text">2.mysqldump深入浅出</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1-常用参数"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 常用参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2mysqldump-默认参数"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2mysqldump 默认参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-3mysqldump-常用方法"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3mysqldump 常用方法</span></a></li></ol></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Mysql主主高可用备份部署例子" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Mysql 数据库备份迁移" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Mysql主主高可用备份部署例子
+      Mysql数据库备份迁移
     </h1>
   
 
@@ -372,8 +372,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/11/07/Mysql主主高可用备份部署例子/" class="article-date">
-	  <time datetime="2019-11-07T11:54:30.000Z" itemprop="datePublished">2019-11-07</time>
+	<a href="/2020/01/09/Mysql 数据库备份迁移/" class="article-date">
+	  <time datetime="2020-01-09T11:54:30.000Z" itemprop="datePublished">2020-01-09</time>
 	</a>
 </span>
         
@@ -391,97 +391,107 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/11/07/Mysql主主高可用备份部署例子/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/09/Mysql 数据库备份迁移/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h3 id="Mysql-Master-Master-Docker-部署例子"><a href="#Mysql-Master-Master-Docker-部署例子" class="headerlink" title="Mysql Master-Master Docker 部署例子"></a>Mysql Master-Master Docker 部署例子</h3><p>此教程简要指导Mysql数据库双主备份。</p>
-<h4 id="0-环境准备"><a href="#0-环境准备" class="headerlink" title="0.环境准备"></a>0.环境准备</h4><ul>
-<li><p>两台CentOS系统的服务器,服务器分配在同一网段，并保证相互网络畅通</p>
-<p>-server-a ip : 192.168.1.220</p>
-<p>-server-b ip : 192.168.1.221</p>
-</li>
-<li><p>服务器预先安装好<code>Docker</code>，<code>Docker-Compose</code>，pull <code>Mysql:8.0</code>镜像</p>
-</li>
-<li><p>Navicat for mysql 执行数据库命令</p>
-</li>
+        <h4 id="Mysql-数据库备份迁移"><a href="#Mysql-数据库备份迁移" class="headerlink" title="Mysql 数据库备份迁移"></a>Mysql 数据库备份迁移</h4><h5 id="1-导出和导入数据库"><a href="#1-导出和导入数据库" class="headerlink" title="1.导出和导入数据库"></a>1.导出和导入数据库</h5><p>在日常的数据库操作时候，需要对数据库进行整体的备份，迁移，可以用采用下面的方式:</p>
+<p><strong>导出数据库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#进入可创建文件的目录，例如/var/lib/mysql</span><br><span class="line">$ cd /var/lib/mysql</span><br><span class="line">#导出指定数据库完整备份到当前目录</span><br><span class="line">$ mysqldump -h127.0.0.1 -uroot -proot -P3306  -B databaseName&gt;bk.sql</span><br></pre></td></tr></table></figure>
+<p><strong>导入数据库</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#登录数据库</span><br><span class="line">$ mysql -h127.0.0.1 -uroot -proot -P3306</span><br><span class="line">#导入指定数据库 bk.sql</span><br><span class="line">mysql&lt;source bk.sql</span><br></pre></td></tr></table></figure>
+<h5 id="2-mysqldump深入浅出"><a href="#2-mysqldump深入浅出" class="headerlink" title="2.mysqldump深入浅出"></a>2.mysqldump深入浅出</h5><blockquote>
+<p><strong>mysqldump</strong> 是<code>mysql</code> 用于转存储数据库的实用程序。它主要产生一个 SQL 脚本，输出的是逻辑备份，其中包含从头重新创建数据库所必需的命令 CREATE TABLE INSERT 等。mysqldump属于单线程。主要用于数据库备份或迁移。</p>
+</blockquote>
+<h6 id="2-1-常用参数"><a href="#2-1-常用参数" class="headerlink" title="2.1 常用参数"></a>2.1 常用参数</h6><p>查看mysqldump参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump  --help</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-?, –help: 显示帮助信息，英文的；</li>
+<li>-u, –user: 指定连接的用户名；</li>
+<li>-p, –password: 指定用户的密码，可以交互输入密码；</li>
+<li>-S , –<a href="https://www.centos.bz/tag/socket/" target="_blank" rel="noopener">socket</a>: 指定socket文件连接，本地登录才会使用。</li>
+<li>-h, –host: 指定连接的服务器名称或者IP。</li>
+<li>-P, –port=: 连接数据库监听的端口。</li>
+<li>–default-character-set: 设置字符集，默认是UTF8。</li>
+<li>-A, –all-databases: 导出所有数据库。不过默认情况下是不会导出information_schema库。</li>
+<li>-B, –databases: 导出指定的某个/或者某几个数据库，参数后面所有名字参量都被看作数据库名，包含CREATE DATABASE创建库的语句。</li>
+<li>–tables: 导出指定表对象，参数格式为“库名 表名”，默认该参数将覆盖-B/–databases参数。</li>
+<li>-w, –where: 只导出符合条件的记录。</li>
+<li>-l, –lock-tables: 默认参数，锁定读取的表对象，想导出一致性备份的话最后使用该参数，会导致无法对表执行写入操作。</li>
+<li>–single-transaction:<br>该选项在导出数据之前提交一个BEGIN SQL语句，BEGIN 不会阻塞任何应用程序且能保证导出时数据库的一致性状态。它只适用于多版本存储 引擎，仅<a href="https://www.centos.bz/tag/innodb/" target="_blank" rel="noopener">InnoDB</a>。本选项和–lock-tables 选项是互斥的，因为LOCK TABLES 会使任何挂起的事务隐含提交，使用参数–single-transaction会自动关闭该选项。<br>在InnoDB导出时会建立一致性快照，在保证导出数据的一致性前提下，又不会堵塞其他会话的读写操作，相比–lock-tables参数来说锁定粒度要低，造成的影响也要小很多。指定这个参数后，其他连接不能执行ALTER <a href="https://www.centos.bz/tag/table/" target="_blank" rel="noopener">TABLE</a>、DROP TABLE 、RENAME TABLE、TRUNCATE TABLE这类语句，事务的隔离级别无法控制DDL语句。</li>
+<li>-d, –no-data: 只导出表结构，不导出表数据。</li>
+<li>-t, –no-create-info: 只导出数据，而不添加CREATE TABLE 语句。</li>
+<li>-f, –force: 即使遇到SQL错误，也继续执行，功能类似<a href="https://www.centos.bz/tag/oracle/" target="_blank" rel="noopener">Oracle</a> exp命令中的ignore参数。</li>
+<li>-F, —flush-logs: 在执行导出前先刷新日志文件，视操作场景，有可能会触发多次刷新日志文件。一般来说，如果是全库导出，建议先刷新日志文件，否则就不用了。</li>
+<li>–<a href="https://www.centos.bz/tag/master/" target="_blank" rel="noopener">master</a>-data[=#]: 该选项将二进制日志的位置和文件名写入到输出中。该选项要求有RELOAD权限，并且必须启用二进制日志。如果该选项值等于1，位置和文件名被写入CHANGE MASTER语句形式的转储输出，如果你使用该SQL转储主服务器以设置从服务器，从服务器从主服务器二进制日志的正确位置开始。如果选项值等于2，CHANGE MASTER语句被写成SQL注释。如果value被省略，这是默认动作。</li>
+<li>–master-data选项会启用–lock-all-tables，除非还指定–single-transaction(在这种情况下，只在刚开始转储时短时间获得全局读锁定。又见–single-transaction。在任何一种情况下，日志相关动作发生在转储时。该选项自动关闭–lock-tables。<br>所以，我在INNODB引擎的数据库备份时，我会同时使用–master-data=2 和 –single-transaction两个选项。</li>
+<li>-x, –lock-all-tables: 在导出任务执行期间锁定所有数据库中的所有表，以保证数据的一致性。这是一个全局锁定，并且自动关闭–single-transaction 和–lock-tables 选项。这个参数副作用比较大，这是全库锁定，备份执行过程中，该库无法进行读写操作，不是所有业务场景都能接受的。请慎用。</li>
+<li>-n, –no-create-db: 不生成建库的语句CREATE DATABASE … IF EXISTS，即使指定–all-databases或–databases这类参数。</li>
+<li>–triggers: 导出表的触发器脚本，默认就是启用状态。使用–skip-triggers禁用它。</li>
+<li>-R, –routines: 导出存储过程以及自定义函数。<br>在转储的数据库中转储存储程序(函数和程序)。</li>
+<li>-E, –<a href="https://www.centos.bz/tag/events/" target="_blank" rel="noopener">events</a>: 输出<a href="https://www.centos.bz/tag/event/" target="_blank" rel="noopener">event</a>。</li>
+<li>–ignore-table: 指定的表对象不做导出，参数值的格式为[db_name,tblname]，注意每次只能指定一个值，如果有多个表对象都不进行导出操作的话，那就需要指定多个–ignore-table参数，并为每个参数指定不同的参数值。</li>
+<li>–add-drop-database: 在任何创建库语句前，附加DROP DATABASE 语句。</li>
+<li>–add-drop-table: 在任何创建表语句前，附加DROP TABLE语句。这个参数是默认启用状态，可以使用– skip-add-drop-table参数禁用该参数。</li>
+<li>–add-drop-trigger: 创建任何触发器前，附加DROP TRIGGER语句。</li>
+<li>–add-locks: 在生成的INSERT语句前附加LOCK语句，该参数默认是启用状态。使用–skip-add-locks参数禁用。</li>
+<li>-K, –disable-keys: 在导出的文件中输出 ‘/!40000 ALTER TABLE tb_name DISABLE KEYS <em>/; 以及<br>‘/!40000 ALTER TABLE tb_name ENABLE KEYS </em>/; ‘ 等信息。这两段信息会分别放在INSERT语句的前后，也就是说，在插入数据前先禁用索引，等完成数据插入后再启用索引，目的是为了加快导入的速度。该参数默认就是启用状态。可以通过–skip-disable-keys参数来禁用。</li>
+<li>–opt: 功能等同于同时指定了 –add-drop-table, –add-locks, –create-<a href="https://www.centos.bz/tag/options/" target="_blank" rel="noopener">options</a>, –quick, –extended-insert, –lock-tables, –set-charset, 以及 –disable-keys这些参数。默认就是启用状态。使用–skip-opt来禁用该参数。</li>
+<li>–skip-opt: 禁用–opt选项，相当于同时禁用 –add-drop-table, –add-locks, –create-options, –quick, –extended-insert, –lock-tables, –set-charset, 及 –disable-keys这些参数。</li>
+<li>-q, –quick: 导出时不会将数据加载到缓存，而是直接输出。默认就是启用状态。可以使用–skip-quick 来禁用该参数。</li>
 </ul>
-<h4 id="1-设置Mysql配置文件"><a href="#1-设置Mysql配置文件" class="headerlink" title="1.设置Mysql配置文件"></a>1.设置Mysql配置文件</h4><p>新建mysql配置文件<code>my.cnf</code>，详细配置省去，只说明主从备份相关配置。</p>
-<h5 id="1-1设置server-a的配置文件"><a href="#1-1设置server-a的配置文件" class="headerlink" title="1.1设置server-a的配置文件"></a>1.1设置<code>server-a</code>的配置文件</h5><p><strong>与主主备份相关的配置</strong></p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">#为服务器分配id，可以自定义，不区分大小，起标识作用。不同数据库节点分配不同的id</span><br><span class="line">server_id=1</span><br><span class="line"></span><br><span class="line"># 打开Mysql 日志，日志格式为二进制</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line"></span><br><span class="line"># 可选项Mixed,Statement,Row，默认格式是 Statement，mixed混合Satement，ROW两种模式</span><br><span class="line">binlog_format=mixed</span><br><span class="line"></span><br><span class="line">#当启用时，服务器通过只允许执行可以使用GTID安全地记录的语句来强制GTID一致性。</span><br><span class="line">enforce-gtid-consistency=true</span><br><span class="line"></span><br><span class="line">#启用基于GTID的复制，启用之前必须保证enforce-gtid-consistency=true</span><br><span class="line">gtid_mode=ON</span><br><span class="line"></span><br><span class="line">#该选项让从库写入哪些来自于主库的更新，并把这些更新写入bin-log文件，一台服务器即做主库又做从库必须开启</span><br><span class="line">log-slave-updates=true</span><br></pre></td></tr></table></figure>
-<p><strong>一些定制化的配置</strong></p>
-<hr>
-<p><strong><em>针对主服务器</em></strong></p>
-<p>忽略不同步主从的数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#一般设置 sys,performace_schema,infomation_schema,mysql</span><br><span class="line">binlog-ignore-db=&lt;YOUR-DB-NAME&gt;</span><br></pre></td></tr></table></figure>
-<p>允许同步的数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#一般设置成备份的生产数据的数据库</span><br><span class="line">binlog-do-db=&lt;YOUR-DB-NAME&gt;</span><br></pre></td></tr></table></figure>
-<p><strong><em>针对从服务器</em></strong></p>
-<p>忽略不同步主从的数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#一般设置 sys,performace_schema,infomation_schema,mysql</span><br><span class="line">replicate-ignore-db=&lt;YOUR-DB-NAME&gt;</span><br></pre></td></tr></table></figure>
-<p>允许同步的数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#一般设置成备份的生产数据的数据库</span><br><span class="line">replicate-do-db=&lt;YOUR-DB-NAME&gt;</span><br></pre></td></tr></table></figure>
-<p>因为我们配置的是双主服务器，每台服务器既要作为主又要作为从。所以以上针对主，从服务器的个性化配置在两台数据库都要按具体业务需求进行配置。</p>
-<p>另，以上4个定制化参数可重复设置，如下图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">replicate-ignore-db=sys</span><br><span class="line">replicate-ignore-db=mysql</span><br></pre></td></tr></table></figure>
-<h5 id="1-2-设置server-b配置"><a href="#1-2-设置server-b配置" class="headerlink" title="1.2 设置server-b配置"></a>1.2 设置<code>server-b</code>配置</h5><p>区别于<code>server-a</code>的配置，改动以下配置即可,其余定制化配置按需自定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#server_id 必须独一无二</span><br><span class="line">server_id=2</span><br></pre></td></tr></table></figure>
-<h4 id="2-编辑docker-compose-yml"><a href="#2-编辑docker-compose-yml" class="headerlink" title="2.编辑docker-compose.yml"></a>2.编辑docker-compose.yml</h4><p>两个服务器配置相同内容的docker-compoe.yml文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;2.2&apos;</span><br><span class="line">services:</span><br><span class="line">  #mysql service</span><br><span class="line">  mysql:</span><br><span class="line">    image: mysql:8.0</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3306:3306&quot;</span><br><span class="line">    command:  --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone=&apos;+8:00&apos;</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">     #持久化数据库，注意路径</span><br><span class="line">      - ./data/db:/var/lib/mysql</span><br><span class="line">     #替换数据库配置文件，注意路径</span><br><span class="line">      - ./my.conf:/etc/mysql/conf.d/mysql.cnf</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_ROOT_PASSWORD: &lt;YOUR_PAASWORD&gt;</span><br><span class="line">    container_name: mysql_service</span><br></pre></td></tr></table></figure>
-<h4 id="3-docker-开启数据库容器"><a href="#3-docker-开启数据库容器" class="headerlink" title="3.docker 开启数据库容器"></a>3.docker 开启数据库容器</h4><p>每个服务器针对数据库的docker-compose目录如下（供参考）：</p>
-<blockquote>
-<p>-mysql_replicate</p>
-<blockquote>
-<blockquote>
-<p>docker-compose.yml</p>
-<p>my.conf</p>
-<p>-data</p>
-<blockquote>
-<p>-db</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<p>启动数据库服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
-<p>确保数据库服务启动成功</p>
-<h4 id="4-配置同步信息并启动同步"><a href="#4-配置同步信息并启动同步" class="headerlink" title="4.配置同步信息并启动同步"></a>4.配置同步信息并启动同步</h4><h5 id="4-1-查看两台服务器Mysql状态"><a href="#4-1-查看两台服务器Mysql状态" class="headerlink" title="4.1 查看两台服务器Mysql状态"></a>4.1 查看两台服务器Mysql状态</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MySQL [(none)]&gt; show master status;</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">| mysql-bin.000014 |      81  |              |                  |                   |</span><br><span class="line">+------------------+----------+--------------+------------------+-------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p><code>File</code> 表示当前正在写入的binlog文件</p>
-<p><code>Postion</code> 表示当前正在写入的位置</p>
-<p><code>Binlog_Do_DB</code>表示只记录指定数据库的二进制文件</p>
-<p><code>Binlog_Ignore_DB</code>表示不记录指定数据库的二进制文件</p>
-<p><code>Executed_Gtid_Set</code>这是5.7mysql库引入了新的表gtid_executed，会记录当前执行的GTID</p>
-<p>如果未开启<code>GTID</code>，配置同步信息会用到<code>File</code>和<code>Postion</code></p>
-<h5 id="4-2创建Replication用户"><a href="#4-2创建Replication用户" class="headerlink" title="4.2创建Replication用户"></a>4.2创建Replication用户</h5><p>创建针对限定host的Slave登录用账户和密码，并刷新权限</p>
-<p>针对server-a,其ip为192.168.8.220</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;repl&apos;@&apos;192.168.1.221&apos; identified by &apos;vo7kphndxlzfr6u3&apos;;</span><br><span class="line">grant replication slave on *.* to &apos;repl&apos;@&apos;192.168.1.221&apos;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<p>针对server-b,其ip为192.168.8.221</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user &apos;repl&apos;@&apos;192.168.1.220&apos; identified by &apos;vo7kphndxlzfr6u3&apos;;</span><br><span class="line">grant replication slave on *.* to &apos;repl&apos;@&apos;192.168.1.220&apos;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-<h5 id="4-3配置同步信息"><a href="#4-3配置同步信息" class="headerlink" title="4.3配置同步信息"></a>4.3配置同步信息</h5><p>使数据库实例和Master实例关联起来</p>
-<p>针对server-a,其ip为192.168.8.220</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">change master to </span><br><span class="line">	master_host=&apos;192.168.1.221&apos;,</span><br><span class="line">	master_port=3306,</span><br><span class="line">	master_user=&apos;repl&apos;,</span><br><span class="line">	master_password=&apos;vo7kphndxlzfr6u3&apos;,</span><br><span class="line">MASTER_AUTO_POSITION=1,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br></pre></td></tr></table></figure>
-<p>针对server-b,其ip为192.168.8.221</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">change master to </span><br><span class="line">	master_host=&apos;192.168.1.220&apos;,</span><br><span class="line">	master_port=3306,</span><br><span class="line">	master_user=&apos;repl&apos;,</span><br><span class="line">	master_password=&apos;vo7kphndxlzfr6u3&apos;,</span><br><span class="line">MASTER_AUTO_POSITION=1,</span><br><span class="line">GET_MASTER_PUBLIC_KEY=1;</span><br></pre></td></tr></table></figure>
-<p><code>MASTER_AUTO_POSITION</code>自动获取Master 的位置，就不要去指定<code>master_log_file</code>和<code>master_log_pos</code>。</p>
-<p><code>GET_MASTER_PUBLIC_KEY</code>很重要，如果不设置此参数，会导致Slave开启后，Slave无法连接到Master。错误见下图</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eror connecting to master &apos;repl@mysql-master:3306&apos; - retry-time: 60  retries: 3, Error_code: MY-002061</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>这个是因MySQL 8默认启用了caching_sha2_password authentication plugin，通过mysql官方文档介绍可以在<code>CHANGE MASTER TO</code>添加<code>GET_MASTER_PUBLIC_KEY=1</code>参数来解决这个问题。</p>
-<h5 id="4-4-启动同步和查看同步状态"><a href="#4-4-启动同步和查看同步状态" class="headerlink" title="4.4 启动同步和查看同步状态"></a>4.4 启动同步和查看同步状态</h5><p><strong><em>在两个数据库实例中启动同步</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure>
-<p>表示启动从库的两个线程：</p>
-<ol>
-<li>I/O线程，表示线程会连接远程Master的mysql，并把它的bin-log拷贝到本机的中继日志relay-log中。</li>
-<li>sql线程，表示该线程会读取本机中继日志中的数据，并把这些数据恢复到本机自己的mysql表中。</li>
-</ol>
-<p>这样Master的数据就会同步到从库的数据库中。</p>
-<p><strong><em>查看同步状态</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
-<p>显示以下状态则正常</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Slave_IO_Running: Yes</span><br><span class="line">Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure>
-<p>至此，配置同步信息，启动同步完成。修改任意设置的数据库表结构，库结构，会同步更新到另一个数据库中。</p>
+<h6 id="2-2mysqldump-默认参数"><a href="#2-2mysqldump-默认参数" class="headerlink" title="2.2mysqldump 默认参数"></a>2.2mysqldump 默认参数</h6><p>mysqldjmp 默认使用的参数由以下几个：</p>
+<ul>
+<li>–opt</li>
+<li>–add-drop-table</li>
+<li>–add-locks</li>
+<li>-i,–comments</li>
+<li>-a,–create-options</li>
+<li>-e, –extended-insert</li>
+<li>-l, –lock-tables</li>
+<li>-q, –quick</li>
+<li>-K, –disable-keys</li>
+<li>-Q, –quote-names</li>
+<li>–dump-date</li>
+<li>–ssl</li>
+<li>–triggers</li>
+<li>–tz-utc</li>
+</ul>
+<p>上面这些参数，执行mysqldump 命令的时候默认就会带上的。</p>
+<h6 id="2-3mysqldump-常用方法"><a href="#2-3mysqldump-常用方法" class="headerlink" title="2.3mysqldump 常用方法"></a>2.3mysqldump 常用方法</h6><p>(1) 获取一个完整备份<br>不锁库备份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p --triggers --routines --events -A -B --single-transaction --master-data=2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(2) 导出指定库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p -B dbname &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>如果是导出单库也可以不使用-B 参数，无非就是没有创建库的语句。<br>如果是多个库可以使用如下命令，但是必须使用-B参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p -B DB1 DB2 DB3 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(3) 导出指定表的数据和结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p DBNAME table1 table2 &gt; tablename.sql</span><br></pre></td></tr></table></figure>
+<p>或者使用 –tables 参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p --tables DBNAME table1 table2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump  -uusername -p DBNAME  --tables table1 table2 table3 &gt; tablename.sql</span><br></pre></td></tr></table></figure>
+<p>(4) 导出指定表的结构<br>不包含数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -ubackup -p --no-data  DBNAME table1 table2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>或者使用–tables参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -ubackup -p --no-data DBNAME  --tables table1 table2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -ubackup -p --no-data  --tables DBNAME table1 table2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(5) 导出指定表的数据<br>不包含表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump  -uusername -p --no-create-info DBNAME  table1 table2 table3 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>或者使用–tables 参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump  -uusername -p --no-create-info DBNAME --tables table1 table2 table3 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump  -uusername -p --no-create-info  --tables DBNAME table1 table2 table3 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(6) 导出整个数据库结构 (包括表结构)<br>不包含数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p --no-data DBNAME &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(7) 导出数据库表结构和数据时排除某些表<br>使用 –ignore-table 参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p  --single-transaction --master-data=2 --add-drop-database  -B DBNAME --ignore-table=DBNAME.table1 --ignore-table=DBNAME.table2 &gt; backup.$(date +%F).sql</span><br></pre></td></tr></table></figure>
+<p>(8) 导出数据直接压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mysqldump -uusername -p -B DBNAME | gzip &gt; backup.sql.gz</span><br></pre></td></tr></table></figure>
+<p>解压命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gunzip backup.sql.gz</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -491,7 +501,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://stonesPeng.github.io/2019/11/07/Mysql主主高可用备份部署例子/" title="Mysql主主高可用备份部署例子" target="_blank" rel="external">https://stonesPeng.github.io/2019/11/07/Mysql主主高可用备份部署例子/</a>
+      <a href="https://stonesPeng.github.io/2020/01/09/Mysql 数据库备份迁移/" title="Mysql数据库备份迁移" target="_blank" rel="external">https://stonesPeng.github.io/2020/01/09/Mysql 数据库备份迁移/</a>
     </li>
     
     
@@ -539,13 +549,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/11/08/基于GTID主从同步方案/" title="基于GTID的Mysql主从同步"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2019/11/05/正向代理和反向代理/" title="正向代理和反向代理"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/01/08/yarn无法使用在vscode的terminal/" title="yarn无法使用在vscode的terminal"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
