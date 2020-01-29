@@ -17,11 +17,11 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Category: spring全家桶 | 石头の博客</title>
+  <title>石头の博客</title>
   <meta name="description" content="律己宜带秋风，处事宜带春风!">
 <meta property="og:type" content="website">
 <meta property="og:title" content="石头の博客">
-<meta property="og:url" content="https://stonesPeng.github.io/categories/spring全家桶/index.html">
+<meta property="og:url" content="https://stonesPeng.github.io/page/6/index.html">
 <meta property="og:site_name" content="石头の博客">
 <meta property="og:description" content="律己宜带秋风，处事宜带春风!">
 <meta property="og:locale" content="zh-Hans">
@@ -29,7 +29,7 @@
 <meta name="twitter:title" content="石头の博客">
 <meta name="twitter:description" content="律己宜带秋风，处事宜带春风!">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://stonesPeng.github.io/categories/spring全家桶/index.html">
+  <link rel="canonical" href="https://stonesPeng.github.io/page/6/index.html">
   
     <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
   
@@ -344,106 +344,133 @@
 
   
   <main class="main" role="main">
-  <article class="content article article-categories article-type-list" itemscope="">
-    <header class="article-header">
-      <h1 itemprop="name" class="hidden-xs">Category: spring全家桶</h1>
-      <p class="hidden-xs">Total 6 articles</p>
-      <nav role="navigation" id="nav-main" class="okayNav">
-        <ul>
-          <li><a href="/categories">All</a></li>
-          
-          <li><a href="/categories/编程语言/">编程语言</a></li>
-          
-          <li><a href="/categories/部署运维/">部署运维</a></li>
-          
-          <li><a href="/categories/技术杂记/">技术杂记</a></li>
-          
-          <li><a href="/categories/spring全家桶/">spring全家桶</a></li>
-          
-          <li><a href="/categories/数据库/">数据库</a></li>
-          
-          <li><a href="/categories/运维部署/">运维部署</a></li>
-          
-          <li><a href="/categories/设计与架构/">设计与架构</a></li>
-          
-          <li><a href="/categories/行业领域/">行业领域</a></li>
-          
-          <li><a href="/categories/算法与模式/">算法与模式</a></li>
-          
-        </ul>
-      </nav>
-    </header>
-    <!-- /header -->
-    <div class="article-body">
-      <div class="panel panel-default b-no">
-    <div class="panel-heading" role="tab">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapsespring全家桶" aria-expanded="true">
-              <i class="icon icon-folder text-active"></i><i class="icon icon-folder-open text"></i>
-              spring全家桶
-            </a>
-            <small class="text-muted">(Total 6 articles)</small>
-        </h4>
+  
+  
+    <div class="content">
+  <article id="post-Drools" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/05/Drools/">Drools--Group</a>
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/09/05/Drools/" class="article-date">
+	  <time datetime="2018-09-05T13:01:24.000Z" itemprop="datePublished">2018-09-05</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/技术杂记/">技术杂记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/规则引擎/">规则引擎</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/09/05/Drools/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
     </div>
-    <div id="collapsespring全家桶" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingspring全家桶">
-        <div class="panel-body">
-            <div class="collection">
-              
-                
-<a href="/2019/07/31/springbootdocker/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-07-31T06:48:28.000Z" itemprop="datePublished">2019-07-31</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> springboot with docker
-</a>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="Drools-Group"><a href="#Drools-Group" class="headerlink" title="Drools-Group"></a><strong>Drools-Group</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*具有相同activation-group属性的规则中只要有一个被执行，其他的规则都不再执行。</span></span><br><span class="line"><span class="comment">*可以用类似salience之类的属性来实现规则的执行优先级</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">activation-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*将规则划分一个的组，然后在规则流当中通过使用ruleflow-group属性的值，从而使用</span></span><br><span class="line"><span class="comment">*对应的规则，该属性会通过流程的走向确定要执行哪一条规则</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">ruleflow-group</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*Agenda Group 是用来在Agenda基础上对规则进行再次分组。引擎在调用设置了agenda-group</span></span><br><span class="line"><span class="comment">*属性的规则时需要显示的指定某个agenda group 获得focus，否则将不执行此组的规则。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">agenda-group</span><br></pre></td></tr></table></figure>
+<p><strong>1. Agenda-group</strong></p>
+<blockquote>
+<p>议程组允许将规则以组的形式，并将这么组放入堆栈，堆栈具有push/pop操作，通过SetFocus完成Push操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>议程总是在栈顶执行，当议程组所有的规则执行后，这个议程组会被移除然后执行下一组。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuteAgendaGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getAgendaGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    <span class="comment">//group2 后执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group2"</span>).setFocus();</span><br><span class="line">    <span class="comment">//group1 先执行</span></span><br><span class="line">    kieSession.getAgenda().getAgendaGroup(<span class="string">"group1"</span>).setFocus();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">    kieSession.dispose();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getAgendaGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-agenda-group1\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group2\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group2\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-agenda-group2 被触发\"); end\n"</span> +</span><br><span class="line">            <span class="string">"rule \"test-agenda-group3\" "</span> +</span><br><span class="line">            <span class="string">"agenda-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-agenda-group1-2 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>2.Activation-Group</strong></p>
+<blockquote>
+<p>激活组要求相同组只执行一个<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">executeActivationGroup</span><span class="params">()</span></span>&#123;</span><br><span class="line">    KieBase kieBase = KieStarter.newKieBase(getActivationGroupDrl());</span><br><span class="line">    KieSession kieSession = kieBase.newKieSession();</span><br><span class="line">    kieSession.fireAllRules();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getActivationGroupDrl</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"rule \"test-activation-group1\" "</span> +</span><br><span class="line">            <span class="string">"salience  1"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when then System.out.println(\"test-activation-group1 被触发\"); "</span> +</span><br><span class="line">            <span class="string">"end "</span> +</span><br><span class="line">            <span class="string">"rule \"test-activation-group2\" "</span> +</span><br><span class="line">            <span class="string">"salience  2"</span>+</span><br><span class="line">            <span class="string">"activation-group \"group1\" "</span> +</span><br><span class="line">            <span class="string">"when "</span> +</span><br><span class="line">            <span class="string">"then "</span> +</span><br><span class="line">            <span class="string">"System.out.println(\"test-activation-group2 被触发\"); end\n"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>3. Flow-Group</strong></p>
+<blockquote>
+<p>流式组支持服务编排，像工作流一样先后顺序运行规则</p>
+</blockquote>
 
-
-              
-                
-<a href="/2019/07/25/Spring-Cache-Key/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-07-25T02:20:43.000Z" itemprop="datePublished">2019-07-25</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Spring Cache Key
-</a>
-
-
-              
-                
-<a href="/2019/07/02/lombok安装和注解说明/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-07-02T06:32:04.000Z" itemprop="datePublished">2019-07-02</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> lombok安装和注解说明
-</a>
-
-
-              
-                
-<a href="/2019/06/19/Springboot配置日志/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-06-19T06:39:44.000Z" itemprop="datePublished">2019-06-19</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Springboot配置日志
-</a>
-
-
-              
-                
-<a href="/2019/06/13/Qualifier-Primary/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-06-13T02:17:51.000Z" itemprop="datePublished">2019-06-13</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> @Qualifier@Primary
-</a>
-
-
-              
-                
-<a href="/2019/03/15/Filter-Diff-Interceptor/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2019-03-15T09:30:39.000Z" itemprop="datePublished">2019-03-15</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Filter Diff Interceptor
-</a>
-
-
-              
-            </div>
-        </div>
+      
     </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2018/09/05/Drools/" title="Drools--Group" target="_blank" rel="external">https://stonesPeng.github.io/2018/09/05/Drools/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
 </div>
+
+
     </div>
   </article>
-   
+  
+</div>
+
+  
+
+  
+    
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev">
+                <a href="/page/5/">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next disabled">
+                <a href="javascript:;">
+                    Next
+                    <i class="icon icon-angle-right"></i>                    
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 6 of 6</div>
+        </div>
+    </nav>
+    
+ 
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -499,6 +526,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 <script src="/js/insight.js"></script>
     
     
+    
+        
+
+
     
     
     
