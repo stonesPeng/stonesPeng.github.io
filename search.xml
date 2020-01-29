@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python基础知识--条件和循环]]></title>
+    <url>%2F2020%2F01%2F29%2Fpython%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%BE%AA%E7%8E%AF%2F</url>
+    <content type="text"><![CDATA[（二）python基础知识–条件和循环1. 条件简单的条件判断 12if &lt;表达式&gt; : &lt;代码块&gt; 复杂的条件判断： 123456if &lt;表达式&gt; : &lt;代码块&gt;elif &lt;表达式&gt; : &lt;代码块&gt;else &lt;表达式&gt; : &lt;代码块&gt; 2.循环语句2.2.1.while 语句：12while &lt;表达式&gt; : &lt;代码块&gt; 2.2.2for语句：12for &lt;迭代变量&gt; in &lt;可迭代对象&gt;: &lt;代码块&gt; 2.2.3 break &amp; continue &amp; passbreak语句可以跳出 for 和 while 的循环体。如果你从 for 或 while 循环中终止，任何对应的循环 else 块将不执行 continue语句被用来跳过当前循环块中的剩余语句，然后继续进行下一轮循环 pass是空语句，是为了保持程序结构的完整性,pass 不做任何事情，一般用做占位语句 2.2.4 range()函数 &amp; len()函数遍历数字序列，可以使用内置range()函数，它会生成数列 123#输出 0 1 2 3 4 for i in range(5): print(i,end=&quot; &quot;) range(&lt;开始序号&gt;，&lt;结束序号&gt;，&lt;步长&gt;) 包括开始序号，不包括结束序号 获取序列的长度，可以使用内置len()函数 123list=[1,2,3,4]#输出 4print(len(list)) 3.列表，字典推导式python支持优雅的的方式实现循环语句嵌套条件语句 列表推导式 123# 输入1到10中偶数的平方a_list = [i*i for i in range(1, 11) if i % 2 == 0]print(a_list) 字典推导式 123# 初始化字典，并输出b_num = &#123;i: 1 for i in range(1, 11)&#125;print(b_num)]]></content>
+      <categories>
+        <category>编程语言</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[python基础知识--数据类型]]></title>
-    <url>%2F2020%2F01%2F29%2FPython%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86--%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <url>%2F2020%2F01%2F29%2Fpython%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86--%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[（一）python基础知识–数据类型本教程针对Python3.x版本 1.特点面对初学者友好，学习曲线平缓 语法简介 支持跨平台 支持扩展其它语言 源码开放 类库丰富 解释型、面向对象、动态数据类型高级程序设计语言 2.语法2.1.书写规则 #字符用作注释 import 或者 from...import 来导入相应的模块 使用缩进来表示代码块，不需要使用大括号 {} 单行语句太长，我们可以使用反斜杠\来实现多行语句 2.2.数据类型2.2.1.数值类型（Number） Python 支持四大数值类型，包括整数int,浮点数float,布尔型bool，复数complex bool可选项值有True和False，非0为True，0为False` 数值类型类型支持以下运算操作： + 加法 - 减法 * 乘法 / 除法，得到浮点数 // 除法，得到整数 % 取余 ** 乘方 注意： 在混合计算时，Python会把整型转换成为浮点数。 2.2.2.序列类型（Sequence） 序列是指它的成员都是有序排列，并且可以通过下标偏移量访问到它的一个或几个成员， 包括字符串String、列表List、元组List三种类型 概念： 字符串用单引号 ‘ 或双引号 “ 括起来，同时使用反斜杠 \ 转义特殊字符 1&quot;123&quot; 字符串元素不可修改 列表是写在方括号 [] 之间、用逗号分隔开的元素列表 1[0,&quot;123&quot;] 列表中元素的类型可以不相同,列表中的元素可修改 元组（tuple）与列表类似，不同之处在于元组的元素不能修改。元组写在小括号 () 里，元素之间用逗号隔开 1(&quot;123&quot;,&quot;456&quot;) 元组中的元素类型也可以不相同 序列类型的基本操作包括： 成员操作符 [not] in 连接操作符 + 重复操作符 * 切片操作符 [:] 2.2.3.集合类型（Set） 集合（set）是由一个或数个形态各异的大小整体组成的，构成集合的事物或对象称作元素或是成员。 创建方式： 可以使用大括号 { } 或者 set() 函数创建集合 12coll = &#123;value01,value02,...&#125;coll = set(value) 注意：创建一个空集合必须用 set() 而不是 { }，因为 { } 是用来创建一个空字典。 基本功能： 成员关系测试 … in set 集合运算 差集 - 并集 | 交集 &amp; 异或 ^ 2.2.3 字典类型(dictionary) 字典是无序的对象集合，字典当中的元素是通过键来存取的 概念： 字典是一种映射类型，字典用 { } 标识，它是一个无序的 键(key) : 值(value) 的集合 键(key)必须使用不可变类型。在同一个字典中，键(key)必须是唯一的 创建方式： 12345#创建一个空的字典，并插入一个键值对dict = &#123;&#125;dict[&apos;key&apos;] = &apos;value&apos;#创建拥有一个键值对的字典dict = &#123;&apos;key&apos;: &apos;value&apos;&#125; 2.2.4.类型总结Python3 的六个标准数据类型中： 不可变数据（3 个）：Number（数字）、String（字符串）、Tuple（元组）； 可变数据（3 个）：List（列表）、Dictionary（字典）、Set（集合）。 2.2.5.类型判断内置的 type() 函数可以用来查询变量所指的对象类型，用法如下 12#以下会输出&lt;class &apos;str&apos;&gt;&gt;&gt;&gt;type(&quot;123&quot;) 此外还可以用isinstance()进行判断 12#以下会输出Ture&gt;&gt;&gt;isinstance(123, int) isinstance 和 type 的区别在于： type()不会认为子类是一种父类类型。 isinstance()会认为子类是一种父类类型。 2.2.6. 类型转换Python是弱类型语言，支持不同类型进行转换，有几个内置的转换函数，用法如下 12#字符串&quot;123&quot;转换成整型123&gt;&gt;&gt;int(&quot;123&quot;)]]></content>
       <categories>
         <category>编程语言</category>
