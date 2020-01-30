@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta name=referrer content=never>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>python基础知识--数据类型 | 石头の博客</title>
+  <meta name="description" content="（一）python基础知识–数据类型本教程针对Python3.x版本 1.特点面对初学者友好，学习曲线平缓  语法简介 支持跨平台 支持扩展其它语言 源码开放 类库丰富 解释型、面向对象、动态数据类型高级程序设计语言  2.语法2.1.书写规则 #字符用作注释 import 或者 from...import 来导入相应的模块 使用缩进来表示代码块，不需要使用大括号 {} 单行语句太长，我们可以使用">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基础知识--数据类型">
+<meta property="og:url" content="https://stonesPeng.github.io/2020/01/29/python基础知识-数据类型/index.html">
+<meta property="og:site_name" content="石头の博客">
+<meta property="og:description" content="（一）python基础知识–数据类型本教程针对Python3.x版本 1.特点面对初学者友好，学习曲线平缓  语法简介 支持跨平台 支持扩展其它语言 源码开放 类库丰富 解释型、面向对象、动态数据类型高级程序设计语言  2.语法2.1.书写规则 #字符用作注释 import 或者 from...import 来导入相应的模块 使用缩进来表示代码块，不需要使用大括号 {} 单行语句太长，我们可以使用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-29T13:05:44.763Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python基础知识--数据类型">
+<meta name="twitter:description" content="（一）python基础知识–数据类型本教程针对Python3.x版本 1.特点面对初学者友好，学习曲线平缓  语法简介 支持跨平台 支持扩展其它语言 源码开放 类库丰富 解释型、面向对象、动态数据类型高级程序设计语言  2.语法2.1.书写规则 #字符用作注释 import 或者 from...import 来导入相应的模块 使用缩进来表示代码块，不需要使用大括号 {} 单行语句太长，我们可以使用">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://stonesPeng.github.io/2020/01/29/python基础知识-数据类型/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="石头の博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/stonesPeng" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">石头</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>自律致自由</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/spring全家桶/">spring全家桶</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术杂记/">技术杂记</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法与模式/">算法与模式</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程语言/">编程语言</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/行业领域/">行业领域</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计与架构/">设计与架构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维部署/">运维部署</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/部署运维/">部署运维</a><span class="category-list-count">9</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/browser/">browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/">kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/">spring-boot</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sync/">sync</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/">windows</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/书单/">书单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/医药/">医药</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/协议/">协议</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信平台/">微信平台</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/架构/">架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/规则引擎/">规则引擎</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计/">设计</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集群/">集群</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/browser/" style="font-size: 13px;">browser</a> <a href="/tags/docker/" style="font-size: 13.2px;">docker</a> <a href="/tags/git/" style="font-size: 13.2px;">git</a> <a href="/tags/java/" style="font-size: 13.6px;">java</a> <a href="/tags/kotlin/" style="font-size: 13px;">kotlin</a> <a href="/tags/linux/" style="font-size: 13px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.8px;">mysql</a> <a href="/tags/network/" style="font-size: 13px;">network</a> <a href="/tags/nginx/" style="font-size: 13.2px;">nginx</a> <a href="/tags/node/" style="font-size: 13px;">node</a> <a href="/tags/python/" style="font-size: 13.6px;">python</a> <a href="/tags/spring-boot/" style="font-size: 14px;">spring-boot</a> <a href="/tags/sync/" style="font-size: 13px;">sync</a> <a href="/tags/windows/" style="font-size: 13.4px;">windows</a> <a href="/tags/书单/" style="font-size: 13px;">书单</a> <a href="/tags/医药/" style="font-size: 13px;">医药</a> <a href="/tags/协议/" style="font-size: 13.2px;">协议</a> <a href="/tags/微信平台/" style="font-size: 13px;">微信平台</a> <a href="/tags/数据结构与算法/" style="font-size: 13.8px;">数据结构与算法</a> <a href="/tags/架构/" style="font-size: 13px;">架构</a> <a href="/tags/编程语言/" style="font-size: 13px;">编程语言</a> <a href="/tags/规则引擎/" style="font-size: 13px;">规则引擎</a> <a href="/tags/设计/" style="font-size: 13.2px;">设计</a> <a href="/tags/设计模式/" style="font-size: 13px;">设计模式</a> <a href="/tags/集群/" style="font-size: 13px;">集群</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/编程语言/">编程语言</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/30/python基础知识-函数/" class="title">python基础知识--函数</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-30T14:26:27.000Z" itemprop="datePublished">2020-01-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/编程语言/">编程语言</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/29/python基础知识-条件和循环/" class="title">python基础知识--条件和循环</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-29T14:07:46.000Z" itemprop="datePublished">2020-01-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/编程语言/">编程语言</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/29/python基础知识-数据类型/" class="title">python基础知识--数据类型</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-29T13:00:37.000Z" itemprop="datePublished">2020-01-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/运维部署/">运维部署</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/14/Windows 下设置有线网络和无线网络的优先级/" class="title">Windows下设置有线网络和无线网络的优先级</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-14T12:26:31.000Z" itemprop="datePublished">2020-01-14</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/数据库/">数据库</a>
+              </p>
+              <p class="item-title">
+                <a href="/2020/01/09/Mysql 数据库备份迁移/" class="title">Mysql数据库备份迁移</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-01-09T11:54:30.000Z" itemprop="datePublished">2020-01-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）python基础知识–数据类型"><span class="toc-number">1.</span> <span class="toc-text">（一）python基础知识–数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-特点"><span class="toc-number">1.1.</span> <span class="toc-text">1.特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-语法"><span class="toc-number">1.2.</span> <span class="toc-text">2.语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-书写规则"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1.书写规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-数据类型"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2.数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-1-数值类型（Number）"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">2.2.1.数值类型（Number）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-2-序列类型（Sequence）"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">2.2.2.序列类型（Sequence）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-3-集合类型（Set）"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">2.2.3.集合类型（Set）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-3-字典类型-dictionary"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">2.2.3 字典类型(dictionary)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-4-类型总结"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">2.2.4.类型总结</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-5-类型判断"><span class="toc-number">1.2.2.6.</span> <span class="toc-text">2.2.5.类型判断</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-6-类型转换"><span class="toc-number">1.2.2.7.</span> <span class="toc-text">2.2.6. 类型转换</span></a></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-python基础知识-数据类型" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python基础知识--数据类型
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/01/29/python基础知识-数据类型/" class="article-date">
+	  <time datetime="2020-01-29T13:00:37.000Z" itemprop="datePublished">2020-01-29</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/python/">python</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/01/29/python基础知识-数据类型/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="（一）python基础知识–数据类型"><a href="#（一）python基础知识–数据类型" class="headerlink" title="（一）python基础知识–数据类型"></a>（一）python基础知识–数据类型</h3><p>本教程针对<code>Python3.x</code>版本</p>
+<h4 id="1-特点"><a href="#1-特点" class="headerlink" title="1.特点"></a>1.特点</h4><p>面对初学者友好，学习曲线平缓</p>
+<ol>
+<li>语法简介</li>
+<li>支持跨平台</li>
+<li>支持扩展其它语言</li>
+<li>源码开放</li>
+<li>类库丰富</li>
+<li>解释型、面向对象、动态数据类型高级程序设计语言</li>
+</ol>
+<h4 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h4><h5 id="2-1-书写规则"><a href="#2-1-书写规则" class="headerlink" title="2.1.书写规则"></a>2.1.书写规则</h5><ol>
+<li><code>#</code>字符用作注释</li>
+<li><code>import</code> 或者 <code>from...import</code> 来导入相应的模块</li>
+<li>使用缩进来表示代码块，不需要使用大括号 <strong>{}</strong></li>
+<li>单行语句太长，我们可以使用反斜杠<code>\</code>来实现多行语句</li>
+</ol>
+<h5 id="2-2-数据类型"><a href="#2-2-数据类型" class="headerlink" title="2.2.数据类型"></a>2.2.数据类型</h5><h6 id="2-2-1-数值类型（Number）"><a href="#2-2-1-数值类型（Number）" class="headerlink" title="2.2.1.数值类型（Number）"></a>2.2.1.数值类型（Number）</h6><blockquote>
+<p><code>Python</code> 支持四大数值类型，包括整数<code>int</code>,浮点数<code>float</code>,布尔型<code>bool</code>，复数<code>complex</code></p>
+<blockquote>
+<p><code></code>bool<code>可选项值有</code>True<code>和</code>False<code>，非0为</code>True<code>，0为</code>False`</p>
+</blockquote>
+</blockquote>
+<p>数值类型类型支持以下运算操作：</p>
+<ul>
+<li><code>+</code> 加法</li>
+<li><code>-</code> 减法</li>
+<li><code>*</code> 乘法</li>
+<li><code>/</code> 除法，得到浮点数</li>
+<li><code>//</code> 除法，得到整数</li>
+<li><code>%</code> 取余</li>
+<li><code>**</code> 乘方</li>
+</ul>
+<p><strong>注意：</strong> 在混合计算时，Python会把整型转换成为浮点数。</p>
+<h6 id="2-2-2-序列类型（Sequence）"><a href="#2-2-2-序列类型（Sequence）" class="headerlink" title="2.2.2.序列类型（Sequence）"></a>2.2.2.序列类型（Sequence）</h6><blockquote>
+<p>序列是指它的成员都是有序排列，并且可以通过下标偏移量访问到它的一个或几个成员，</p>
+<p>包括字符串<code>String</code>、列表<code>List</code>、元组<code>List</code>三种类型</p>
+</blockquote>
+<p>概念：</p>
+<ol>
+<li><p>字符串用单引号 <strong>‘</strong> 或双引号 <strong>“</strong> 括起来，同时使用反斜杠 <strong>\</strong> 转义特殊字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;123&quot;</span><br></pre></td></tr></table></figure>
+<p>字符串元素不可修改</p>
+</li>
+<li><p>列表是写在方括号 <strong>[]</strong> 之间、用逗号分隔开的元素列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0,&quot;123&quot;]</span><br></pre></td></tr></table></figure>
+<p>列表中元素的类型可以不相同,列表中的元素可修改</p>
+</li>
+<li><p>元组（tuple）与列表类似，不同之处在于元组的元素不能修改。元组写在小括号 <strong>()</strong> 里，元素之间用逗号隔开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&quot;123&quot;,&quot;456&quot;)</span><br></pre></td></tr></table></figure>
+<p>元组中的元素类型也可以不相同</p>
+</li>
+</ol>
+<p>序列类型的基本操作包括：</p>
+<ul>
+<li>成员操作符 <code>[not] in</code></li>
+<li>连接操作符 <code>+</code></li>
+<li>重复操作符 <code>*</code></li>
+<li>切片操作符 <code>[:]</code></li>
+</ul>
+<h6 id="2-2-3-集合类型（Set）"><a href="#2-2-3-集合类型（Set）" class="headerlink" title="2.2.3.集合类型（Set）"></a>2.2.3.集合类型（Set）</h6><blockquote>
+<p>集合（set）是由一个或数个形态各异的大小整体组成的，构成集合的事物或对象称作元素或是成员。</p>
+</blockquote>
+<p>创建方式：</p>
+<p>可以使用大括号 <strong>{ }</strong> 或者 <strong>set()</strong> 函数创建集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">coll = &#123;value01,value02,...&#125;</span><br><span class="line">coll = set(value)</span><br></pre></td></tr></table></figure>
+<p>注意：创建一个空集合必须用 <strong>set()</strong> 而不是 <strong>{ }</strong>，因为 <strong>{ }</strong> 是用来创建一个空字典。</p>
+<p>基本功能：</p>
+<ol>
+<li><p>成员关系测试</p>
+<p>… in set</p>
+</li>
+<li><p>集合运算</p>
+<ul>
+<li>差集 <code>-</code></li>
+<li>并集 <code>|</code></li>
+<li>交集 <code>&amp;</code></li>
+<li>异或 <code>^</code></li>
+</ul>
+</li>
+</ol>
+<h6 id="2-2-3-字典类型-dictionary"><a href="#2-2-3-字典类型-dictionary" class="headerlink" title="2.2.3 字典类型(dictionary)"></a>2.2.3 字典类型(dictionary)</h6><blockquote>
+<p>字典是无序的对象集合，字典当中的元素是通过键来存取的</p>
+</blockquote>
+<p>概念：</p>
+<ol>
+<li>字典是一种映射类型，字典用 <strong>{ }</strong> 标识，它是一个无序的 <strong>键(key) : 值(value)</strong> 的集合</li>
+<li>键(key)必须使用不可变类型。在同一个字典中，键(key)必须是唯一的</li>
+</ol>
+<p>创建方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#创建一个空的字典，并插入一个键值对</span><br><span class="line">dict = &#123;&#125;</span><br><span class="line">dict[&apos;key&apos;] = &apos;value&apos;</span><br><span class="line">#创建拥有一个键值对的字典</span><br><span class="line">dict = &#123;&apos;key&apos;: &apos;value&apos;&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="2-2-4-类型总结"><a href="#2-2-4-类型总结" class="headerlink" title="2.2.4.类型总结"></a>2.2.4.类型总结</h6><p><code>Python3</code> 的六个标准数据类型中：</p>
+<ul>
+<li><strong>不可变数据（3 个）：</strong>Number（数字）、String（字符串）、Tuple（元组）；</li>
+<li><strong>可变数据（3 个）：</strong>List（列表）、Dictionary（字典）、Set（集合）。</li>
+</ul>
+<h6 id="2-2-5-类型判断"><a href="#2-2-5-类型判断" class="headerlink" title="2.2.5.类型判断"></a>2.2.5.类型判断</h6><p>内置的 <code>type()</code> 函数可以用来查询变量所指的对象类型，用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#以下会输出&lt;class &apos;str&apos;&gt;</span><br><span class="line">&gt;&gt;&gt;type(&quot;123&quot;)</span><br></pre></td></tr></table></figure>
+<p>此外还可以用<code>isinstance()</code>进行判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#以下会输出Ture</span><br><span class="line">&gt;&gt;&gt;isinstance(123, int)</span><br></pre></td></tr></table></figure>
+<p><code>isinstance</code> 和 <code>type</code> 的区别在于：</p>
+<ul>
+<li><code>type()</code>不会认为子类是一种父类类型。</li>
+<li><code>isinstance()</code>会认为子类是一种父类类型。</li>
+</ul>
+<h6 id="2-2-6-类型转换"><a href="#2-2-6-类型转换" class="headerlink" title="2.2.6. 类型转换"></a>2.2.6. 类型转换</h6><p><code>Python</code>是弱类型语言，支持不同类型进行转换，有几个内置的转换函数，用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#字符串&quot;123&quot;转换成整型123</span><br><span class="line">&gt;&gt;&gt;int(&quot;123&quot;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://stonesPeng.github.io/2020/01/29/python基础知识-数据类型/" title="python基础知识--数据类型" target="_blank" rel="external">https://stonesPeng.github.io/2020/01/29/python基础知识-数据类型/</a>
+    </li>
+    
+    
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/stonesPeng" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/stonesPeng" target="_blank"><span class="text-dark">石头</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>正儿八经不开黄腔的二号线吴彦祖</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zOTUxMy8xNjA0MA==">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/01/29/python基础知识-条件和循环/" title="python基础知识--条件和循环"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/01/14/Windows 下设置有线网络和无线网络的优先级/" title="Windows下设置有线网络和无线网络的优先级"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/stonesPeng" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

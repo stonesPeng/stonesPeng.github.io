@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://stonesPeng.github.io/2020/01/30/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E5%87%BD%E6%95%B0/</loc>
+    
+    <lastmod>2020-01-30T14:27:38.380Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://stonesPeng.github.io/2020/01/29/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%BE%AA%E7%8E%AF/</loc>
     
     <lastmod>2020-01-29T14:08:57.302Z</lastmod>
@@ -9,7 +16,7 @@
   </url>
   
   <url>
-    <loc>https://stonesPeng.github.io/2020/01/29/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86--%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>https://stonesPeng.github.io/2020/01/29/python%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2020-01-29T13:05:44.763Z</lastmod>
     
@@ -320,20 +327,6 @@
     <loc>https://stonesPeng.github.io/2019/08/19/python-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</loc>
     
     <lastmod>2019-08-27T09:08:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://stonesPeng.github.io/2019/08/19/python-%E5%9F%BA%E7%A1%80/</loc>
-    
-    <lastmod>2019-08-27T09:08:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://stonesPeng.github.io/2019/08/19/python-%E5%87%BD%E6%95%B0/</loc>
-    
-    <lastmod>2019-08-27T08:57:44.000Z</lastmod>
     
   </url>
   
