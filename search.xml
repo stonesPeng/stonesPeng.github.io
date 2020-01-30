@@ -210,17 +210,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[(三)python-高级特性]]></title>
-    <url>%2F2019%2F08%2F19%2Fpython-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%2F</url>
-    <content type="text"><![CDATA[学习大纲]]></content>
-      <categories>
-        <category>编程语言</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[springboot with docker]]></title>
     <url>%2F2019%2F07%2F31%2Fspringbootdocker%2F</url>
     <content type="text"><![CDATA[Springboot with docker0.准备工程 在pom.xml增加docker构建插件 12345678910111213141516plugin&gt; &lt;groupId&gt;com.spotify&lt;/groupId&gt; &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt; &lt;version&gt;1.2.0&lt;/version&gt; &lt;configuration&gt; &lt;imageName&gt;$&#123;docker.image.prefix&#125;/$&#123;project.artifactId&#125;&lt;/imageName&gt; &lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt; &lt;resources&gt; &lt;resource&gt; &lt;targetPath&gt;/&lt;/targetPath&gt; &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt; &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt; &lt;/resource&gt; &lt;/resources&gt; &lt;/configuration&gt;&lt;/plugin&gt; 在工程src/main/docker目录下添加DockerFile文件 1234FROM openjdk:8-jdk-alpineVOLUME /tmpADD webme-0.0.1-SNAPSHOT.jar app.jarENTRYPOINT [&quot;java&quot;,&quot;-Djava.security.egd=file:/dev/./urandom&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;] 测试项目是否能正常运行 1mvn package -Dmaven.test.skip=true #打包项目 1java -Djava.security.egd=file:/dev/./urandom -jar /app.jar #运行项目 1.maven使用DockerFile构建镜像1mvn package docker:build #首次构建需要时间 构建好的镜像通过docker images查看 2.运行镜像1234docker run -p 8001:8080 -dti &lt;imagesName&gt; /bin/bash #启动一个 bash 终端，允许用户进行交互#-t 让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上#-i 让容器的标准输入保持打开#-d 让Docker容器在后台以守护态（Daemonized）形式运行 启动成功使用docker ps 查看运行的容器 3.删除镜像/容器12docker rm &lt;contaninerId&gt;/&lt;containerName&gt; #删除容器，一般删除之前要通过stop中断容器docker rmi &lt;imageId&gt;/&lt;imageName&gt; #删除镜像 4.导出/导入容器12docker export &lt;containerId&gt; &gt;**.tar #导出容器快照到本地文件cat **.tar | docker import - &lt;imagesName&gt;:&lt;version&gt; # 从容器快照文件中再导入为镜像 Tip 运行导入的镜像必须带command，否则启动会报错：Error response from daemon: No command specified 必须像下列输入命令 1docker run -d -p 9999:9093 sso:latest java -Djava.security.egd=file:/dev/./urandom -jar /app.jar github源代码]]></content>
